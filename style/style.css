@@ -1,0 +1,185 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #d0d3d4;
+    
+}
+header img{
+    margin: 10px 60px;
+    width: 21rem;
+}
+header ul{
+    display: flex;
+}
+header li{
+    margin: 0px 10px;
+    list-style: none;
+}
+header a{
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+.imgBanner{
+    width: 100%;
+}
+h1{
+    text-align: center;
+    margin: 10px;
+}
+.about-us{
+    width: 90%;
+    text-align: center;
+    margin: auto;
+}
+
+h3{
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin: 30px 0px;
+}
+
+.luces, .sonido{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-evenly;
+
+}
+.box{
+    border: 1px solid black;
+    background-color: grey;
+    border-radius: 15px;
+    width: 15%;
+    margin: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.fa-lightbulb{
+    font-size: 32px;
+    margin: 20px;
+}
+.text-box{
+    font-size: 14px;
+}
+.styleInput{
+    padding: 5px;
+    width: 50%;
+    border-radius: 10px;
+    margin-top: 5px;
+    border: none;
+}
+
+.cuadrilatero{
+    display: flex;
+    justify-content: space-around;
+}
+.cuadrilatero article{
+    background-color: grey;
+    border-radius: 10px;
+    padding: 10px;
+}
+.cuadrilatero article p{
+    font-size: 22px;
+    text-align: center;
+}
+.cuadrilatero article div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+.sistema{
+    display: grid;
+}
+.grupo{
+    background-color: grey;
+    padding: 15px;
+    border-radius: 15px;
+    width: 60%;
+    margin: auto;
+}
+.grupo div{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tension{
+    width: 15%;
+}
+
+.envio{
+    display: flex;
+    justify-content: space-evenly;
+}
+.map{
+    display: flex;
+    background-color: grey;
+    border-radius: 15px;
+    padding: 15px;
+}
+.map div{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+.duracion{
+    background-color: grey;
+    border-radius: 15px;
+    padding: 15px;
+}
+.duracion p{
+    text-align: center;
+}
+.duracion div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.armado{
+    background-color: grey;
+    border-radius: 15px;
+    padding: 15px;
+    display: grid;
+}
+.armado div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnPresupuesto{
+    color: white;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+}
+
+.listado{
+    background-color: grey;
+    width: 50%;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 15px;
+}
+.listado h2{
+    margin: 15px;
+}
