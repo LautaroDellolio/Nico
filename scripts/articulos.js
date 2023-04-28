@@ -85,7 +85,6 @@ const articulos = [
         precio: 10
     },
     {
-
         categoria: "iluminacion",
         nombre : "Seguidor 1200 c/ Seguidorista",
         precio: 10
@@ -331,12 +330,13 @@ function agregarGrupo(){
                 descipcion: backUp.value
             })
     }
+    if(cable.value){
     grupoElectrogeno.push({
         descipcion : cable.value +" Mts de Cable"
     })
+    }
     return grupoElectrogeno;
 }
-
 
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector(".listado")
@@ -364,7 +364,5 @@ function renderizarPresupuesto(lista) {
         `<li>${articulo.descipcion} </li>`
     })
 
-    
-    
 }
 
