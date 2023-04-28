@@ -80,6 +80,7 @@ h3{
     border-radius: 10px;
     margin-top: 5px;
     border: none;
+    text-align: center;
 }
 
 .cuadrilatero{
@@ -182,4 +183,49 @@ h3{
 }
 .listado h2{
     margin: 15px;
+}
+
+footer{
+    background-color: gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+.about-footer{
+    margin: 15px 20px 0px;
+    width: 50%;
+}
+/* .about-footer p{
+    width: 50%;
+} */
+.img-footer{
+    width: 200px;
+}
+.about-us p{
+    font-size: 12px;
+}
+.div-about{
+    display: flex;
+    justify-content: space-around;
+}
+.div-about i{
+    color: black;
+}
+.div-contact{
+    display: flex;
+    flex-direction: column;
+}
+.contact{
+    margin: 24px 0px;
+}
+.contact h4{
+    font-size: 22px;
+    margin: 5px;
+}
+.div-contact i{
+    font-size: 16px;
+    margin: 5px;
+
 }
