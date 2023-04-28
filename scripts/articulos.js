@@ -345,7 +345,7 @@ function renderizarPresupuesto(lista) {
     const cuadrilatero = agregarTramos()
     const grupoElectrogeno = agregarGrupo()
 
-    titulo.setAttribute("style","display:block")
+    titulo.setAttribute("style","display:flex")
     
     presupuesto.innerHTML = ""
     

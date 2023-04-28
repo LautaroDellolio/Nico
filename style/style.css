@@ -161,9 +161,9 @@ h3{
     align-items: center;
 }
 
-.btnPresupuesto{
+.btnStyle{
     color: white;
-    background-color: grey;
+    background-color: black;
     display: flex;
     justify-content: center;
     margin: auto;
@@ -173,16 +173,36 @@ h3{
     border: none;
     font-size: 18px;
 }
-
 .listado{
+    display: flex;
+    justify-content: space-around;;
+}
+.divListado{
     background-color: grey;
     width: 50%;
     padding: 10px;
     margin: 20px;
     border-radius: 15px;
 }
-.listado h2{
+.divListado h2{
     margin: 15px;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px;
+    width: 30%;
+}
+.formulario div{
+    display: grid;
+    margin: 5px 0px;
+}
+.formulario div input{
+    padding: 5px;
+    border-radius: 15px;
 }
 
 footer{
@@ -197,35 +217,7 @@ footer{
     margin: 15px 20px 0px;
     width: 50%;
 }
-/* .about-footer p{
-    width: 50%;
-} */
+
 .img-footer{
     width: 200px;
-}
-.about-us p{
-    font-size: 12px;
-}
-.div-about{
-    display: flex;
-    justify-content: space-around;
-}
-.div-about i{
-    color: black;
-}
-.div-contact{
-    display: flex;
-    flex-direction: column;
-}
-.contact{
-    margin: 24px 0px;
-}
-.contact h4{
-    font-size: 22px;
-    margin: 5px;
-}
-.div-contact i{
-    font-size: 16px;
-    margin: 5px;
-
 }
