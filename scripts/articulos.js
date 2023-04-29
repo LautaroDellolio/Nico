@@ -337,7 +337,6 @@ function agregarGrupo(){
     }
     return grupoElectrogeno;
 }
-
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector(".listado")
     const presupuesto = document.querySelector(".listaArticulos")
