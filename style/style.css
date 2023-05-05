@@ -85,6 +85,7 @@ h3{
 .descripcion p {
     display: none;
 }
+
 .descripcion:hover i, .descripcion:hover .sonidoText{
     display: none;
 }
