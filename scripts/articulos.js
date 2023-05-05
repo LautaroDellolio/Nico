@@ -112,13 +112,13 @@ const articulos = [
     {
         categoria: "Sonido",
         nombre: "Sonido 1",
-        descipcion : "Sonido Ceremonia/conferencia 2 JBL Eon-10 + Consola + Mic",
+        descipcion : "2 JBL Eon-10 + Consola + Mic",
         precio: 10
     },
     {
         categoria: "Sonido",
         nombre:"Sonido 2",
-        descipcion : "Sonido Ceremonia/conferencia 4 JBL Eon-10 + consola + Mic",
+        descipcion : "4 JBL Eon-10 + consola + Mic",
         precio: 10
     },
     {
@@ -142,26 +142,30 @@ const articulos = [
     {
         categoria: "Sonido",
         nombre : "Perimetrales (JBL / RCF)",
+        descipcion: "Perimetrales (JBL / RCF)",
         precio: 10
     },
     {
         categoria: "Sonido",
         nombre : "Sonido K-array (kr-202)",
+        descipcion: "Sonido K-array (kr-202)",
         precio: 10
     },
     {
         categoria: "Sonido",
         nombre : "Rider Banda chica",
+        descipcion: "Rider Banda chica",
         precio: 10
     },
     {
         categoria: "Sonido",
         nombre : "Mic Inalambrico Sennheiser G3",
+        descipcion: "Mic Inalambrico Sennheiser G3",
         precio: 10
     },
     {
         categoria:"rigging",
-        nombre: "Truss Prolyte H30V x Metro" ,
+        nombre: "Truss Prolyte H30V x Metro",
         precio: 10
     },
     {
@@ -297,10 +301,11 @@ lista.forEach(articulo=>{
             </article>`
         } if (articulo.categoria == "Sonido") {
             sectionSonido.innerHTML +=
-            `<article class="box">
+            `<article class="box descripcion">
+                    <p>${articulo.descipcion}</p>
                     <i class="fa-regular fa-lightbulb"></i>
                     <div>
-                        <h4 class="text-box">${articulo.nombre}</h4>
+                        <h4 class="sonidoText">${articulo.nombre}</h4>
                         <input id="${articulo.id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                     </div>
             </article>`
@@ -426,20 +431,6 @@ function agregarEnvio() {
     return envio
     console.log(envio);
 }
-// function checkedRadio(){
-//     const radios = document.querySelectorAll(".check")
-//     console.log(radios);
-
-//     radios.forEach((radio) => {
-//         console.log(radio.checked); 
-//         if (radio.checked === true) {
-//         radio.checked = false
-//         }else{
-//             radio.checked = true
-//         }
-//       });
-// }
-
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
     const presupuesto = document.querySelector(".listaArticulos")
