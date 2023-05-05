@@ -22,16 +22,19 @@
     <main>
         <img src="./img/Banner-home.png" alt="banner" class="imgBanner">
         <h1 id="about">Sobre Nosotros</h1>
-        <p class="about-us">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt repellat saepe laborum dolor quod alias qui, blanditiis neque laudantium amet beatae repellendus id in! Odio eaque unde non eum suscipit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur iste voluptatibus minima officia qui natus labore, tenetur impedit maxime voluptate ullam placeat inventore voluptas libero, alias quos eligendi fugit totam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur reprehenderit non obcaecati aliquid facere autem quae illo omnis libero ipsum, magni fugit a nihil blanditiis quo sunt eligendi ducimus dignissimos?</p>
+        <p class="about-us">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt repellat saepe laborum dolor quod alias qui, blanditiis neque laudantium amet beatae repellendus id in! Odio eaque unde non eum suscipit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur iste voluptatibus minima officia qui natus labore, tenetur impedit maxime voluptate ullam placeat inventore voluptas libero, alias quos eligendi fugit totam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur reprehenderit non obcaecati aliquid facere autem quae illo omnis libero ipsum, magni fugit a nihil blanditiis quo sunt eligendi ducimus dignissimos?
+        </p>
         
         <form action="">
             <h3 id="catalogo">ILUMINACIÓN</h3>
-            <section class="luces"></section>
+            <section class="luces styleSection"></section>
 
             <h3>SONIDO</h3>
-            <section class="sonido"></section>
+            <section class="sonido styleSection"></section>
 
-            <h3>CUADRILÁTERO</h3>
+            <h3>RIGGING</h3>
+            <section class="rigging styleSection"></section>
+
             <section class="cuadrilatero">
                 <article>
                     <p>Ingrese las medidas</p>
@@ -52,11 +55,11 @@
                     <p>Sistema de Instalación</p>
                     <div>
                         <label >Colgado</label>
-                        <input type="radio" id='colgado' value='colgado' name="sistema" />
+                        <input type="radio" id='colgado' value='colgado' name="sistema" class="check" />
                     </div>
                     <div>
                         <label>De pie</label>
-                        <input type="radio" id='pie' value='pie' name="sistema" />
+                        <input type="radio" id='pie' value='pie' name="sistema" class="check" />
                     </div>
                     <div style="display: none" class="patas">
                         <label >Cantidad de Patas</label>
@@ -81,55 +84,60 @@
                 </div>
             </section>
 
-            <h3>ENVÍO</h3>
+            <h3>TRANSPORTE</h3>
             <section class="envio">
                 <article class="map">
                     <div>
                         <img src="" alt="zona1">
-                        <label for="">Zona 1</label>
-                        <input type="radio" name="zona">
+                        <label for="">CABA- ZONA NORTE </label>
+                        <input type="radio" name="zona" id="zona1" value="zona1" class="check">
                     </div>
                     <div>
                         <img src="" alt="zona2">
-                        <label for="">Zona 2</label>
-                        <input type="radio" name="zona">
+                        <label for="">PILAR - CAMPANA - CAÑUELAS(O HASTA 100KM)</label>
+                        <input type="radio" name="zona" id="zona2" value="zona2" class="check">
+                    </div>
+                    <div>
+                        <img src="" alt="zona2">
+                        <label for="">MAS DE 100 KM</label>
+                        <input type="radio" name="zona" id="zona2" value="zonaOtro" class="check">
                     </div>
                 </article>        
                 <article class="duracion">
                     <p>Duración del Evento</p>
                     <div>
                         <label for="">1 Día</label>
-                        <input type="radio" name="duracion">
+                        <input type="radio" name="duracion" id="dia1" value="unDia" class="check">
                     </div>
                     <div>
                         <label for="">2 Días</label>
-                        <input type="radio" name="duracion">
+                        <input type="radio" name="duracion" id="dia2" value="dosDias" class="check">
                     </div>
                     <div>
                         <label for="">Otro</label>
-                        <input type="radio" name="duracion" id="diaOtro">
+                        <input type="radio" name="duracion" id="diaOtro" class="check">
                     </div>
                     <div class="dias" style="display: none">
                         <label for="">Cantidad de días</label>
-                        <input type="number" class="styleInput">
+                        <input type="number" class="styleInput" id="masDias" name="duracion">
                     </div>
                 </article>
                 <article class="armado">
                     <p>Día de Armado</p>
                     <div>
                         <label for="">En el Día</label>
-                        <input type="radio" name="armado">
+                        <input type="radio" name="armado" id="armadoDia" value="enElDia" class="check">
                     </div>
                     <div>
                         <label for="">Día Previo</label>
-                        <input type="radio" name="armado">
+                        <input type="radio" name="armado" id="armadoPrevio" value="diaPrevio" class="check">
                     </div>
                 </article>
             </section>
 
             <button class="btnPresupuesto btnStyle" type="submit">Generar Presupuesto</button>
         </form>
-        <section class="listado" style="display: none">
+        <section class="listado" id="list" style="display: none">
             <div class="divListado">
                 <h2>Listado de Artículos</h2>
                 <ul class="listaArticulos" ></ul>

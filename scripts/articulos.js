@@ -158,7 +158,52 @@ const articulos = [
         categoria: "Sonido",
         nombre : "Mic Inalambrico Sennheiser G3",
         precio: 10
-    } 
+    },
+    {
+        categoria:"rigging",
+        nombre: "Truss Prolyte H30V x Metro" ,
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Corner box Prolyte ",
+        precio: 10   
+    },
+    {
+        categoria:"rigging",
+        nombre: "Aparejo x 1Tn (Ganmar-Yale)",
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Patas Malakate (6 Metros x 250 Kg)",
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Totem Truss",
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Totem telescópico",
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Circular Truss x 6 metros",
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Circular Truss x 8 metros",
+        precio: 10
+    },
+    {
+        categoria:"rigging",
+        nombre: "Cabina de DJ con Truss 3030 (3x1x1)",
+        precio: 10
+    }
 ]
 const costosFijos = [
     {
@@ -181,7 +226,7 @@ let carrito=[]
 
 window.addEventListener("load", ()=>{
     generarId(articulos)
-    renderizarArticulos(articulos)    
+    renderizarArticulos(articulos)
 })
 
 window.addEventListener("change",()=>{
@@ -213,6 +258,7 @@ btnPresupuesto.addEventListener("click",function(e){
         agregarAlCarrito(articulos)
         agregarTramos()
         agregarGrupo()
+        agregarEnvio()
         renderizarPresupuesto(carrito)
         console.log(carrito);
     }else{
@@ -237,6 +283,7 @@ function generarId(lista){
 function renderizarArticulos(lista){
 const sectionLuces = document.querySelector(".luces")
 const sectionSonido = document.querySelector(".sonido")
+const sectionRigging = document.querySelector(".rigging")
 
 lista.forEach(articulo=>{
     if (articulo.categoria == "iluminacion") {
@@ -258,6 +305,15 @@ lista.forEach(articulo=>{
                     </div>
             </article>`
             
+        } if(articulo.categoria == "rigging"){
+            sectionRigging.innerHTML += 
+            `<article class="box">
+            <i class="fa-regular fa-lightbulb"></i>
+            <div>
+                <h4 class="text-box">${articulo.nombre}</h4>
+                <input id="${articulo.id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+            </div>
+    </article>`
         }
     })
 }
@@ -287,7 +343,8 @@ function agregarAlCarrito(lista) {
                 };
             }
     }).filter(input => input !== undefined);
-    return carrito; 
+    return carrito;
+    console.log(carrito);
 }
 function agregarTramos(){
     const inputLargo = document.querySelector(".largo").value
@@ -337,12 +394,59 @@ function agregarGrupo(){
     }
     return grupoElectrogeno;
 }
+function agregarEnvio() {
+    const zonaEnvio = document.querySelector('input[name="zona"]:checked')
+    const duracion = document.querySelector('input[name="duracion"]:checked')
+    const masDias = document.getElementById("masDias")
+    const armado = document.querySelector('input[name="armado"]:checked')
+    let envio = []
+    if (zonaEnvio) {
+        envio.push({
+            descripcion: "Envio a " +zonaEnvio.value})
+        // console.log(zonaEnvio.value)
+    };
+
+    if (duracion) {
+        if (duracion.value=="unDia"||duracion.value=="dosDias") {
+            envio.push({
+                descripcion:"Duracion " + duracion.value})
+            // console.log(duracion.value);
+        }else{
+            envio.push({
+                descripcion:"Duracion " + masDias.value + " días"})
+            // console.log(masDias.value);
+        }
+    }
+
+    if (armado) {
+        envio.push({
+            descripcion:"Dia de Armado " +armado.value})
+        // console.log(armado.value);
+    }
+    return envio
+    console.log(envio);
+}
+// function checkedRadio(){
+//     const radios = document.querySelectorAll(".check")
+//     console.log(radios);
+
+//     radios.forEach((radio) => {
+//         console.log(radio.checked); 
+//         if (radio.checked === true) {
+//         radio.checked = false
+//         }else{
+//             radio.checked = true
+//         }
+//       });
+// }
+
 function renderizarPresupuesto(lista) {
-    const titulo = document.querySelector(".listado")
+    const titulo = document.querySelector("#list")
     const presupuesto = document.querySelector(".listaArticulos")
 
     const cuadrilatero = agregarTramos()
     const grupoElectrogeno = agregarGrupo()
+    const envio = agregarEnvio()
 
     titulo.setAttribute("style","display:flex")
     
@@ -351,16 +455,21 @@ function renderizarPresupuesto(lista) {
     lista.forEach(articulo=>{
         presupuesto.innerHTML+=
         `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
-    })
+    })//luces y sonido
     
     if (cuadrilatero.length != 0) {
         presupuesto.innerHTML +=
             `<li> ${cuadrilatero} </li>`
-    }
+    }//cuadrilatero
 
     grupoElectrogeno.forEach(articulo=>{
         presupuesto.innerHTML +=
         `<li>${articulo.descipcion} </li>`
+    })//grupo electrogeno
+
+    envio.forEach(articulo=>{
+        presupuesto.innerHTML +=
+        `<li>${articulo.descripcion}</li>`
     })
 
 }
