@@ -36,227 +36,228 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
-        nombre : "Fresnel 1 Kw",
+        nombre: "Fresnel 1 Kw",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Fresnel 2 Kw",
+        nombre: "Fresnel 2 Kw",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Par56 - 300 Watts",
+        nombre: "Par56 - 300 Watts",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Barra de Led",
+        nombre: "Barra de Led",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Bañador NovaLed Outdoor", 
+        nombre: "Bañador NovaLed Outdoor",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Atomix 3000",
+        nombre: "Atomix 3000",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Elipsoidal 750 Watts (Zoom 25 - 50º)", 
+        nombre: "Elipsoidal 750 Watts (Zoom 25 - 50º)",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Minibrut x 4 Lamps",
+        nombre: "Minibrut x 4 Lamps",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Minibrut x 8 Lamps",
+        nombre: "Minibrut x 8 Lamps",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "HQI - 400 / Reflector Led 100 Watts",
+        nombre: "HQI - 400 / Reflector Led 100 Watts",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Seguidor 1200 c/ Seguidorista",
+        nombre: "Seguidor 1200 c/ Seguidorista",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Octobeam Laser RGB x 3 watts c/u", 
+        nombre: "Octobeam Laser RGB x 3 watts c/u",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Máquina de Humo Cloudy",
+        nombre: "Máquina de Humo Cloudy",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Toma tensión Hasta 10 Amperes",
+        nombre: "Toma tensión Hasta 10 Amperes",
         precio: 10
     },
     {
         categoria: "iluminacion",
-        nombre : "Toma tensión Hasta 20 Amperes",
+        nombre: "Toma tensión Hasta 20 Amperes",
         precio: 10
     },
     {
         categoria: "Sonido",
         nombre: "Sonido 1",
-        descipcion : "2 JBL Eon-10 + Consola + Mic",
+        descipcion: "2 JBL Eon-10 + Consola + Mic",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre:"Sonido 2",
-        descipcion : "4 JBL Eon-10 + consola + Mic",
+        nombre: "Sonido 2",
+        descipcion: "4 JBL Eon-10 + consola + Mic",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre:"Sonido 3",
-        descipcion : "Sonido pista JBL / RCF (2 Mid-Hi + 2 Sub)",
+        nombre: "Sonido 3",
+        descipcion: "Sonido pista JBL / RCF (2 Mid-Hi + 2 Sub)",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre:"Sonido 4",
-        descipcion : "Sonido Line Array 4xlado RCF HDL6 + Sub",
+        nombre: "Sonido 4",
+        descipcion: "Sonido Line Array 4xlado RCF HDL6 + Sub",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre:"Sonido 5",
-        descipcion : "Sonido DJ en recepcion (2 mid-Hi + 2 Sub + JBL/RCF)",
+        nombre: "Sonido 5",
+        descipcion: "Sonido DJ en recepcion (2 mid-Hi + 2 Sub + JBL/RCF)",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre : "Perimetrales (JBL / RCF)",
+        nombre: "Perimetrales (JBL / RCF)",
         descipcion: "Perimetrales (JBL / RCF)",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre : "Sonido K-array (kr-202)",
+        nombre: "Sonido K-array (kr-202)",
         descipcion: "Sonido K-array (kr-202)",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre : "Rider Banda chica",
+        nombre: "Rider Banda chica",
         descipcion: "Rider Banda chica",
         precio: 10
     },
     {
         categoria: "Sonido",
-        nombre : "Mic Inalambrico Sennheiser G3",
+        nombre: "Mic Inalambrico Sennheiser G3",
         descipcion: "Mic Inalambrico Sennheiser G3",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Truss Prolyte H30V x Metro",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Corner box Prolyte ",
-        precio: 10   
+        precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Aparejo x 1Tn (Ganmar-Yale)",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Patas Malakate (6 Metros x 250 Kg)",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Totem Truss",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Totem telescópico",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Circular Truss x 6 metros",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Circular Truss x 8 metros",
         precio: 10
     },
     {
-        categoria:"rigging",
+        categoria: "rigging",
         nombre: "Cabina de DJ con Truss 3030 (3x1x1)",
         precio: 10
     }
 ]
+
 const costosFijos = [
     {
         categoria: "fijo",
-        nombre : "Consola AVOLITES + Operador",
+        nombre: "Consola AVOLITES + Operador",
         precio: 10
     },
     {
         categoria: "fijo",
-        nombre : "Corralito negro para control",
+        nombre: "Corralito negro para control",
         precio: 10
     },
     {
         categoria: "fijo",
-        nombre : "Dimmer 12 ch / Usina de tension", 
+        nombre: "Dimmer 12 ch / Usina de tension",
         precio: 10
     }
 ]
-let carrito=[]
+let carrito = []
 
-window.addEventListener("load", ()=>{
+window.addEventListener("load", () => {
     generarId(articulos)
     renderizarArticulos(articulos)
 })
 
-window.addEventListener("change",()=>{
+window.addEventListener("change", () => {
     const dePie = document.getElementById("pie")
     const cantPatas = document.querySelector(".patas")
     const masDias = document.querySelector("#diaOtro")
     const cantDias = document.querySelector(".dias")
 
-    if(dePie.checked){
+    if (dePie.checked) {
         cantPatas.setAttribute("style", "display:block")
-    }else{
+    } else {
         cantPatas.setAttribute("style", "display:none")
     }
 
     if (masDias.checked) {
-        cantDias.setAttribute("style","display:block")        
-    }else{
+        cantDias.setAttribute("style", "display:block")
+    } else {
         cantDias.setAttribute("style", "display:none")
     }
 })
 
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
-btnPresupuesto.addEventListener("click",function(e){
+btnPresupuesto.addEventListener("click", function (e) {
     const inputs = document.querySelectorAll(".valorInputs");
     const validacion = validarDatos(inputs)
-    
+
     e.preventDefault()
     if (validacion) {
         agregarAlCarrito(articulos)
@@ -265,10 +266,10 @@ btnPresupuesto.addEventListener("click",function(e){
         agregarEnvio()
         renderizarPresupuesto(carrito)
         console.log(carrito);
-    }else{
+    } else {
         alert("Los campos solo pueden contener números enteros. Por favor, corrija los campos resaltados en rojo antes de continuar.")
-        inputs.forEach(articulo=>{
-            articulo.addEventListener("change",()=>{
+        inputs.forEach(articulo => {
+            articulo.addEventListener("change", () => {
                 validarDatos(inputs)
             })
         })
@@ -276,23 +277,23 @@ btnPresupuesto.addEventListener("click",function(e){
 })
 
 
-function generarId(lista){
-    let id=1
+function generarId(lista) {
+    let id = 1
     for (let i = 0; i < lista.length; i++) {
         lista[i].id = id
-        id++        
+        id++
     }
     return lista
 }
-function renderizarArticulos(lista){
-const sectionLuces = document.querySelector(".luces")
-const sectionSonido = document.querySelector(".sonido")
-const sectionRigging = document.querySelector(".rigging")
+function renderizarArticulos(lista) {
+    const sectionLuces = document.querySelector(".luces")
+    const sectionSonido = document.querySelector(".sonido")
+    const sectionRigging = document.querySelector(".rigging")
 
-lista.forEach(articulo=>{
-    if (articulo.categoria == "iluminacion") {
-        sectionLuces.innerHTML +=
-            `<article class="box">
+    lista.forEach(articulo => {
+        if (articulo.categoria == "iluminacion") {
+            sectionLuces.innerHTML +=
+                `<article class="box">
                     <i class="fa-regular fa-lightbulb"></i>
                     <div>
                         <h4 class="text-box">${articulo.nombre}</h4>
@@ -301,7 +302,7 @@ lista.forEach(articulo=>{
             </article>`
         } if (articulo.categoria == "Sonido") {
             sectionSonido.innerHTML +=
-            `<article class="box descripcion">
+                `<article class="box descripcion">
                     <p>${articulo.descipcion}</p>
                     <i class="fa-regular fa-lightbulb"></i>
                     <div>
@@ -309,10 +310,10 @@ lista.forEach(articulo=>{
                         <input id="${articulo.id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                     </div>
             </article>`
-            
-        } if(articulo.categoria == "rigging"){
-            sectionRigging.innerHTML += 
-            `<article class="box">
+
+        } if (articulo.categoria == "rigging") {
+            sectionRigging.innerHTML +=
+                `<article class="box">
             <i class="fa-regular fa-lightbulb"></i>
             <div>
                 <h4 class="text-box">${articulo.nombre}</h4>
@@ -345,13 +346,13 @@ function agregarAlCarrito(lista) {
                 precio: articulo.precio,
                 cantidad: parseInt(input.value),
                 total: (articulo.precio * parseInt(input.value))
-                };
-            }
+            };
+        }
     }).filter(input => input !== undefined);
     return carrito;
     console.log(carrito);
 }
-function agregarTramos(){
+function agregarTramos() {
     const inputLargo = document.querySelector(".largo").value
     const inputAncho = document.querySelector(".ancho").value
     const inputAlto = document.querySelector(".alto").value
@@ -362,40 +363,40 @@ function agregarTramos(){
     let tramos = []
     let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
 
-    if(colgado.checked){
-        if(inputLargo<=10 && inputAncho<=10){
-            tramos.push("Un cuadrilatero de: "+ inputLargo+ " Mts de largo X "+ inputAncho+ " Mts de Ancho. A una altura de "+inputAlto +" Mts. "+ "Tiene "+ mtsLineales+ " Mts lineales." +" Va colgado y necesita 4 Aparejos y 4 Cubos")
+    if (colgado.checked) {
+        if (inputLargo <= 10 && inputAncho <= 10) {
+            tramos.push("Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va colgado y necesita 4 Aparejos y 4 Cubos")
         }// y si tiene mas de 10?
     }
-    if(dePie.checked){
+    if (dePie.checked) {
         if (patas <= 4) {
-            tramos.push("Un cuadrilatero de: "+ inputLargo+ " Mts de largo X "+ inputAncho+ " Mts de Ancho. A una altura de "+inputAlto +" Mts. "+ "Tiene "+ mtsLineales+ " Mts lineales." +" Va de Pie y necesita 4 Cubos")
-        } else if(patas ==6){
-            tramos.push("Un Cuadrilatero de: "+ inputLargo+ " Mts de largo X "+ inputAncho+ " Mts de Ancho. A una altura de "+inputAlto +" Mts. "+ "Tiene "+ mtsLineales+ " Mts lineales." +" Va de Pie y necesita 6 Cubos")
+            tramos.push("Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va de Pie y necesita 4 Cubos")
+        } else if (patas == 6) {
+            tramos.push("Un Cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va de Pie y necesita 6 Cubos")
         }
     }
-    return(tramos);
+    return (tramos);
 }
-function agregarGrupo(){
+function agregarGrupo() {
     const operativo = document.querySelector("#operativo")
     const backUp = document.querySelector("#back")
     const cable = document.querySelector("#distancia")
-    let grupoElectrogeno= []
+    let grupoElectrogeno = []
 
     if (operativo.checked) {
         grupoElectrogeno.push({
-                descipcion: operativo.value
-            })
+            descipcion: operativo.value
+        })
     }
     if (backUp.checked) {
         grupoElectrogeno.push({
-                descipcion: backUp.value
-            })
+            descipcion: backUp.value
+        })
     }
-    if(cable.value){
-    grupoElectrogeno.push({
-        descipcion : cable.value +" Mts de Cable"
-    })
+    if (cable.value) {
+        grupoElectrogeno.push({
+            descipcion: cable.value + " Mts de Cable"
+        })
     }
     return grupoElectrogeno;
 }
@@ -407,25 +408,29 @@ function agregarEnvio() {
     let envio = []
     if (zonaEnvio) {
         envio.push({
-            descripcion: "Envio a " +zonaEnvio.value})
+            descripcion: "Envio a " + zonaEnvio.value
+        })
         // console.log(zonaEnvio.value)
     };
 
     if (duracion) {
-        if (duracion.value=="unDia"||duracion.value=="dosDias") {
+        if (duracion.value == "unDia" || duracion.value == "dosDias") {
             envio.push({
-                descripcion:"Duracion " + duracion.value})
+                descripcion: "Duracion " + duracion.value
+            })
             // console.log(duracion.value);
-        }else{
+        } else {
             envio.push({
-                descripcion:"Duracion " + masDias.value + " días"})
+                descripcion: "Duracion " + masDias.value + " días"
+            })
             // console.log(masDias.value);
         }
     }
 
     if (armado) {
         envio.push({
-            descripcion:"Dia de Armado " +armado.value})
+            descripcion: "Dia de Armado " + armado.value
+        })
         // console.log(armado.value);
     }
     return envio
@@ -439,29 +444,30 @@ function renderizarPresupuesto(lista) {
     const grupoElectrogeno = agregarGrupo()
     const envio = agregarEnvio()
 
-    titulo.setAttribute("style","display:flex")
-    
+    titulo.setAttribute("style", "display:flex")
+
     presupuesto.innerHTML = ""
-    
-    lista.forEach(articulo=>{
-        presupuesto.innerHTML+=
-        `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
+
+    lista.forEach(articulo => {
+        presupuesto.innerHTML +=
+            `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
     })//luces y sonido
-    
+
     if (cuadrilatero.length != 0) {
         presupuesto.innerHTML +=
             `<li> ${cuadrilatero} </li>`
     }//cuadrilatero
 
-    grupoElectrogeno.forEach(articulo=>{
+    grupoElectrogeno.forEach(articulo => {
         presupuesto.innerHTML +=
-        `<li>${articulo.descipcion} </li>`
+            `<li>${articulo.descipcion} </li>`
     })//grupo electrogeno
 
-    envio.forEach(articulo=>{
+    envio.forEach(articulo => {
         presupuesto.innerHTML +=
-        `<li>${articulo.descripcion}</li>`
+            `<li>${articulo.descripcion}</li>`
     })
 
 }
 
+// Formulario y envio de datos
