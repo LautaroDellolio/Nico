@@ -470,4 +470,106 @@ function renderizarPresupuesto(lista) {
 
 }
 
-// Formulario y envio de datos
+// Formulario y envio de email
+const formDatos = document.getElementById('formData')
+const btnEmail = document.getElementById('btn-email')
+const msg = document.getElementById('message')
+
+const sendEmail = async (formData) => {
+    const service_id2 = 'service_19qxvla'
+    const template_id = 'template_o0iwl0e'
+    const user_id = '3cwMkpzcGYMOKF7Uf'
+
+    try {
+        await emailjs.init(user_id);
+        await emailjs.send(service_id2, template_id, formData)
+            .then((res) => {
+                console.log('Formulario enviado!', res.status, res.text)
+            }, (err) => {
+                console.log('Error al enviar...', err)
+            })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const msgAction = (msg, style, HTMLElement) => {
+    HTMLElement.classList.add(`${style}`)
+    HTMLElement.innerText = msg
+    setTimeout(() => {
+        HTMLElement.classList.remove(`${style}`)
+        HTMLElement.innerText = ''
+    }, 8000)
+}
+
+const validateForm = () => {
+    const name = formDatos.elements.Nombre.value.trim()
+    const surname = formDatos.elements.Apellido.value.trim()
+    const tel = formDatos.elements.Telefono.value.trim()
+    const email = formDatos.elements.Email.value.trim()
+    const date = formDatos.elements.Date.value.trim()
+    const time = formDatos.elements.Time.value.trim()
+
+
+
+    if (!name || !surname || !tel || !email || !date || !time) {
+        let txt = 'Por favor, completa todos los campos'
+        msgAction(txt, 'err', msg)
+        return false
+    }
+
+    const regexTel = /^\d{10}$/
+    if (!regexTel.test(tel)) {
+        let txt = 'Por favor, ingresa un número de teléfono válido de 10 dígitos (sin guiones ni espacios)'
+        msgAction(txt, 'err', msg)
+        return false
+    }
+
+
+    const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    if (!regexEmail.test(email)) {
+        let txt = 'Por favor, ingresa un correo electrónico válido'
+        msgAction(txt, 'err', msg)
+        return false
+    }
+
+    const fechaHoy = new Date()
+    const fechaIngresada = new Date(date)
+    if (fechaIngresada < fechaHoy) {
+        let txt = 'Por favor, ingresa una fecha a partir de mañana'
+        msgAction(txt, 'err', msg)
+        return false
+    }
+
+    return true
+}
+
+btnEmail.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+        return
+    }
+
+    let formData = {
+        nombre: '',
+        apellido: '',
+        telefono: 0,
+        correo: '',
+        fecha: null,
+        hora: null,
+        presupuesto: [],
+    }
+
+    formData.nombre = formDatos.elements.Nombre.value.trim()
+    formData.apellido = formDatos.elements.Apellido.value.trim()
+    formData.telefono = formDatos.elements.Telefono.value.trim()
+    formData.correo = formDatos.elements.Email.value.trim()
+    formData.fecha = formDatos.elements.Date.value.trim()
+    formData.hora = formDatos.elements.Time.value.trim()
+
+    sendEmail(formData)
+    formDatos.reset()
+    let txt = 'Formulario enviado!'
+    msgAction(txt, 'success', msg)
+})

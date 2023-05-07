@@ -142,32 +142,33 @@
                 <h2>Listado de Artículos</h2>
                 <ul class="listaArticulos" ></ul>
             </div>
-            <form action="" class="formulario">
+            <form action="" class="formulario" id="formData">
                 <div>
                     <label for="">Nombre</label>
-                    <input type="text" placeholder="Nombre">
+                    <input type="text" placeholder="Nombre" name="Nombre" required>
                 </div>
                 <div>
                     <label for="">Apellido</label>
-                    <input type="text" placeholder="Apellido">
+                    <input type="text" placeholder="Apellido" name="Apellido" required>
                 </div>
                 <div>
                     <label for="">Telefono</label>
-                    <input type="text" placeholder="Telefono">
+                    <input type="text" placeholder="Telefono" name="Telefono" required>
                 </div>
                 <div>
                     <label for="">Email</label>
-                    <input type="email" placeholder="Email">
+                    <input type="email" placeholder="Email" name="Email" required>
                 </div>
                 <div>
                     <label for="">Fecha del Evento</label>
-                    <input type="text" placeholder="DD/MM/AA">
+                    <input type="date" placeholder="DD/MM/AA" name="Date" required>
                 </div>
                 <div>
                     <label for="">Horario</label>
-                    <input type="text" placeholder="Desde / Hasta">
+                    <input type="text" placeholder="Desde / Hasta" name="Time">
                 </div>
-                <button class="btnForm btnStyle">Enviar Solicitud</button>
+                <button class="btnForm btnStyle" id="btn-email">Enviar Solicitud</button>
+                <div id="message" class=""></div>
             </form>
         </section>
     </main>
@@ -199,6 +200,7 @@
             </div>
         </section>
     </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="./scripts/articulos.js"></script>
 </body>
 </html>
