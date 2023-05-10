@@ -499,7 +499,7 @@ const msgAction = (msg, style, HTMLElement) => {
     setTimeout(() => {
         HTMLElement.classList.remove(`${style}`)
         HTMLElement.innerText = ''
-    }, 8000)
+    }, 3000)
 }
 
 const validateForm = () => {
