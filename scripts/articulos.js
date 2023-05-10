@@ -228,6 +228,8 @@ const costosFijos = [
     }
 ]
 let carrito = []
+let carritoParaEnviar = []
+
 
 window.addEventListener("load", () => {
     generarId(articulos)
@@ -261,11 +263,12 @@ btnPresupuesto.addEventListener("click", function (e) {
     e.preventDefault()
     if (validacion) {
         agregarAlCarrito(articulos)
+        // validarTramos()
         agregarTramos()
         agregarGrupo()
         agregarEnvio()
         renderizarPresupuesto(carrito)
-        console.log(carrito);
+        carritoParaEnviar = formatearCarrito()
     } else {
         alert("Los campos solo pueden contener números enteros. Por favor, corrija los campos resaltados en rojo antes de continuar.")
         inputs.forEach(articulo => {
@@ -377,6 +380,23 @@ function agregarTramos() {
     }
     return (tramos);
 }
+// function validarTramos(){
+//     const inputLargo = document.querySelector(".largo").value
+//     const inputAncho = document.querySelector(".ancho").value
+//     const inputAlto = document.querySelector(".alto").value
+//     const colgado = document.querySelector("#colgado")
+//     const dePie = document.querySelector("#pie")
+//     const patas = document.querySelector("#cantPatas").value
+//     let camposCompletos = false
+    
+//     if (inputLargo && inputAncho && inputAlto && (colgado.checked || (dePie.checked && patas))) {
+//         camposCompletos = true
+//     }
+    
+//     if (!camposCompletos) {
+//         alert("Todos los campos son obligatorios")
+//     }
+// }
 function agregarGrupo() {
     const operativo = document.querySelector("#operativo")
     const backUp = document.querySelector("#back")
@@ -470,6 +490,17 @@ function renderizarPresupuesto(lista) {
 
 }
 
+
+//formater carrito
+function formatearCarrito() {
+    //en el evento del click guardo en el array carritoParaEnviar que declare en las primeras lineas el resultado de esta funcion
+    let copiaCarrito = carrito //hice una copia de carrito para tunearla
+    copiaCarrito =copiaCarrito.map(item=>({nombre : item.nombre, cantidad : item.cantidad})) //aca guardo el array de objetos pero solo con las propiedades nombre y cantidad
+    const nuevoArray = copiaCarrito.map(item => `${item.cantidad}  ${item.nombre}`);// y aca transformo ese array de objetos en un array de strings para poder guardar esto en el formData
+    return nuevoArray;
+}
+
+
 // Formulario y envio de email
 const formDatos = document.getElementById('formData')
 const btnEmail = document.getElementById('btn-email')
@@ -518,12 +549,12 @@ const validateForm = () => {
         return false
     }
 
-    const regexTel = /^\d{10}$/
-    if (!regexTel.test(tel)) {
-        let txt = 'Por favor, ingresa un número de teléfono válido de 10 dígitos (sin guiones ni espacios)'
-        msgAction(txt, 'err', msg)
-        return false
-    }
+    // const regexTel = /^\d{10}$/
+    // if (!regexTel.test(tel)) {
+    //     let txt = 'Por favor, ingresa un número de teléfono válido de 10 dígitos (sin guiones ni espacios)'
+    //     msgAction(txt, 'err', msg)
+    //     return false
+    // }
 
 
     const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
@@ -545,6 +576,7 @@ const validateForm = () => {
 }
 
 btnEmail.addEventListener('click', (e) => {
+    const formProduct = document.querySelector("#formProduct")
     e.preventDefault()
 
     if (!validateForm()) {
@@ -559,7 +591,7 @@ btnEmail.addEventListener('click', (e) => {
         fecha: null,
         hora: null,
         presupuesto: [],
-    }
+    }   
 
     formData.nombre = formDatos.elements.Nombre.value.trim()
     formData.apellido = formDatos.elements.Apellido.value.trim()
@@ -567,9 +599,12 @@ btnEmail.addEventListener('click', (e) => {
     formData.correo = formDatos.elements.Email.value.trim()
     formData.fecha = formDatos.elements.Date.value.trim()
     formData.hora = formDatos.elements.Time.value.trim()
+    formData.presupuesto = carritoParaEnviar
 
     sendEmail(formData)
+    console.log(formData);
     formDatos.reset()
+    formProduct.reset()    
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
 })
