@@ -255,31 +255,6 @@ window.addEventListener("change", () => {
     }
 })
 
-const btnPresupuesto = document.querySelector(".btnPresupuesto")
-btnPresupuesto.addEventListener("click", function (e) {
-    const inputs = document.querySelectorAll(".valorInputs");
-    const validacion = validarDatos(inputs)
-
-    e.preventDefault()
-    if (validacion) {
-        agregarAlCarrito(articulos)
-        // validarTramos()
-        agregarTramos()
-        agregarGrupo()
-        agregarEnvio()
-        renderizarPresupuesto(carrito)
-        carritoParaEnviar = formatearCarrito()
-    } else {
-        alert("Los campos solo pueden contener números enteros. Por favor, corrija los campos resaltados en rojo antes de continuar.")
-        inputs.forEach(articulo => {
-            articulo.addEventListener("change", () => {
-                validarDatos(inputs)
-            })
-        })
-    }
-})
-
-
 function generarId(lista) {
     let id = 1
     for (let i = 0; i < lista.length; i++) {
@@ -288,46 +263,75 @@ function generarId(lista) {
     }
     return lista
 }
+
+const fechaActual = () => {
+    const today = new Date()
+
+    const day = today.getDate()
+    const month = today.getMonth() + 1
+    const year = today.getFullYear()
+
+    const formattedDay = day < 10 ? `0${day}` : day
+    const formattedMonth = month < 10 ? `0${month}` : month
+
+    const formattedDate = `${formattedDay}/${formattedMonth}/${year.toString().slice(-2)}`
+
+    return formattedDate
+}
+
 function renderizarArticulos(lista) {
     const sectionLuces = document.querySelector(".luces")
     const sectionSonido = document.querySelector(".sonido")
     const sectionRigging = document.querySelector(".rigging")
 
-    lista.forEach(articulo => {
-        if (articulo.categoria == "iluminacion") {
+    let category = Array.from(
+        new Set(lista.map((item) => item.categoria))
+    )
+
+    let cat = category.map((cat) => cat)
+    const categorias = {
+        ILUMINACION: cat[0],
+        SONIDO: cat[1],
+        RIGGING: cat[2]
+    }
+
+    lista.forEach(({ categoria, nombre, id, descipcion }) => {
+        const { SONIDO, ILUMINACION, RIGGING } = categorias
+
+        if (categoria == ILUMINACION) {
             sectionLuces.innerHTML +=
                 `<article class="box">
                     <i class="fa-regular fa-lightbulb"></i>
                     <div>
-                        <h4 class="text-box">${articulo.nombre}</h4>
-                        <input id="${articulo.id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                        <h4 class="text-box">${nombre}</h4>
+                        <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                     </div>
             </article>`
-        } if (articulo.categoria == "Sonido") {
+        } if (categoria == SONIDO) {
             sectionSonido.innerHTML +=
                 `<article class="box descripcion">
-                    <p>${articulo.descipcion}</p>
+                    <p>${descipcion}</p>
                     <i class="fa-regular fa-lightbulb"></i>
                     <div>
-                        <h4 class="sonidoText">${articulo.nombre}</h4>
-                        <input id="${articulo.id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                        <h4 class="sonidoText">${nombre}</h4>
+                        <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                     </div>
             </article>`
 
-        } if (articulo.categoria == "rigging") {
+        } if (categoria == RIGGING) {
             sectionRigging.innerHTML +=
                 `<article class="box">
             <i class="fa-regular fa-lightbulb"></i>
             <div>
-                <h4 class="text-box">${articulo.nombre}</h4>
-                <input id="${articulo.id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                <h4 class="text-box">${nombre}</h4>
+                <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
             </div>
     </article>`
         }
     })
 }
 function validarDatos(datos) {
-    const regex = /^$|^[0-9]+$/;
+    const regex = /^([1-9]|[0-9]*)$/; //permite solamente numeros enteros y positivos
     let esValido = true;
     datos.forEach(input => {
         if (!regex.test(input.value)) {
@@ -353,7 +357,6 @@ function agregarAlCarrito(lista) {
         }
     }).filter(input => input !== undefined);
     return carrito;
-    console.log(carrito);
 }
 function agregarTramos() {
     const inputLargo = document.querySelector(".largo").value
@@ -388,11 +391,11 @@ function agregarTramos() {
 //     const dePie = document.querySelector("#pie")
 //     const patas = document.querySelector("#cantPatas").value
 //     let camposCompletos = false
-    
+
 //     if (inputLargo && inputAncho && inputAlto && (colgado.checked || (dePie.checked && patas))) {
 //         camposCompletos = true
 //     }
-    
+
 //     if (!camposCompletos) {
 //         alert("Todos los campos son obligatorios")
 //     }
@@ -454,7 +457,6 @@ function agregarEnvio() {
         // console.log(armado.value);
     }
     return envio
-    console.log(envio);
 }
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
@@ -493,13 +495,162 @@ function renderizarPresupuesto(lista) {
 
 //formater carrito
 function formatearCarrito() {
-    //en el evento del click guardo en el array carritoParaEnviar que declare en las primeras lineas el resultado de esta funcion
-    let copiaCarrito = carrito //hice una copia de carrito para tunearla
-    copiaCarrito =copiaCarrito.map(item=>({nombre : item.nombre, cantidad : item.cantidad})) //aca guardo el array de objetos pero solo con las propiedades nombre y cantidad
-    const nuevoArray = copiaCarrito.map(item => `${item.cantidad}  ${item.nombre}`);// y aca transformo ese array de objetos en un array de strings para poder guardar esto en el formData
-    return nuevoArray;
+    let nuevoCarrito = carrito.filter(({ nombre, cantidad }) => nombre && cantidad) || [] //DEVUELVE UN ARRAY CON LOS DATOS FILTRADOS, SINO ENCUENTRA NADA DEVUELVE UN ARRAY VACIO (CONTROL DE POSIBLE ERROR EN CASO DE QUE DICHA PROPIEDAD SEA NULL)
+    nuevoCarrito = nuevoCarrito.map(({ nombre, cantidad }) => `${cantidad}  ${nombre}`) //SE CREA UN ARRAY CON LOS DATOS FILTRADOS
+    return nuevoCarrito;
 }
 
+const btnPresupuesto = document.querySelector(".btnPresupuesto")
+btnPresupuesto.addEventListener("click", function (e) {
+    const inputs = document.querySelectorAll(".valorInputs");
+    const validacion = validarDatos(inputs)
+
+    e.preventDefault()
+    if (validacion) {
+        agregarAlCarrito(articulos)
+        // validarTramos()
+        agregarTramos()
+        agregarGrupo()
+        agregarEnvio()
+        carritoParaEnviar = formatearCarrito()
+
+        if (carritoParaEnviar.length > 0) {
+            generarPDF()
+            return renderizarPresupuesto(carrito)
+        }
+
+        return alert('No se puede generar presupuesto si no hay articulos agregados')
+    }
+
+    alert("Los campos solo pueden contener números enteros y positivos. Por favor, corrija los campos resaltados en rojo antes de continuar.")
+    inputs.forEach(articulo => {
+        articulo.addEventListener("change", () => {
+            validarDatos(inputs)
+        })
+    })
+})
+
+// Generar pdf
+const generarPDF = () => {
+    let nuevoCarrito = carrito.filter(({ nombre, cantidad }) => nombre && cantidad) || []
+
+    let fecha = fechaActual()
+
+    const rules = `\n \n   
+    • Los precios no incluyen IVA (21%) el presente presupuesto tiene una validez de 30 días. 
+    • en caso de confirmar el presupuesto y de no abonarlo dentro de los 15 dias, el mismo sufrirá un incremento mensual según indice ipc. 	
+    • el pago total deberá estar saldado 48 hs antes del evento.
+    • El cliente será responsable: total y parcialmente por los equipos locados, por roturas ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos.
+    • El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante todo el período de contratación del servicio, incluyendo la instalación, el evento, y la desinstalación del mismo para el cuidado de todo el equipamiento.
+    • Los precios detallados incluyen gastos de transportes, y de personal. 
+    • Los precios son por un día de evento. Por más de un día se realizará otra cotización.
+    • En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará cargo del cien por cien del precio convenido.
+    • Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva.
+    • Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, recomendamos la contratación de equipos de backup que aseguren la prestación del servicio en caso de una eventual falla en alguno de los mismos.
+        En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o a terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. 
+    • Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. 
+    • Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.`
+
+    let props = {
+        outputType: jsPDFInvoiceTemplate.OutputType.Save,
+        returnJsPDFDocObject: true,
+        fileName: `Presupuesto-Stoessel-${fecha}`,
+        orientationLandscape: false,
+        compress: true,
+        logo: {
+            src: '../img/logoStoesel.png',
+            type: 'PNG', //optional, when src= data:uri (nodejs case)
+            width: 70, //aspect ratio = width/height
+            height: 26.66,
+            margin: {
+                top: 0, //negative or positive num, from the current position
+                left: 0 //negative or positive num, from the current position
+            }
+        },
+        stamp: {
+            inAllPages: true, //by default = false, just in the last page
+            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+            type: 'JPG', //optional, when src= data:uri (nodejs case)
+            width: 20, //aspect ratio = width/height
+            height: 20,
+            margin: {
+                top: 0, //negative or positive num, from the current position
+                left: 0 //negative or positive num, from the current position
+            }
+        },
+        business: {
+            name: "Soessel Company",
+            address: "Desconocido",
+            phone: "(+54) 069 11 11 111",
+            email: "stoessel@outlook.com",
+            website: "www.stoessel-eventos.com.ar",
+        },
+        contact: {
+            label: "Invoice issued for:",
+            name: "Client Name",
+            phone: "(+355) 069 22 22 222",
+            email: "client@example.com"
+        },
+        invoice: {
+            label: "Invoice #: ",
+            num: 19,
+            invGenDate: `Fecha de presupuesto: ${fecha}`,
+            headerBorder: true,
+            tableBodyBorder: true,
+            header: [
+                {
+                    title: "#",
+                    style: {
+                        width: 10
+                    }
+                },
+                {
+                    title: "Cantidad",
+                    style: {
+                        width: 30
+                    }
+                },
+                {
+                    title: "Description",
+                    style: {
+                        width: 80
+                    }
+                },
+                { title: "Price" },
+                { title: "Total" }
+            ],
+            table: Array.from(nuevoCarrito, (i, index) => ([
+                index + 1,
+                i.cantidad,
+                i.nombre,
+                i.precio,
+                i.total
+            ])),
+            invTotalLabel: "Total:",
+            invTotal: "145,250.50",
+            invCurrency: "ALL",
+            row3: {
+                col1: 'Total:',
+                col2: '145,250.50',
+                col3: 'ALL',
+                style: {
+                    fontSize: 14 //optional, default 12
+                }
+            },
+            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES:",
+            invDesc: rules,
+        },
+        footer: {
+            text: "El presupuesto se crea en un ordenador y no es válido sin la firma y el sello.",
+        },
+        pageEnable: true,
+        pageLabel: "Page ",
+    }
+
+    const pdfObject = jsPDFInvoiceTemplate.default(props)
+    return pdfObject
+
+}
 
 // Formulario y envio de email
 const formDatos = document.getElementById('formData')
@@ -591,7 +742,9 @@ btnEmail.addEventListener('click', (e) => {
         fecha: null,
         hora: null,
         presupuesto: [],
-    }   
+    }
+
+    let pdf = generarPDF()
 
     formData.nombre = formDatos.elements.Nombre.value.trim()
     formData.apellido = formDatos.elements.Apellido.value.trim()
@@ -604,7 +757,8 @@ btnEmail.addEventListener('click', (e) => {
     sendEmail(formData)
     console.log(formData);
     formDatos.reset()
-    formProduct.reset()    
+    formProduct.reset()
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
 })
+

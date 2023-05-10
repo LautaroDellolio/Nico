@@ -1,206 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/d099c0252a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./style/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/d099c0252a.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style/style.css" />
     <title>ProyectoStoessel</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <img src="./img/IsoLogoStöesel_CYMK.png" alt="logo">
-        <nav>
-            <ul>
-                <li><a href="#about">Nosotros</a></li>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#footer">Contacto</a></li>
-            </ul>
-        </nav>
+      <img src="./img/IsoLogoStöesel_CYMK.png" alt="logo" />
+      <nav>
+        <ul>
+          <li><a href="#about">Nosotros</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#footer">Contacto</a></li>
+        </ul>
+      </nav>
     </header>
     <main>
-        <img src="./img/Banner-home.png" alt="banner" class="imgBanner">
-        <h1 id="about">Sobre Nosotros</h1>
-        <p class="about-us">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt repellat saepe laborum dolor quod alias qui, blanditiis neque laudantium amet beatae repellendus id in! Odio eaque unde non eum suscipit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur iste voluptatibus minima officia qui natus labore, tenetur impedit maxime voluptate ullam placeat inventore voluptas libero, alias quos eligendi fugit totam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur reprehenderit non obcaecati aliquid facere autem quae illo omnis libero ipsum, magni fugit a nihil blanditiis quo sunt eligendi ducimus dignissimos?
-        </p>
-        
-        <form action="" id="formProduct">
-            <h3 id="catalogo">ILUMINACIÓN</h3>
-            <section class="luces styleSection"></section>
+      <img src="./img/Banner-home.png" alt="banner" class="imgBanner" />
+      <h1 id="about">Sobre Nosotros</h1>
+      <p class="about-us">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt repellat
+        saepe laborum dolor quod alias qui, blanditiis neque laudantium amet
+        beatae repellendus id in! Odio eaque unde non eum suscipit! Lorem, ipsum
+        dolor sit amet consectetur adipisicing elit. Aspernatur iste
+        voluptatibus minima officia qui natus labore, tenetur impedit maxime
+        voluptate ullam placeat inventore voluptas libero, alias quos eligendi
+        fugit totam? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Consequatur reprehenderit non obcaecati aliquid facere autem quae illo
+        omnis libero ipsum, magni fugit a nihil blanditiis quo sunt eligendi
+        ducimus dignissimos?
+      </p>
 
-            <h3>SONIDO</h3>
-            <section class="sonido styleSection"></section>
+      <form action="" id="formProduct">
+        <h3 id="catalogo">ILUMINACIÓN</h3>
+        <section class="luces styleSection"></section>
 
-            <h3>RIGGING</h3>
-            <section class="rigging styleSection"></section>
+        <h3>SONIDO</h3>
+        <section class="sonido styleSection"></section>
 
-            <section class="cuadrilatero">
-                <article>
-                    <p>Ingrese las medidas</p>
-                    <div>
-                        <label for="">Largo</label>
-                        <input type="number" placeholder="Mts" class=" styleInput largo">
-                    </div>
-                    <div>
-                        <label for="">Ancho</label>
-                        <input type="number" placeholder="Mts" class="styleInput ancho">
-                    </div>
-                    <div>
-                        <label for="">Alto</label>
-                        <input type="number" placeholder="Mts" class="styleInput alto">
-                    </div>
-                </article>
-                <article class="sistema">
-                    <p>Sistema de Instalación</p>
-                    <div>
-                        <label >Colgado</label>
-                        <input type="radio" id='colgado' value='colgado' name="sistema" class="check" />
-                    </div>
-                    <div>
-                        <label>De pie</label>
-                        <input type="radio" id='pie' value='pie' name="sistema" class="check" />
-                    </div>
-                    <div style="display: none" class="patas">
-                        <label >Cantidad de Patas</label>
-                        <input type="number" placeholder='Cant de patas' id='cantPatas' name="sistema" class="styleInput valorInput" />
-                    </div>
-                </article>
-            </section>
+        <h3>RIGGING</h3>
+        <section class="rigging styleSection"></section>
 
-            <h3>GRUPO ELECTRÓGENO</h3>
-            <section class="grupo">
-                <div>
-                    <label for="">Grupo CETEC 130 KVA Operativo (10 Hs de uso) </label>
-                    <input type="checkbox" value="Grupo CETEC 130 KVA Operativo (10 Hs de uso)" id="operativo">
-                </div>
-                <div>
-                    <label for="">Grupo CETEC 130 KVA Backup</label>
-                    <input type="checkbox" value="Grupo CETEC 130 KVA Backup" id="back">
-                </div>
-                <div>
-                    <label for="">Distancia al punto de tensión</label>
-                    <input type="number" placeholder="Mts" class="styleInput tension" id="distancia">
-                </div>
-            </section>
-
-            <h3>TRANSPORTE</h3>
-            <section class="envio">
-                <article class="map">
-                    <div>
-                        <img src="" alt="zona1">
-                        <label for="">CABA- ZONA NORTE </label>
-                        <input type="radio" name="zona" id="zona1" value="zona1" class="check">
-                    </div>
-                    <div>
-                        <img src="" alt="zona2">
-                        <label for="">PILAR - CAMPANA - CAÑUELAS(O HASTA 100KM)</label>
-                        <input type="radio" name="zona" id="zona2" value="zona2" class="check">
-                    </div>
-                    <div>
-                        <img src="" alt="zona2">
-                        <label for="">MAS DE 100 KM</label>
-                        <input type="radio" name="zona" id="zona2" value="zonaOtro" class="check">
-                    </div>
-                </article>        
-                <article class="duracion">
-                    <p>Duración del Evento</p>
-                    <div>
-                        <label for="">1 Día</label>
-                        <input type="radio" name="duracion" id="dia1" value="unDia" class="check">
-                    </div>
-                    <div>
-                        <label for="">2 Días</label>
-                        <input type="radio" name="duracion" id="dia2" value="dosDias" class="check">
-                    </div>
-                    <div>
-                        <label for="">Otro</label>
-                        <input type="radio" name="duracion" id="diaOtro" class="check">
-                    </div>
-                    <div class="dias" style="display: none">
-                        <label for="">Cantidad de días</label>
-                        <input type="number" class="styleInput" id="masDias" name="duracion">
-                    </div>
-                </article>
-                <article class="armado">
-                    <p>Día de Armado</p>
-                    <div>
-                        <label for="">En el Día</label>
-                        <input type="radio" name="armado" id="armadoDia" value="enElDia" class="check">
-                    </div>
-                    <div>
-                        <label for="">Día Previo</label>
-                        <input type="radio" name="armado" id="armadoPrevio" value="diaPrevio" class="check">
-                    </div>
-                </article>
-            </section>
-
-            <button class="btnPresupuesto btnStyle" type="submit">Generar Presupuesto</button>
-        </form>
-        <section class="listado" id="list" style="display: none">
-            <div class="divListado">
-                <h2>Listado de Artículos</h2>
-                <ul class="listaArticulos" ></ul>
+        <section class="cuadrilatero">
+          <article>
+            <p>Ingrese las medidas</p>
+            <div>
+              <label for="">Largo</label>
+              <input type="number" placeholder="Mts" class="styleInput largo" />
             </div>
-            <form action="" class="formulario" id="formData">
-                <div>
-                    <label for="">Nombre</label>
-                    <input type="text" placeholder="Nombre" name="Nombre" required>
-                </div>
-                <div>
-                    <label for="">Apellido</label>
-                    <input type="text" placeholder="Apellido" name="Apellido" required>
-                </div>
-                <div>
-                    <label for="">Telefono</label>
-                    <input type="text" placeholder="Telefono" name="Telefono" required>
-                </div>
-                <div>
-                    <label for="">Email</label>
-                    <input type="email" placeholder="Email" name="Email" required>
-                </div>
-                <div>
-                    <label for="">Fecha del Evento</label>
-                    <input type="date" placeholder="DD/MM/AA" name="Date" required>
-                </div>
-                <div>
-                    <label for="">Horario</label>
-                    <input type="text" placeholder="Desde / Hasta" name="Time">
-                </div>
-                <button class="btnForm btnStyle" id="btn-email">Enviar Solicitud</button>
-                <div id="message" class=""></div>
-            </form>
+            <div>
+              <label for="">Ancho</label>
+              <input type="number" placeholder="Mts" class="styleInput ancho" />
+            </div>
+            <div>
+              <label for="">Alto</label>
+              <input type="number" placeholder="Mts" class="styleInput alto" />
+            </div>
+          </article>
+          <article class="sistema">
+            <p>Sistema de Instalación</p>
+            <div>
+              <label>Colgado</label>
+              <input
+                type="radio"
+                id="colgado"
+                value="colgado"
+                name="sistema"
+                class="check"
+              />
+            </div>
+            <div>
+              <label>De pie</label>
+              <input
+                type="radio"
+                id="pie"
+                value="pie"
+                name="sistema"
+                class="check"
+              />
+            </div>
+            <div style="display: none" class="patas">
+              <label>Cantidad de Patas</label>
+              <input
+                type="number"
+                placeholder="Cant de patas"
+                id="cantPatas"
+                name="sistema"
+                class="styleInput valorInput"
+              />
+            </div>
+          </article>
         </section>
+
+        <h3>GRUPO ELECTRÓGENO</h3>
+        <section class="grupo">
+          <div>
+            <label for="">Grupo CETEC 130 KVA Operativo (10 Hs de uso) </label>
+            <input
+              type="checkbox"
+              value="Grupo CETEC 130 KVA Operativo (10 Hs de uso)"
+              id="operativo"
+            />
+          </div>
+          <div>
+            <label for="">Grupo CETEC 130 KVA Backup</label>
+            <input
+              type="checkbox"
+              value="Grupo CETEC 130 KVA Backup"
+              id="back"
+            />
+          </div>
+          <div>
+            <label for="">Distancia al punto de tensión</label>
+            <input
+              type="number"
+              placeholder="Mts"
+              class="styleInput tension"
+              id="distancia"
+            />
+          </div>
+        </section>
+
+        <h3>TRANSPORTE</h3>
+        <section class="envio">
+          <article class="map">
+            <div>
+              <img src="" alt="zona1" />
+              <label for="">CABA- ZONA NORTE </label>
+              <input
+                type="radio"
+                name="zona"
+                id="zona1"
+                value="zona1"
+                class="check"
+              />
+            </div>
+            <div>
+              <img src="" alt="zona2" />
+              <label for="">PILAR - CAMPANA - CAÑUELAS(O HASTA 100KM)</label>
+              <input
+                type="radio"
+                name="zona"
+                id="zona2"
+                value="zona2"
+                class="check"
+              />
+            </div>
+            <div>
+              <img src="" alt="zona2" />
+              <label for="">MAS DE 100 KM</label>
+              <input
+                type="radio"
+                name="zona"
+                id="zona2"
+                value="zonaOtro"
+                class="check"
+              />
+            </div>
+          </article>
+          <article class="duracion">
+            <p>Duración del Evento</p>
+            <div>
+              <label for="">1 Día</label>
+              <input
+                type="radio"
+                name="duracion"
+                id="dia1"
+                value="unDia"
+                class="check"
+              />
+            </div>
+            <div>
+              <label for="">2 Días</label>
+              <input
+                type="radio"
+                name="duracion"
+                id="dia2"
+                value="dosDias"
+                class="check"
+              />
+            </div>
+            <div>
+              <label for="">Otro</label>
+              <input type="radio" name="duracion" id="diaOtro" class="check" />
+            </div>
+            <div class="dias" style="display: none">
+              <label for="">Cantidad de días</label>
+              <input
+                type="number"
+                class="styleInput"
+                id="masDias"
+                name="duracion"
+              />
+            </div>
+          </article>
+          <article class="armado">
+            <p>Día de Armado</p>
+            <div>
+              <label for="">En el Día</label>
+              <input
+                type="radio"
+                name="armado"
+                id="armadoDia"
+                value="enElDia"
+                class="check"
+              />
+            </div>
+            <div>
+              <label for="">Día Previo</label>
+              <input
+                type="radio"
+                name="armado"
+                id="armadoPrevio"
+                value="diaPrevio"
+                class="check"
+              />
+            </div>
+          </article>
+        </section>
+
+        <button class="btnPresupuesto btnStyle" type="submit">
+          Generar Presupuesto
+        </button>
+      </form>
+      <section class="listado" id="list" style="display: none">
+        <div class="divListado">
+          <h2>Listado de Artículos</h2>
+          <ul class="listaArticulos"></ul>
+        </div>
+        <form action="" class="formulario" id="formData">
+          <div>
+            <label for="">Nombre</label>
+            <input type="text" placeholder="Nombre" name="Nombre" required />
+          </div>
+          <div>
+            <label for="">Apellido</label>
+            <input
+              type="text"
+              placeholder="Apellido"
+              name="Apellido"
+              required
+            />
+          </div>
+          <div>
+            <label for="">Telefono</label>
+            <input
+              type="text"
+              placeholder="Telefono"
+              name="Telefono"
+              required
+            />
+          </div>
+          <div>
+            <label for="">Email</label>
+            <input type="email" placeholder="Email" name="Email" required />
+          </div>
+          <div>
+            <label for="">Fecha del Evento</label>
+            <input type="date" placeholder="DD/MM/AA" name="Date" required />
+          </div>
+          <div>
+            <label for="">Horario</label>
+            <input type="text" placeholder="Desde / Hasta" name="Time" />
+          </div>
+          <button class="btnForm btnStyle" id="btn-email">
+            Enviar Solicitud
+          </button>
+          <div id="message" class=""></div>
+        </form>
+      </section>
     </main>
     <footer id="footer">
-        <section class='about-footer'>
-            <img src="./img/IsoLogoStöesel_ByN.png" alt="" class="img-footer" />
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aspernatur totam est ullam ut provident perspiciatis recusandae saepe sint assumenda fugiat, temporibus ratione quibusdam maiores, aut at rerum animi eligendi!</p>
-            <div clas="div-about">
-                <a href="https://www.instagram.com/stoessel_ing/"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.facebook.com/stoesseleventos"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.youtube.com/@stoesselingenieriaenevento950"><i class="fa-brands fa-youtube"></i></a>
-            </div>        
-        </section>
-        <section class='contact'>
-            <h4>Contacto</h4>
-            <div class='div-contact'>
-                <div>
-                    <i class="fa-solid fa-phone"></i>
-                    <small>011xxxxxxx</small>
-                </div>
-                <div>
-                    <i class="fa-solid fa-square-envelope"></i>
-                    <small>correo@help.com</small>
-                </div>
-                <div>
-                <i class="fa-solid fa-location-dot"></i>
-                <small>dirección</small>
-                </div>
-            </div>
-        </section>
+      <section class="about-footer">
+        <img src="./img/IsoLogoStöesel_ByN.png" alt="" class="img-footer" />
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
+          aspernatur totam est ullam ut provident perspiciatis recusandae saepe
+          sint assumenda fugiat, temporibus ratione quibusdam maiores, aut at
+          rerum animi eligendi!
+        </p>
+        <div clas="div-about">
+          <a href="https://www.instagram.com/stoessel_ing/"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="https://www.facebook.com/stoesseleventos"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a href="https://www.youtube.com/@stoesselingenieriaenevento950"
+            ><i class="fa-brands fa-youtube"></i
+          ></a>
+        </div>
+      </section>
+      <section class="contact">
+        <h4>Contacto</h4>
+        <div class="div-contact">
+          <div>
+            <i class="fa-solid fa-phone"></i>
+            <small>011xxxxxxx</small>
+          </div>
+          <div>
+            <i class="fa-solid fa-square-envelope"></i>
+            <small>correo@help.com</small>
+          </div>
+          <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <small>dirección</small>
+          </div>
+        </div>
+      </section>
     </footer>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
     <script src="./scripts/articulos.js"></script>
-</body>
+  </body>
 </html>
