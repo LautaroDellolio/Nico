@@ -632,14 +632,14 @@ const generarPDF = () => {
         contact: {
             label: "Cliente:",
             name: `${formData.nombre} ${formData.apellido}`,
-            phone: `${formData.telefono}`,
-            email: `${formData.correo}`
+            phone: `Teléfono: ${formData.telefono}`,
+            email: `Email: ${formData.correo}`
         },
         invoice: {
             // label: "Invoice #: ",
-            num: 19,
+            // num: 19,
             invGenDate: `Fecha de presupuesto: ${fecha}`,
-            invDueDate: `Fecha del Evento: ${formData.fecha}`,
+            invDate: `Fecha del Evento: ${formData.fecha}`,
             headerBorder: true,
             tableBodyBorder: true,
             header: [
@@ -658,7 +658,7 @@ const generarPDF = () => {
                 {
                     title: "Description",
                     style: {
-                        width: 100
+                        width: 150
                     }
                 },
                 // { title: "Price" },
@@ -683,11 +683,11 @@ const generarPDF = () => {
                 }
             },
             invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES:",
-            invDescLabelStyle: {
-                fontSize: 10,
-                textColor: [0, 0, 0],
-                fillColor: [255, 255, 0] // amarillo
-            },
+            // invDescLabelStyle: {
+            //     fontSize: 10,
+            //     textColor: [0, 0, 0],
+            //     fillColor: [255, 255, 0] // amarillo
+            // },
             invDesc: rules,
         },
         pageEnable: true,
