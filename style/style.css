@@ -203,6 +203,17 @@ h3{
 .divListado h2{
     margin: 15px;
 }
+.precioStyle{
+    background-color: black;
+    color: white;
+    width:150px;
+    text-align: center;
+    padding: 10px 5px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: auto;
+
+}
 .formulario{
     display: flex;
     flex-direction: column;
@@ -259,4 +270,7 @@ footer{
 
 .img-footer{
     width: 200px;
+}
+invDescLabel:contains('CONFIRMADO EL PRESENTE PRESUPUESTO QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES') {
+    background-color: yellow;
 }

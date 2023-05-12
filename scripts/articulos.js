@@ -404,24 +404,31 @@ function agregarGrupo() {
     const operativo = document.querySelector("#operativo")
     const backUp = document.querySelector("#back")
     const cable = document.querySelector("#distancia")
-    let grupoElectrogeno = []
-
+    
     if (operativo.checked) {
-        grupoElectrogeno.push({
-            descipcion: operativo.value
+        carrito.push({
+            nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
+            cantidad: 1,
+            total : 100
         })
     }
     if (backUp.checked) {
-        grupoElectrogeno.push({
-            descipcion: backUp.value
+        carrito.push({
+            nombre : "Grupo CETEC 130 KVA Backup",
+            cantidad: 1,
+            total : 150
         })
+        
     }
     if (cable.value) {
-        grupoElectrogeno.push({
-            descipcion: cable.value + " Mts de Cable"
+        carrito.push({
+            nombre: "Mts Linea Trifasica",
+            cantidad: parseInt(cable.value),
+            total : parseInt(cable.value) * 150
+
         })
+        
     }
-    return grupoElectrogeno;
 }
 function agregarEnvio() {
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
@@ -430,41 +437,33 @@ function agregarEnvio() {
     const armado = document.querySelector('input[name="armado"]:checked')
     let envio = []
     if (zonaEnvio) {
-        envio.push({
-            descripcion: "Envio a " + zonaEnvio.value
+        carrito.push({
+
+            nombre: zonaEnvio.value,
+            cantidad : 1,
+            total : 0
         })
-        // console.log(zonaEnvio.value)
     };
-
-    if (duracion) {
-        if (duracion.value == "unDia" || duracion.value == "dosDias") {
-            envio.push({
-                descripcion: "Duracion " + duracion.value
-            })
-            // console.log(duracion.value);
-        } else {
-            envio.push({
-                descripcion: "Duracion " + masDias.value + " días"
-            })
-            // console.log(masDias.value);
-        }
-    }
-
+    //Falta duracion
     if (armado) {
-        envio.push({
-            descripcion: "Dia de Armado " + armado.value
+        carrito.push({
+
+            nombre: armado.value,
+            cantidad : 1,
+            total : 0
         })
-        // console.log(armado.value);
     }
-    return envio
 }
+
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
     const presupuesto = document.querySelector(".listaArticulos")
+    const precio = document.querySelector(".precio")
+    const total = calcularTotal()
 
     const cuadrilatero = agregarTramos()
-    const grupoElectrogeno = agregarGrupo()
-    const envio = agregarEnvio()
+    // const grupoElectrogeno = agregarGrupo()
+    // const envio = agregarEnvio()
 
     titulo.setAttribute("style", "display:flex")
 
@@ -473,23 +472,49 @@ function renderizarPresupuesto(lista) {
     lista.forEach(articulo => {
         presupuesto.innerHTML +=
             `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
-    })//luces y sonido
+    })//luces, sonido, grupo Electrogeno
 
     if (cuadrilatero.length != 0) {
         presupuesto.innerHTML +=
             `<li> ${cuadrilatero} </li>`
     }//cuadrilatero
 
-    grupoElectrogeno.forEach(articulo => {
-        presupuesto.innerHTML +=
-            `<li>${articulo.descipcion} </li>`
-    })//grupo electrogeno
+    precio.innerText = `Total: $ ${total}` 
 
-    envio.forEach(articulo => {
-        presupuesto.innerHTML +=
-            `<li>${articulo.descripcion}</li>`
-    })
+}
+function calcularTotal(){
+    let acumulador = carrito.reduce((total, articulo) => total + articulo.total, 0)
 
+    try {
+        const zonaEnvio = document.querySelector('input[name="zona"]:checked')
+        const duracion = document.querySelector('input[name="duracion"]:checked')
+        const masDias = document.getElementById("masDias")
+        const armado = document.querySelector('input[name="armado"]:checked')
+
+        if (!zonaEnvio || !armado){
+            throw new Error("Los campos de la seccion transporte son obligatorios")
+        }
+        if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
+            acumulador += 150 // precio de envio        
+        }
+        if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
+            acumulador += 200 // precio de envio        
+        }
+        //falta duracion
+        if (armado.checked && armado.id == "armadoDia") {
+            acumulador += acumulador * 0.1// suma 10%   
+        }
+    
+        if (armado.checked && armado.id == "armadoPrevio") {
+            acumulador += acumulador * 0.2 // suma 20%
+        }
+        return acumulador
+        console.log(acumulador);;
+    } catch (error){
+        alert(error.message)
+    }
+
+    
 }
 
 
@@ -512,10 +537,11 @@ btnPresupuesto.addEventListener("click", function (e) {
         agregarTramos()
         agregarGrupo()
         agregarEnvio()
+        calcularTotal()
+        
         carritoParaEnviar = formatearCarrito()
 
-        if (carritoParaEnviar.length > 0) {
-            generarPDF()
+        if (carritoParaEnviar.length > 2) {
             return renderizarPresupuesto(carrito)
         }
 
@@ -533,6 +559,22 @@ btnPresupuesto.addEventListener("click", function (e) {
 // Generar pdf
 const generarPDF = () => {
     let nuevoCarrito = carrito.filter(({ nombre, cantidad }) => nombre && cantidad) || []
+    
+    const formDatos = document.getElementById('formData')
+    let formData = {
+        nombre: '',
+        apellido: '',
+        telefono: 0,
+        correo: '',
+        fecha: null,
+    }
+    formData.nombre = formDatos.elements.Nombre.value.trim()
+    formData.apellido = formDatos.elements.Apellido.value.trim()
+    formData.telefono = formDatos.elements.Telefono.value.trim()
+    formData.correo = formDatos.elements.Email.value.trim()
+    formData.fecha = formDatos.elements.Date.value.trim()
+    
+    console.log(formData.nombre);
 
     let fecha = fechaActual()
 
@@ -550,6 +592,8 @@ const generarPDF = () => {
         En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o a terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. 
     • Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. 
     • Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.`
+    
+    const total = calcularTotal()
 
     let props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
@@ -586,15 +630,16 @@ const generarPDF = () => {
             website: "www.stoessel-eventos.com.ar",
         },
         contact: {
-            label: "Invoice issued for:",
-            name: "Client Name",
-            phone: "(+355) 069 22 22 222",
-            email: "client@example.com"
+            label: "Cliente:",
+            name: `${formData.nombre} ${formData.apellido}`,
+            phone: `${formData.telefono}`,
+            email: `${formData.correo}`
         },
         invoice: {
-            label: "Invoice #: ",
+            // label: "Invoice #: ",
             num: 19,
             invGenDate: `Fecha de presupuesto: ${fecha}`,
+            invDueDate: `Fecha del Evento: ${formData.fecha}`,
             headerBorder: true,
             tableBodyBorder: true,
             header: [
@@ -613,35 +658,37 @@ const generarPDF = () => {
                 {
                     title: "Description",
                     style: {
-                        width: 80
+                        width: 100
                     }
                 },
-                { title: "Price" },
-                { title: "Total" }
+                // { title: "Price" },
+                // { title: "Total" }
             ],
             table: Array.from(nuevoCarrito, (i, index) => ([
                 index + 1,
                 i.cantidad,
                 i.nombre,
-                i.precio,
-                i.total
+                // i.precio,
+                // i.total
             ])),
             invTotalLabel: "Total:",
-            invTotal: "145,250.50",
-            invCurrency: "ALL",
+            invTotal: `$${total}`,
+            // invCurrency: "ALL",
             row3: {
                 col1: 'Total:',
-                col2: '145,250.50',
-                col3: 'ALL',
+                col2: `'$'${total}`,
+                // col3: 'ALL',
                 style: {
                     fontSize: 14 //optional, default 12
                 }
             },
             invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES:",
+            invDescLabelStyle: {
+                fontSize: 10,
+                textColor: [0, 0, 0],
+                fillColor: [255, 255, 0] // amarillo
+            },
             invDesc: rules,
-        },
-        footer: {
-            text: "El presupuesto se crea en un ordenador y no es válido sin la firma y el sello.",
         },
         pageEnable: true,
         pageLabel: "Page ",
@@ -690,11 +737,11 @@ const validateForm = () => {
     const tel = formDatos.elements.Telefono.value.trim()
     const email = formDatos.elements.Email.value.trim()
     const date = formDatos.elements.Date.value.trim()
-    const time = formDatos.elements.Time.value.trim()
+    // const time = formDatos.elements.Time.value.trim()
 
 
 
-    if (!name || !surname || !tel || !email || !date || !time) {
+    if (!name || !surname || !tel || !email || !date) {
         let txt = 'Por favor, completa todos los campos'
         msgAction(txt, 'err', msg)
         return false
@@ -730,9 +777,9 @@ btnEmail.addEventListener('click', (e) => {
     const formProduct = document.querySelector("#formProduct")
     e.preventDefault()
 
-    if (!validateForm()) {
-        return
-    }
+    // if (!validateForm()) {
+    //     return
+    // }
 
     let formData = {
         nombre: '',
@@ -744,17 +791,18 @@ btnEmail.addEventListener('click', (e) => {
         presupuesto: [],
     }
 
-    let pdf = generarPDF()
+    // let pdf = generarPDF()
 
     formData.nombre = formDatos.elements.Nombre.value.trim()
     formData.apellido = formDatos.elements.Apellido.value.trim()
     formData.telefono = formDatos.elements.Telefono.value.trim()
     formData.correo = formDatos.elements.Email.value.trim()
     formData.fecha = formDatos.elements.Date.value.trim()
-    formData.hora = formDatos.elements.Time.value.trim()
+    // formData.hora = formDatos.elements.Time.value.trim()
     formData.presupuesto = carritoParaEnviar
 
-    sendEmail(formData)
+    // sendEmail(formData)
+    generarPDF()
     console.log(formData);
     formDatos.reset()
     formProduct.reset()
