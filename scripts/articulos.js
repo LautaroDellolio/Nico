@@ -297,15 +297,16 @@ function renderizarArticulos(lista) {
 
     lista.forEach(({ categoria, nombre, id, descipcion }) => {
         const { SONIDO, ILUMINACION, RIGGING } = categorias
-
+        
+        //<i class="fa-regular fa-lightbulb"></i>
         if (categoria == ILUMINACION) {
             sectionLuces.innerHTML +=
-                `<article class="box">
-                    <i class="fa-regular fa-lightbulb"></i>
-                    <div>
-                        <h4 class="text-box">${nombre}</h4>
-                        <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
-                    </div>
+            `<article class="box">
+                <img src="./img/WhatsApp Image 2023-06-13 at 17.54.50.jpeg" alt="" class="imgBox">
+                <div class="divBox">
+                    <h4 class="text-box">${nombre}</h4>
+                    <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                </div>
             </article>`
         } if (categoria == SONIDO) {
             sectionSonido.innerHTML +=
@@ -316,7 +317,7 @@ function renderizarArticulos(lista) {
                         <h4 class="sonidoText">${nombre}</h4>
                         <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                     </div>
-            </article>`
+                </article>`
 
         } if (categoria == RIGGING) {
             sectionRigging.innerHTML +=
@@ -371,7 +372,13 @@ function agregarTramos() {
 
     if (colgado.checked) {
         if (inputLargo <= 10 && inputAncho <= 10) {
-            tramos.push("Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va colgado y necesita 4 Aparejos y 4 Cubos")
+            console.log("hola");
+            carrito.push({
+                nombre : "Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va colgado y necesita 4 Aparejos y 4 Cubos",
+                cantidad: 1,
+                total : mtsLineales*10 //Precio mts lineales 
+            })
+            // tramos.push("Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va colgado y necesita 4 Aparejos y 4 Cubos")
         }// y si tiene mas de 10?
     }
     if (dePie.checked) {
@@ -445,6 +452,7 @@ function agregarEnvio() {
         })
     };
     //Falta duracion
+    
     if (armado) {
         carrito.push({
 
@@ -461,7 +469,7 @@ function renderizarPresupuesto(lista) {
     const precio = document.querySelector(".precio")
     const total = calcularTotal()
 
-    const cuadrilatero = agregarTramos()
+    // const cuadrilatero = agregarTramos()
     // const grupoElectrogeno = agregarGrupo()
     // const envio = agregarEnvio()
 
@@ -474,10 +482,10 @@ function renderizarPresupuesto(lista) {
             `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
     })//luces, sonido, grupo Electrogeno
 
-    if (cuadrilatero.length != 0) {
-        presupuesto.innerHTML +=
-            `<li> ${cuadrilatero} </li>`
-    }//cuadrilatero
+    // if (cuadrilatero.length != 0) {
+    //     presupuesto.innerHTML +=
+    //         `<li> ${cuadrilatero} </li>`
+    // }//cuadrilatero
 
     precio.innerText = `Total: $ ${total}` 
 
@@ -490,31 +498,49 @@ function calcularTotal(){
         const duracion = document.querySelector('input[name="duracion"]:checked')
         const masDias = document.getElementById("masDias")
         const armado = document.querySelector('input[name="armado"]:checked')
+        
 
-        if (!zonaEnvio || !armado){
+        if (!zonaEnvio || !armado || !duracion){
             throw new Error("Los campos de la seccion transporte son obligatorios")
         }
+        //Duracion
+        if (duracion.checked && duracion.id == "dia2") {
+            acumulador += acumulador*0.5*2
+        }
+        if (duracion.checked && duracion.id == "diaOtro") {
+            if (masDias.value <= 7) {
+                acumulador += acumulador*0.5*masDias.value
+            }
+            if (masDias.value <= 14 && masDias.value >7){
+                acumulador += acumulador*0.25*masDias.value
+            }
+            if (masDias.value >= 15 && masDias.value > 14){
+                acumulador += acumulador*0.2*masDias.value
+            }
+        }
+
+        //Envios
         if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
-            acumulador += 150 // precio de envio        
+            acumulador += 150 // precio de envio   
         }
         if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
-            acumulador += 200 // precio de envio        
+            acumulador += 200 // precio de envio  
         }
-        //falta duracion
+
+        //Armado
         if (armado.checked && armado.id == "armadoDia") {
             acumulador += acumulador * 0.1// suma 10%   
+            console.log("Armado dia");
         }
     
         if (armado.checked && armado.id == "armadoPrevio") {
             acumulador += acumulador * 0.2 // suma 20%
+            console.log("Armado Previo");
         }
         return acumulador
-        console.log(acumulador);;
     } catch (error){
         alert(error.message)
     }
-
-    
 }
 
 
@@ -777,9 +803,9 @@ btnEmail.addEventListener('click', (e) => {
     const formProduct = document.querySelector("#formProduct")
     e.preventDefault()
 
-    // if (!validateForm()) {
-    //     return
-    // }
+    if (!validateForm()) {
+        return
+    }
 
     let formData = {
         nombre: '',
@@ -801,7 +827,7 @@ btnEmail.addEventListener('click', (e) => {
     // formData.hora = formDatos.elements.Time.value.trim()
     formData.presupuesto = carritoParaEnviar
 
-    // sendEmail(formData)
+    sendEmail(formData)
     generarPDF()
     console.log(formData);
     formDatos.reset()

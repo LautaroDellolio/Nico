@@ -24,18 +24,12 @@
     </header>
     <main>
       <img src="./img/Banner-home.png" alt="banner" class="imgBanner" />
-      <h1 id="about">Sobre Nosotros</h1>
-      <p class="about-us">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt repellat
-        saepe laborum dolor quod alias qui, blanditiis neque laudantium amet
-        beatae repellendus id in! Odio eaque unde non eum suscipit! Lorem, ipsum
-        dolor sit amet consectetur adipisicing elit. Aspernatur iste
-        voluptatibus minima officia qui natus labore, tenetur impedit maxime
-        voluptate ullam placeat inventore voluptas libero, alias quos eligendi
-        fugit totam? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Consequatur reprehenderit non obcaecati aliquid facere autem quae illo
-        omnis libero ipsum, magni fugit a nihil blanditiis quo sunt eligendi
-        ducimus dignissimos?
+      <!-- <h1 id="about">Sobre Nosotros</h1> -->
+      <p class="about-us">Nos dedicamos a los eventos hace mas de 20 años. 
+        Somos proveedores de equipamiento técnico para eventos. Ofrecemos calidad y excelencia. Lo logramos gracias a la combinación de nuestro personal apasionado y tecnología innovadora.
+        Nos gusta la calidad y la ofrecemos.
+        Mediante desafíos técnicos propios de nuestros clientes, logramos que un evento sea fascinante desde el momento de producción. Generamos verdadera sinergia para que un evento sea exitoso y que logre despertar emociones.
+        Nuestra pasión por lo que hacemos, marca la diferencia.         
       </p>
 
       <form action="" id="formProduct">
@@ -52,22 +46,22 @@
           <article>
             <p>Ingrese las medidas</p>
             <div>
-              <label for="">Largo</label>
+              <label class="labelCuadrilatero" for="">Largo</label>
               <input type="number" placeholder="Mts" class="styleInput largo" />
             </div>
             <div>
-              <label for="">Ancho</label>
+              <label class="labelCuadrilatero" for="">Ancho</label>
               <input type="number" placeholder="Mts" class="styleInput ancho" />
             </div>
             <div>
-              <label for="">Alto</label>
+              <label class="labelCuadrilatero" for="">Alto</label>
               <input type="number" placeholder="Mts" class="styleInput alto" />
             </div>
           </article>
           <article class="sistema">
             <p>Sistema de Instalación</p>
             <div>
-              <label>Colgado</label>
+              <label class="labelCuadrilatero">Colgado</label>
               <input
                 type="radio"
                 id="colgado"
@@ -77,7 +71,7 @@
               />
             </div>
             <div>
-              <label>De pie</label>
+              <label class="labelCuadrilatero">De pie</label>
               <input
                 type="radio"
                 id="pie"
@@ -87,7 +81,7 @@
               />
             </div>
             <div style="display: none" class="patas">
-              <label>Cantidad de Patas</label>
+              <label class="labelCuadrilatero">Cantidad de Patas</label>
               <input
                 type="number"
                 placeholder="Cant de patas"
@@ -102,7 +96,7 @@
         <h3>GRUPO ELECTRÓGENO</h3>
         <section class="grupo">
           <div>
-            <label for="">Grupo CETEC 130 KVA Operativo (10 Hs de uso) </label>
+            <label class="labelCuadrilatero" for="">Grupo CETEC 130 KVA Operativo (10 Hs de uso) </label>
             <input
               type="checkbox"
               value="Grupo CETEC 130 KVA Operativo (10 Hs de uso)"
@@ -110,7 +104,7 @@
             />
           </div>
           <div>
-            <label for="">Grupo CETEC 130 KVA Backup</label>
+            <label class="labelCuadrilatero" for="">Grupo CETEC 130 KVA Backup</label>
             <input
               type="checkbox"
               value="Grupo CETEC 130 KVA Backup"
@@ -118,7 +112,7 @@
             />
           </div>
           <div>
-            <label for="">Distancia al punto de tensión</label>
+            <label class="labelCuadrilatero" for="">Distancia al punto de tensión</label>
             <input
               type="number"
               placeholder="Mts"
@@ -189,7 +183,10 @@
             </div>
             <div>
               <label for="">Otro</label>
-              <input type="radio" name="duracion" id="diaOtro" class="check" />
+              <input type="radio"
+                name="duracion" 
+                id="diaOtro" 
+                class="check" />
             </div>
             <div class="dias" style="display: none">
               <label for="">Cantidad de días</label>
