@@ -2,211 +2,256 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Cabezal Movil Mad-Tec",
-        precio: 10,
+        img: "./img/mad-tec.jpg",
+        precio: 20000,
     },
     {
         categoria: "iluminacion",
         nombre: "Cabezal Móvil PLS 3en1 7R",
-        precio: 10
+        img: "./img/movil-pls.jpg",
+        precio: 27500,
     },
     {
         categoria: "iluminacion",
         nombre: "Proton / Nebula (Rgbwuv)",
-        precio: 10
+        img: "./img/nebula-proton.jpg",
+        precio: 4000
     },
     {
         categoria: "iluminacion",
         nombre: "Proton Big Par 180",
-        precio: 10
+        img: "./img/big-par180.jpg",
+        precio: 5000
     },
     {
         categoria: "iluminacion",
         nombre: "Proton Inalámbrico",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 9000
     },
     {
         categoria: "iluminacion",
         nombre: "Par 36 - Pin",
-        precio: 10
+        img: "./img/PIN PAR36.jpg",
+        precio: 2500
     },
     {
         categoria: "iluminacion",
         nombre: "Par64 - 1000 Watts",
-        precio: 10
+        img: "./img/PAR1000.jpg",
+        precio: 4000
     },
     {
         categoria: "iluminacion",
         nombre: "Fresnel 1 Kw",
-        precio: 10
+        img: "./img/Fresnel1k.jpg",
+        precio: 8500
     },
     {
         categoria: "iluminacion",
         nombre: "Fresnel 2 Kw",
-        precio: 10
+        img: "./img/Fresnel1k.jpg",
+        precio: 11000
     },
     {
         categoria: "iluminacion",
         nombre: "Par56 - 300 Watts",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 2200
     },
     {
         categoria: "iluminacion",
         nombre: "Barra de Led",
-        precio: 10
-    },
-    {
-        categoria: "iluminacion",
-        nombre: "Bañador NovaLed Outdoor",
-        precio: 10
+        img: "./img/BARRA DE LED .jpg",
+        precio: 9000
     },
     {
         categoria: "iluminacion",
         nombre: "Atomix 3000",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 16500
     },
     {
         categoria: "iluminacion",
         nombre: "Elipsoidal 750 Watts (Zoom 25 - 50º)",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 11000
     },
     {
         categoria: "iluminacion",
         nombre: "Minibrut x 4 Lamps",
-        precio: 10
+        img: "./img/MINIBRUT X 4.jpg",
+        precio: 24000
     },
     {
         categoria: "iluminacion",
         nombre: "Minibrut x 8 Lamps",
-        precio: 10
+        img: "./img/MINIBRUT X 8.jpg",
+        precio: 40000
     },
     {
         categoria: "iluminacion",
         nombre: "HQI - 400 / Reflector Led 100 Watts",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 13500
     },
     {
         categoria: "iluminacion",
         nombre: "Seguidor 1200 c/ Seguidorista",
-        precio: 10
+        img: "./img/SEGUIDOR + SEGUIDORISTA.jpg",
+        precio: 82500
     },
     {
         categoria: "iluminacion",
         nombre: "Octobeam Laser RGB x 3 watts c/u",
-        precio: 10
+        img: "./img/octobeam.jpg",
+        precio: 25000
+    },
+    {
+        categoria: "iluminacion",
+        nombre: "Strobo + Tilt RGB+W",
+        img: "./img/strobo.jpg",
+        precio: 0
+    },
+    {
+        categoria: "iluminacion",
+        nombre: "Pixel Patt RGB + H",
+        img: "./img/pixel-patt.jpg",
+        precio: 27500
+    },
+    {
+        categoria: "iluminacion",
+        nombre: "Cabezal Movil AURA",
+        img: "./img/movil-aura.jpg",
+        precio: 27500
     },
     {
         categoria: "iluminacion",
         nombre: "Máquina de Humo Cloudy",
-        precio: 10
+        img: "./img/MAQUINA DE HUMO.jpg",
+        precio: 25000
     },
     {
         categoria: "iluminacion",
         nombre: "Toma tensión Hasta 10 Amperes",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 8800
     },
     {
         categoria: "iluminacion",
         nombre: "Toma tensión Hasta 20 Amperes",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 16500
     },
     {
         categoria: "Sonido",
         nombre: "Sonido 1",
         descipcion: "2 JBL Eon-10 + Consola + Mic",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 95000
     },
     {
         categoria: "Sonido",
         nombre: "Sonido 2",
         descipcion: "4 JBL Eon-10 + consola + Mic",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 130000
     },
     {
         categoria: "Sonido",
         nombre: "Sonido 3",
-        descipcion: "Sonido pista JBL / RCF (2 Mid-Hi + 2 Sub)",
-        precio: 10
+        descipcion: "Sonido Line Array 6xlado RCF HDL6 + Sub",
+        img: "./img/LINE ARRAY 6XLADO .jpg",
+        precio: 650000
     },
     {
         categoria: "Sonido",
         nombre: "Sonido 4",
-        descipcion: "Sonido Line Array 4xlado RCF HDL6 + Sub",
-        precio: 10
-    },
-    {
-        categoria: "Sonido",
-        nombre: "Sonido 5",
         descipcion: "Sonido DJ en recepcion (2 mid-Hi + 2 Sub + JBL/RCF)",
-        precio: 10
+        img: "./img/SONIDO DJ RECEPCION.jpg",
+        precio: 175000
     },
     {
         categoria: "Sonido",
         nombre: "Perimetrales (JBL / RCF)",
         descipcion: "Perimetrales (JBL / RCF)",
-        precio: 10
+        img: "./img/PERIMETRALES .jpg",
+        precio: 35000
     },
     {
         categoria: "Sonido",
         nombre: "Sonido K-array (kr-202)",
         descipcion: "Sonido K-array (kr-202)",
-        precio: 10
+        img: "./img/SISTEMA K ARRAY.jpg",
+        precio: 220000
     },
     {
         categoria: "Sonido",
         nombre: "Rider Banda chica",
         descipcion: "Rider Banda chica",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 275000
     },
     {
         categoria: "Sonido",
         nombre: "Mic Inalambrico Sennheiser G3",
         descipcion: "Mic Inalambrico Sennheiser G3",
-        precio: 10
+        img: "./img/MIC SENNHEISER.jpg",
+        precio: 27500
     },
     {
         categoria: "rigging",
         nombre: "Truss Prolyte H30V x Metro",
-        precio: 10
+        img: "./img/tramos.jpg",
+        precio: 4500
     },
     {
         categoria: "rigging",
         nombre: "Corner box Prolyte ",
-        precio: 10
+        img: "./img/cubos.jpg",
+        precio: 20000
     },
     {
         categoria: "rigging",
         nombre: "Aparejo x 1Tn (Ganmar-Yale)",
-        precio: 10
+        img: "./img/APAREJO .jpg",
+        precio: 8500
     },
     {
         categoria: "rigging",
         nombre: "Patas Malakate (6 Metros x 250 Kg)",
-        precio: 10
+        img: "./img/PATA MALAKATE.jpg",
+        precio: 35000
     },
     {
         categoria: "rigging",
         nombre: "Totem Truss",
-        precio: 10
+        img: "./img/TOTEM TRUSS.jpg",
+        precio: 20000
     },
     {
         categoria: "rigging",
         nombre: "Totem telescópico",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 20000
     },
     {
         categoria: "rigging",
         nombre: "Circular Truss x 6 metros",
-        precio: 10
+        img: "./img/CIRCULO 6 METROS .jpg",
+        precio: 130000
     },
     {
         categoria: "rigging",
         nombre: "Circular Truss x 8 metros",
-        precio: 10
+        img: "./img/CIRCULO 8 METROS .jpg",
+        precio: 200000
     },
     {
         categoria: "rigging",
         nombre: "Cabina de DJ con Truss 3030 (3x1x1)",
-        precio: 10
+        img: "./img/faltante.webp",
+        precio: 100000
     }
 ]
 
@@ -214,17 +259,17 @@ const costosFijos = [
     {
         categoria: "fijo",
         nombre: "Consola AVOLITES + Operador",
-        precio: 10
+        precio: 0
     },
     {
         categoria: "fijo",
         nombre: "Corralito negro para control",
-        precio: 10
+        precio: 0
     },
     {
         categoria: "fijo",
         nombre: "Dimmer 12 ch / Usina de tension",
-        precio: 10
+        precio: 162500
     }
 ]
 let carrito = []
@@ -295,26 +340,26 @@ function renderizarArticulos(lista) {
         RIGGING: cat[2]
     }
 
-    lista.forEach(({ categoria, nombre, id, descipcion }) => {
+    lista.forEach(({ categoria, nombre, id, descipcion, img }) => {
         const { SONIDO, ILUMINACION, RIGGING } = categorias
         
         //<i class="fa-regular fa-lightbulb"></i>
         if (categoria == ILUMINACION) {
             sectionLuces.innerHTML +=
             `<article class="box">
-                <img src="./img/WhatsApp Image 2023-06-13 at 17.54.50.jpeg" alt="" class="imgBox">
+                <img src="${img}" alt="" class="imgBox">
+                <h4 class="text-box">${nombre}</h4>
                 <div class="divBox">
-                    <h4 class="text-box">${nombre}</h4>
-                    <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                 </div>
             </article>`
         } if (categoria == SONIDO) {
             sectionSonido.innerHTML +=
                 `<article class="box descripcion">
-                    <p>${descipcion}</p>
-                    <i class="fa-regular fa-lightbulb"></i>
-                    <div>
-                        <h4 class="sonidoText">${nombre}</h4>
+                    <p class="text-box text-desc">${descipcion}</p>
+                    <img src="${img}" alt="" class="imgBox">
+                    <div class="divBox">
+                        <h4 class="sonidoText text-box">${nombre}</h4>
                         <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
                     </div>
                 </article>`
@@ -322,11 +367,11 @@ function renderizarArticulos(lista) {
         } if (categoria == RIGGING) {
             sectionRigging.innerHTML +=
                 `<article class="box">
-            <i class="fa-regular fa-lightbulb"></i>
-            <div>
-                <h4 class="text-box">${nombre}</h4>
-                <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
-            </div>
+                <img src="${img}" alt="" class="imgBox">
+                <div class="divBox">
+                    <h4 class="text-box">${nombre}</h4>
+                    <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                </div>
     </article>`
         }
     })
@@ -336,7 +381,7 @@ function validarDatos(datos) {
     let esValido = true;
     datos.forEach(input => {
         if (!regex.test(input.value)) {
-            input.style.border = "2px solid red";
+            input.style.border = "4px solid red";
             esValido = false;
         } else {
             input.style.border = "1px solid black";
@@ -347,7 +392,7 @@ function validarDatos(datos) {
 function agregarAlCarrito(lista) {
     carrito = lista.map(articulo => {
         const input = document.getElementById(articulo.id)
-        if (input.value) {
+        if (input.value != 0) {
             return {
                 nombre: articulo.nombre,
                 id: articulo.id,
@@ -367,19 +412,24 @@ function agregarTramos() {
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector("#cantPatas").value
 
-    let tramos = []
+    let tramos = [] // elimar despues de la opcion colgado
     let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
 
+    
     if (colgado.checked) {
         if (inputLargo <= 10 && inputAncho <= 10) {
-            console.log("hola");
-            carrito.push({
-                nombre : "Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va colgado y necesita 4 Aparejos y 4 Cubos",
+            carrito.push({  //Cuadrilatero Hasta 10 x 10
+                nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colagado.",
                 cantidad: 1,
-                total : mtsLineales*10 //Precio mts lineales 
+                total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
             })
-            // tramos.push("Un cuadrilatero de: " + inputLargo + " Mts de largo X " + inputAncho + " Mts de Ancho. A una altura de " + inputAlto + " Mts. " + "Tiene " + mtsLineales + " Mts lineales." + " Va colgado y necesita 4 Aparejos y 4 Cubos")
-        }// y si tiene mas de 10?
+            }else{
+                carrito.push({ //Cuadrilatero Superiores
+                    nombre: "Para cuadriláteros superiores a 10 Mts se cotizarán por separado.",
+                    cantidad : 1,
+                    total : 0
+                })
+        }
     }
     if (dePie.checked) {
         if (patas <= 4) {
@@ -416,14 +466,14 @@ function agregarGrupo() {
         carrito.push({
             nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
             cantidad: 1,
-            total : 100
+            total : 100 //precio grupo 
         })
     }
     if (backUp.checked) {
         carrito.push({
             nombre : "Grupo CETEC 130 KVA Backup",
             cantidad: 1,
-            total : 150
+            total : 150 //precio grupo 
         })
         
     }
@@ -431,7 +481,7 @@ function agregarGrupo() {
         carrito.push({
             nombre: "Mts Linea Trifasica",
             cantidad: parseInt(cable.value),
-            total : parseInt(cable.value) * 150
+            total : parseInt(cable.value) * 150 //Precio
 
         })
         
@@ -604,20 +654,20 @@ const generarPDF = () => {
 
     let fecha = fechaActual()
 
-    const rules = `\n \n   
-    • Los precios no incluyen IVA (21%) el presente presupuesto tiene una validez de 30 días. 
-    • en caso de confirmar el presupuesto y de no abonarlo dentro de los 15 dias, el mismo sufrirá un incremento mensual según indice ipc. 	
-    • el pago total deberá estar saldado 48 hs antes del evento.
-    • El cliente será responsable: total y parcialmente por los equipos locados, por roturas ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos.
-    • El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante todo el período de contratación del servicio, incluyendo la instalación, el evento, y la desinstalación del mismo para el cuidado de todo el equipamiento.
-    • Los precios detallados incluyen gastos de transportes, y de personal. 
-    • Los precios son por un día de evento. Por más de un día se realizará otra cotización.
-    • En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará cargo del cien por cien del precio convenido.
-    • Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva.
-    • Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, recomendamos la contratación de equipos de backup que aseguren la prestación del servicio en caso de una eventual falla en alguno de los mismos.
-        En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o a terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. 
-    • Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. 
-    • Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.`
+    // const rules = `\n \n   
+    // • Los precios no incluyen IVA (21%) el presente presupuesto tiene una validez de 30 días. 
+    // • en caso de confirmar el presupuesto y de no abonarlo dentro de los 15 dias, el mismo sufrirá un incremento mensual según indice ipc. 	
+    // • el pago total deberá estar saldado 48 hs antes del evento.
+    // • El cliente será responsable: total y parcialmente por los equipos locados, por roturas ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos.
+    // • El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante todo el período de contratación del servicio, incluyendo la instalación, el evento, y la desinstalación del mismo para el cuidado de todo el equipamiento.
+    // • Los precios detallados incluyen gastos de transportes, y de personal. 
+    // • Los precios son por un día de evento. Por más de un día se realizará otra cotización.
+    // • En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará cargo del cien por cien del precio convenido.
+    // • Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva.
+    // • Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, recomendamos la contratación de equipos de backup que aseguren la prestación del servicio en caso de una eventual falla en alguno de los mismos.
+    //  • En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o a terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. 
+    // • Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. 
+    // • Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.`
     
     const total = calcularTotal()
 
@@ -708,13 +758,14 @@ const generarPDF = () => {
                     fontSize: 14 //optional, default 12
                 }
             },
-            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES:",
+            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES: "
+            //\n    • Los precios no incluyen IVA (21%) el presente presupuesto tiene una validez de 30 días. \n    • En caso de confirmar el presupuesto y de no abonarlo dentro de los 15 dias, el mismo  \n        sufrirá un incremento mensual según indice ipc. \n    • El pago total deberá estar saldado 48 hs antes del evento. \n    • El cliente será responsable: total y parcialmente por los equipos locados, por roturas \n        ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños \n        ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra \n        empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos. \n    • El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante \n        todo el período de contratación del servicio, incluyendo la instalación, el evento, y la \n        desinstalación del mismo para el cuidado de todo el equipamiento. \n    • Los precios detallados incluyen gastos de transportes, y de personal. \n    • En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por \n        cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará \n        cargo del cien por cien del precio convenido. \n    • Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva. \n    • Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, \n        recomendamos la contratación de equipos de backup que aseguren la prestación del \n        servicio en caso de una eventual falla en alguno de los mismos. \n    • En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o a \n        terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. \n        Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, \n        aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. \n    • Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá \n        proveer al menos un elevador hidráulico. \n    • Están incluidos los seguros del personal contra accidentes de trabajo y seguro por \n        responsabilidad civil."  ,
             // invDescLabelStyle: {
             //     fontSize: 10,
             //     textColor: [0, 0, 0],
             //     fillColor: [255, 255, 0] // amarillo
             // },
-            invDesc: rules,
+            // invDesc: rules,
         },
         pageEnable: true,
         pageLabel: "Page ",
@@ -803,9 +854,9 @@ btnEmail.addEventListener('click', (e) => {
     const formProduct = document.querySelector("#formProduct")
     e.preventDefault()
 
-    if (!validateForm()) {
-        return
-    }
+    // if (!validateForm()) {
+    //     return
+    // }
 
     let formData = {
         nombre: '',
@@ -827,7 +878,7 @@ btnEmail.addEventListener('click', (e) => {
     // formData.hora = formDatos.elements.Time.value.trim()
     formData.presupuesto = carritoParaEnviar
 
-    sendEmail(formData)
+    // sendEmail(formData)
     generarPDF()
     console.log(formData);
     formDatos.reset()

@@ -8,7 +8,7 @@ body{
 header{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items:center ;
     /* background: #d0d3d4; */
     
 }
@@ -31,6 +31,7 @@ header a{
 
 .imgBanner{
     width: 100%;
+    height: 70vh;
 }
 h1{
     text-align: center;
@@ -62,7 +63,7 @@ h3{
     border: 1px solid black;
     /* background-color: grey; */
     border-radius: 15px;
-    height: 161px;
+    height: 150px;
     width: 15%;
     margin: 5px;
     padding: 10px;
@@ -75,6 +76,7 @@ h3{
 }
 .imgBox{
     width: 100%;
+    height: 100%;
     
     border-radius: 15px;
     position: absolute;
@@ -87,9 +89,15 @@ h3{
     margin: 20px;
 }
 .text-box{
+    width: 100%;
     font-size: 14px;
-    color: white;
+    color: yellow;
+    background-color: red;
+    padding: 3px;
+    border-radius: 15px;
+    opacity: 0.8;
 }
+
 .divBox{
     position: absolute;
     bottom: 0;
@@ -97,11 +105,21 @@ h3{
 }
 
 .descripcion:hover p {
-    display: block;
+    display: flex;
 }
 
 .descripcion p {
     display: none;
+}
+.text-desc{
+    background-color: beige;
+    opacity: 0.6;
+    color: black;
+    padding: 5px;
+    height: 80%;
+    border-radius: 15px;
+    align-items: center;
+    text-align: center;
 }
 
 .descripcion:hover i, .descripcion:hover .sonidoText{
