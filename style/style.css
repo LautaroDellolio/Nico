@@ -9,8 +9,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items:center ;
-    /* background: #d0d3d4; */
-    
+    background: black;
 }
 header img{
     margin: 10px 60px;
@@ -26,7 +25,7 @@ header li{
 header a{
     text-decoration: none;
     font-size: 20px;
-    color: black;
+    color: white;
 }
 
 .imgBanner{
@@ -38,10 +37,12 @@ h1{
     margin: 10px;
 }
 .about-us{
-    width: 90%;
+    font-size: 20px;
     text-align: center;
     margin: auto;
     padding: 15px;
+    background-color: black;
+    color: white;
 }
 
 h3{
@@ -60,11 +61,9 @@ h3{
 
 }
 .box{
-    border: 1px solid black;
-    /* background-color: grey; */
     border-radius: 15px;
-    height: 150px;
-    width: 15%;
+    height: 250px;
+    width: 23%;
     margin: 5px;
     padding: 10px;
     display: flex;
@@ -90,10 +89,10 @@ h3{
 }
 .text-box{
     width: 100%;
-    font-size: 14px;
-    color: yellow;
-    background-color: red;
-    padding: 3px;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    padding: 5px;
     border-radius: 15px;
     opacity: 0.8;
 }
@@ -112,14 +111,13 @@ h3{
     display: none;
 }
 .text-desc{
-    background-color: beige;
+    background-color: white;
     opacity: 0.6;
     color: black;
-    padding: 5px;
-    height: 80%;
+    height: 100%;
     border-radius: 15px;
+    justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
 .descripcion:hover i, .descripcion:hover .sonidoText{
@@ -234,11 +232,8 @@ h3{
     justify-content: space-around;;
 }
 .divListado{
-    background-color: grey;
     width: 50%;
     padding: 10px;
-    margin: 20px;
-    border-radius: 15px;
 }
 .divListado h2{
     margin: 15px;
@@ -257,7 +252,7 @@ h3{
 .formulario{
     display: flex;
     flex-direction: column;
-    background-color: grey;
+    background-color: black;
     border-radius: 15px;
     padding: 10px;
     margin: 20px;
@@ -267,6 +262,19 @@ h3{
     display: grid;
     margin: 5px 0px;
 }
+.terminos{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.btn-terminos{
+    background-color: black;
+    color : white;
+    border: none;
+}
+.formulario label a{
+    color: white;
+}
 .formulario div input{
     padding: 5px;
     border-radius: 15px;
@@ -275,10 +283,15 @@ h3{
 .btnForm {
     margin-bottom: 14px;
 }
+.invertido{
+    background-color: white;
+    color: black;
+}
 
 .err {
     display: flex;
     background: rgba(226, 36, 36, 0.637);
+    color: white;
     font-weight: bold;
     text-align: center;
     font-size: 18px;
@@ -296,21 +309,46 @@ h3{
 }
 
 footer{
-    background-color: gray;
+    background-color: black;
     display: flex;
     justify-content: space-around;
     align-items: end;
     margin-top: 20px;
-    padding-bottom: 10px;
+    padding:  15px
 }
 .about-footer{
     margin: 15px 20px 0px;
     width: 50%;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+    align-items: center;
+}
+.img-footer{
+    width: 250px;
+}
+.icons{
+    color: white;
+    margin: 0 20px;
+    font-size: 20px;
+}
+.contact{
+    color: white;
 }
 
-.img-footer{
-    width: 200px;
+.terminosYcondiciones{
+    background-color: black;
+    color: white;
+    width: 70%;
+    margin: auto;
+    padding: 15px;
+    border-radius: 15px;
 }
-invDescLabel:contains('CONFIRMADO EL PRESENTE PRESUPUESTO QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES') {
+.btnStyle:hover, .btn-terminos:hover{
+    cursor: pointer;
+}
+
+
+/* invDescLabel:contains('CONFIRMADO EL PRESENTE PRESUPUESTO QUEDA EXPRESAMENTE ACEPTADAS LAS SIGUIENTES CONDICIONES GENERALES') {
     background-color: yellow;
-}
+} */

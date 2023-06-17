@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-      <img src="./img/IsoLogoStöesel_CYMK.png" alt="logo" />
+      <img src="./img/IsoLogoStöesel_CYMK-Blanco.png" alt="logo" />
       <nav>
         <ul>
           <li><a href="#about">Nosotros</a></li>
@@ -83,12 +83,37 @@
             </div>
             <div style="display: none" class="patas">
               <label class="labelCuadrilatero">Cantidad de Patas</label>
+              <label class="labelCuadrilatero">4</label>
               <input
-                type="number"
-                placeholder="Cant de patas"
-                id="cantPatas"
-                name="sistema"
-                class="styleInput valorInput"
+                type="radio"
+                id="cantPatas4"
+                value="4"
+                name="cantPatas"
+                class="check"
+              />
+              <label class="labelCuadrilatero">6</label>
+              <input
+                type="radio"
+                id="cantPatas6"
+                value="6"
+                name="cantPatas"
+                class="check"
+              />
+              <label class="labelCuadrilatero">8</label>
+              <input
+                type="radio"
+                id="cantPatas8"
+                value="8"
+                name="cantPatas"
+                class="check"
+              />
+              <label class="labelCuadrilatero">Otro</label>
+              <input
+                type="radio"
+                id="cantPatasO"
+                value="otro"
+                name="cantPatas"
+                class="check"
               />
             </div>
           </article>
@@ -128,7 +153,7 @@
           <article class="map">
             <div>
               <img src="" alt="zona1" />
-              <label for="">CABA- ZONA NORTE </label>
+              <label for="">CABA - VTE LOPEZ - SAN ISIDRO (HASTA 50KM) </label>
               <input
                 type="radio"
                 name="zona"
@@ -139,7 +164,7 @@
             </div>
             <div>
               <img src="" alt="zona2" />
-              <label for="">PILAR - CAMPANA - CAÑUELAS(O HASTA 100KM)</label>
+              <label for="">PILAR - CAMPANA - CAÑUELAS(HASTA 100KM)</label>
               <input
                 type="radio"
                 name="zona"
@@ -155,7 +180,7 @@
                 type="radio"
                 name="zona"
                 id="zona2"
-                value="MAS DE 100 KM. Consulte cotización
+                value="MAS DE 100 KM. Consulte cotización. Envío no incluido en el total."
                 class="check"
               />
             </div>
@@ -168,7 +193,7 @@
                 type="radio"
                 name="duracion"
                 id="dia1"
-                value="unDia"
+                value="1"
                 class="check"
               />
             </div>
@@ -178,7 +203,7 @@
                 type="radio"
                 name="duracion"
                 id="dia2"
-                value="dosDias"
+                value="2"
                 class="check"
               />
             </div>
@@ -187,7 +212,7 @@
               <input type="radio"
                 name="duracion" 
                 id="diaOtro" 
-                class="check" />
+                class="check"/>
             </div>
             <div class="dias" style="display: none">
               <label for="">Cantidad de días</label>
@@ -265,33 +290,53 @@
             <label for="">Fecha del Evento</label>
             <input type="date" placeholder="DD/MM/AA" name="Date" required />
           </div>
-          <button class="btnForm btnStyle" id="btn-email">
-            Enviar Solicitud // DESCARGAR SOLICITUD
+          <section class="terminos">
+            <label for=""><button id="btn-terminos" class="btn-terminos"><small>Ver </small>Términos y Condiciones</button></label>
+            <input 
+              type="checkbox"
+              name="Terminos"
+              required
+            />
+          </section>
+          <button class="btnForm btnStyle invertido" id="btn-email">
+            Enviar Solicitud
           </button>
           <div id="message" class=""></div>
         </form>
       </section>
+      <div class="terminosYcondiciones" style="display: none;">
+        <ul>
+          <li>Los precios no incluyen IVA (21%) el presente presupuesto tiene una validez de 30 días. </li>
+          <li>en caso de confirmar el presupuesto y de no abonarlo dentro de los 15 dias, el mismo sufrirá un incremento mensual según indice ipc. 	</li>
+          <li>el pago total deberá estar saldado 48 hs antes del evento.</li>
+          <li>El cliente será responsable: total y parcialmente por los equipos locados, por roturas ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos.</li>
+          <li>El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante todo el período de contratación del servicio, incluyendo la instalación, el evento, y la desinstalación del mismo para el cuidado de todo el equipamiento.</li>
+          <li>Los precios detallados incluyen gastos de transportes, y de personal. </li>
+          <li>Los precios son por un día de evento. Por más de un día se realizará otra cotización.</li>
+          <li>En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará cargo del cien por cien del precio convenido.</li>
+          <li>Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva.</li>
+          <li>Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, recomendamos la contratación de equipos de backup que aseguren la prestación del servicio en caso de una eventual falla en alguno de los mismos.</li>
+          <li>En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o a terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. </li>
+          <li>Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. </li>
+          <li>Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.</li>
+        </ul>
+        <button class="btnStyle invertido" id="btn-ocultar">Ocultar</button>
+      </div>
     </main>
     <footer id="footer">
       <section class="about-footer">
-        <img src="./img/IsoLogoStöesel_ByN.png" alt="" class="img-footer" />
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
-          aspernatur totam est ullam ut provident perspiciatis recusandae saepe
-          sint assumenda fugiat, temporibus ratione quibusdam maiores, aut at
-          rerum animi eligendi!
-        </p>
+        <img src="./img/IsoLogoStöesel_CYMK-Blanco.png" alt="" class="img-footer" />
         <div clas="div-about">
           <a href="https://www.instagram.com/stoessel_ing/"
-            ><i class="fa-brands fa-instagram"></i
+            ><i class="fa-brands fa-instagram icons"></i
           ></a>
           <a href="https://www.facebook.com/stoesseleventos"
-            ><i class="fa-brands fa-facebook"></i
+            ><i class="fa-brands fa-facebook icons"></i
           ></a>
           <a href="https://www.youtube.com/@stoesselingenieriaenevento950"
-            ><i class="fa-brands fa-youtube"></i
+            ><i class="fa-brands fa-youtube icons"></i
           ></a>
-          <a href="https://api.whatsapp.com/send?phone=+5491136052084&text=Hola%20gracias%20por%20comunicarte,%20por%20favor%20envia%20el%20pdf"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://api.whatsapp.com/send?phone=+5491136052084&text=Hola%20gracias%20por%20comunicarte,%20por%20favor%20envia%20el%20pdf"><i class="fa-brands fa-whatsapp icons"></i></a>
         </div>
       </section>
       <section class="contact">
