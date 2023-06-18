@@ -509,6 +509,26 @@ function agregarTramos() {
         }
     } 
 }
+function validarGrupo() {
+    try{
+        const operativo = document.querySelector("#operativo").checked
+        const backUp = document.querySelector("#back").checked
+        const cable = document.querySelector("#distancia").value
+        
+        if ((operativo || backUp)&& cable =="") {
+            throw new Error("Debe ingresar la distancia al punto de tensión");
+        }else{
+            validacionOk.gruposOk = true;
+        }
+        
+
+    }catch(error){
+        alert(error.message)
+        validacionOk.gruposOk = false
+    }
+
+    
+}
 function agregarGrupo() {
     const operativo = document.querySelector("#operativo")
     const backUp = document.querySelector("#back")
@@ -640,7 +660,6 @@ function calcularTotal(){
     //Duracion
     if (duracion == 2) {
         acumulador = acumulador*1.5
-        console.log("Si duracion = 2 acumulador x 1.5 " + acumulador);
         }else if (duracion == "on") {
             if (masDias >= "3" && masDias <= "7") {
                 switch (masDias) {
@@ -660,12 +679,10 @@ function calcularTotal(){
                         acumulador = acumulador * 4;
                         break;
                 }
-            } else if (masDias >= "8" && masDias <= "99") {
-                console.log("Duracion + de 7 " + acumulador);
+            } else if (masDias >= "8" && masDias <= "9999") {
                 const factor = 4 + (parseInt(masDias) - 7) * 0.25;
                 console.log(factor);
                 acumulador = acumulador * factor;
-                console.log("acumuladro despues del factor " + acumulador);
             }
     }
     //Armado
@@ -698,22 +715,31 @@ btnPresupuesto.addEventListener("click", function (e) {
     try{
         validarCarrito()
         validarTramos()
+        validarGrupo()
         validarEnvio()
+        
         if (validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk) {
             agregarAlCarrito(articulos)
             agregarTramos()
-            agregarGrupo()
-            agregarCostosFijos()
-            agregarEnvio()
-            calcularTotal() 
-            carritoParaEnviar = formatearCarrito()
-            if (carritoParaEnviar.length <= 6) {
-                throw new Error("No se puede generar presupuesto si no hay articulos agregados")
-            }else{
-                renderizarPresupuesto(carrito)
+            console.log(carrito.length);
+            if(carrito.length != 0){//cuando hay mas productos
+                console.log("Hola");
+                agregarGrupo()
+                agregarCostosFijos()
+                agregarEnvio()
+                calcularTotal() 
+            }else{//cuando alquila solo un grupo
+                agregarGrupo()
+                // calcularCostoGrupo()
             }
-        }
-    } catch (error) {
+            carritoParaEnviar = formatearCarrito()
+            renderizarPresupuesto(carrito)
+            // if (carritoParaEnviar.length <= 6) {
+            //     throw new Error("No se puede generar presupuesto si no hay articulos agregados")
+            // }else{
+            //     renderizarPresupuesto(carrito)
+            }
+    }catch (error) {
         alert(error.message)
     }
 })
@@ -945,7 +971,8 @@ const validateForm = () => {
     return true
 }
 
-btnTerminos.addEventListener('click', ()=>{
+btnTerminos.addEventListener('click', (e)=>{
+    e.preventDefault()
     if (terminosYcondiciones.style.display === 'none') {
         terminosYcondiciones.style.display = 'block'
     } else {
@@ -959,7 +986,6 @@ btnOcultar.addEventListener('click', ()=>{
 btnEmail.addEventListener('click', (e) => {
     const formProduct = document.querySelector("#formProduct")
     e.preventDefault()
-    // validateForm()
 
     if (!validateForm()) {
         return
