@@ -394,6 +394,7 @@ footer{
 }
 @media (max-width: 767px){
     header img{
+        padding: 10px;
         margin: auto;
     }
     header nav{
@@ -412,7 +413,8 @@ footer{
         font-size: 16px;
     }
     .envio {
-        display: none;
+        display: flex;
+        flex-direction: column;
     }
     .listado{
         flex-direction: column;
@@ -434,6 +436,8 @@ footer{
     }
     .div-about{
         width: 70%;
+        margin: 10px 0;
+        text-align: center;
     }
     .contact{
         display: flex;
