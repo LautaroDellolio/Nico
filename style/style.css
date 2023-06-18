@@ -262,7 +262,6 @@ h3{
     border-radius: 10px;
     margin-top: 5px;
     margin-left: auto;
-
 }
 .formulario{
     display: flex;
@@ -326,6 +325,12 @@ h3{
     padding: 14px 12px;
     border-radius: 12px;
 }
+.divErr{
+    width: 60%;
+    margin: auto;
+    margin-top: 10px;
+    justify-content: center;
+}
 
 footer{
     background-color: black;
@@ -362,7 +367,7 @@ footer{
 .terminosYcondiciones{
     background-color: black;
     color: white;
-    width: 70%;
+    width: 90%;
     margin: auto;
     padding: 15px;
     border-radius: 15px;

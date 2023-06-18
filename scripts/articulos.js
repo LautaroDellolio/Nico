@@ -255,7 +255,6 @@ const articulos = [
         precio: 100000
     }
 ]
-
 const costosFijos = [
     {
         categoria: "fijo",
@@ -277,12 +276,12 @@ let carrito = []
 let carritoParaEnviar = []
 
 const validacionOk ={
+    inputsOk : true, 
     carritoOk : true,
     tramosOk : true,
     gruposOk : true,
     envioOk : true
 }
-
 
 window.addEventListener("load", () => {
     generarId(articulos)
@@ -316,7 +315,6 @@ function generarId(lista) {
     }
     return lista
 }
-
 const fechaActual = () => {
     const today = new Date()
 
@@ -331,7 +329,6 @@ const fechaActual = () => {
 
     return formattedDate
 }
-
 function renderizarArticulos(lista) {
     const sectionLuces = document.querySelector(".luces")
     const sectionSonido = document.querySelector(".sonido")
@@ -397,64 +394,29 @@ function validarDatos(datos) { //De los inputs de productos
     })
     return esValido;
 }
-function validarCarrito() {
+function agregarAlCarrito(lista) {
     const inputs = document.querySelectorAll(".valorInputs");
     const validacion = validarDatos(inputs)
-    try{
-
-        if(!validacion){
-            throw new Error("Los campos solo pueden contener números enteros y positivos. Por favor, corrija los campos resaltados en rojo antes de continuar.")
-        }else{
-            validacionOk.carritoOk = true
-        }
-    }catch(error){
-        alert(error.message);
-        inputs.forEach(articulo => {
-            articulo.addEventListener("change", () => {
-                validacionOk.carritoOk = false
-                validarDatos(inputs)
-            })
-        })
+    if(!validacion){
+        let txt = "Los campos solo pueden contener números enteros y positivos. Por favor, corrija los campos resaltados en rojo antes de continuar."
+        formError(txt, mensaje)
+        validacionOk.inputsOk = false
+    }else{
+        carrito = lista.map(articulo => {
+            const input = document.getElementById(articulo.id)
+            if (input.value != 0) {
+                return {
+                    nombre: articulo.nombre,
+                    id: articulo.id,
+                    precio: articulo.precio,
+                    cantidad: parseInt(input.value),
+                    total: (articulo.precio * parseInt(input.value))
+                };
+            }
+        }).filter(input => input !== undefined);
+        validacionOk.inputsOk = true
+        return carrito;
     }
-    
-}
-function agregarAlCarrito(lista) {
-    carrito = lista.map(articulo => {
-        const input = document.getElementById(articulo.id)
-        if (input.value != 0) {
-            return {
-                nombre: articulo.nombre,
-                id: articulo.id,
-                precio: articulo.precio,
-                cantidad: parseInt(input.value),
-                total: (articulo.precio * parseInt(input.value))
-            };
-        }
-    }).filter(input => input !== undefined);
-    return carrito;
-}
-function validarTramos(){
-    try {
-        const inputLargo = document.querySelector(".largo").value
-        const inputAncho = document.querySelector(".ancho").value
-        const inputAlto = document.querySelector(".alto").value
-        const colgado = document.querySelector("#colgado")
-        const dePie = document.querySelector("#pie")
-        const patas = document.querySelector('input[name="cantPatas"]:checked')
-        
-        if ((inputLargo || inputAncho || inputAlto) && (!inputLargo || !inputAncho || !inputAlto)) {
-            throw new Error("Todos los campos de largo, ancho y alto son obligatorios");
-        }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado.checked && !dePie.checked)) {
-            throw new Error("Debe seleccionar la opción de colgado o de pie");
-        }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado.checked && !dePie.checked) || (dePie.checked && !patas)) {
-            throw new Error("Debe seleccionar la cantidad de patas");
-        }else{
-            validacionOk.tramosOk = true
-        }
-    } catch (error) {
-            alert(error.message)
-            validacionOk.tramosOk = false
-        }
 }
 function agregarTramos() {
     const inputLargo = document.querySelector(".largo").value
@@ -464,114 +426,96 @@ function agregarTramos() {
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector('input[name="cantPatas"]:checked')
 
-    let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
-
-    if (colgado.checked) {
-        if (inputLargo <= 10 && inputAncho <= 10) {
-            carrito.push({  //Cuadrilatero Hasta 10 x 10
-                nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
-                cantidad: 1,
-                total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
-            })
-        }else{
-            carrito.push({ //Cuadrilatero Superiores
-                nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
-                cantidad : 1,
-                total : 0
-            })
+    if ((inputLargo || inputAncho || inputAlto) && (!inputLargo || !inputAncho || !inputAlto)) {
+        let txt ="Todos los campos de largo, ancho y alto son obligatorios";
+        formError(txt, mensaje)
+        validacionOk.tramosOk = false
+    }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado.checked && !dePie.checked)) {
+        let txt ="Debe seleccionar la opción de colgado o de pie";
+        formError(txt, mensaje)
+        validacionOk.tramosOk = false
+    }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado.checked && !dePie.checked) || (dePie.checked && !patas)) {
+        let txt ="Debe seleccionar la cantidad de patas";
+        formError(txt, mensaje)
+        validacionOk.tramosOk = false
+    }else{
+        let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
+        if (colgado.checked) {
+            if (inputLargo <= 10 && inputAncho <= 10) {
+                carrito.push({  //Cuadrilatero Hasta 10 x 10
+                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
+                    cantidad: 1,
+                    total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
+                })
+            }else{
+                carrito.push({ //Cuadrilatero Superiores
+                    nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
+                    cantidad : 1,
+                    total : 0
+                })
+            }
         }
+        if (dePie.checked) {
+            if (patas.value == 4) {
+                carrito.push({  
+                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
+                    cantidad: 1,
+                    total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 4 patas?
+                })                       //4 cubos + ???
+            }else if (patas.value == 6) {
+                carrito.push({  
+                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
+                    cantidad: 1,
+                    total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 6 patas?
+                })                           //6 cubos + ???
+            }else if (patas.value == 8) {
+                carrito.push({
+                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
+                    cantidad: 1,
+                    total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 8 patas?
+                })                           //8 cubos + ???
+            }else if (patas.value == "otro") {
+                carrito.push({
+                    nombre : "Este Cuadrilátero se cotizará por separado",
+                    cantidad: 1,
+                    total : 0 
+                })
+            }
+        }
+        validacionOk.tramosOk = true
     }
-    if (dePie.checked) {
-        if (patas.value == 4) {
-            carrito.push({  
-                nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
-                cantidad: 1,
-                total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 4 patas?
-            })                       //4 cubos + ???
-        }else if (patas.value == 6) {
-            carrito.push({  
-                nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
-                cantidad: 1,
-                total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 6 patas?
-            })                           //6 cubos + ???
-        }else if (patas.value == 8) {
-            carrito.push({
-                nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
-                cantidad: 1,
-                total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 8 patas?
-            })                           //8 cubos + ???
-        }else if (patas.value == "otro") {
-            carrito.push({
-                nombre : "Este Cuadrilátero se cotizará por separado",
-                cantidad: 1,
-                total : 0 
-            })
-        }
-    } 
-}
-function validarGrupo() {
-    try{
-        const operativo = document.querySelector("#operativo").checked
-        const backUp = document.querySelector("#back").checked
-        const cable = document.querySelector("#distancia").value
-        
-        if ((operativo || backUp)&& cable =="") {
-            throw new Error("Debe ingresar la distancia al punto de tensión");
-        }else{
-            validacionOk.gruposOk = true;
-        }
-        
-
-    }catch(error){
-        alert(error.message)
-        validacionOk.gruposOk = false
-    }
-
-    
 }
 function agregarGrupo() {
-    const operativo = document.querySelector("#operativo")
-    const backUp = document.querySelector("#back")
-    const cable = document.querySelector("#distancia")
-    
-    if (operativo.checked) {
-        carrito.push({
-            nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
-            cantidad: 1,
-            total : 270000 //precio grupo operativo
-        })
-    }
-    if (backUp.checked) {
-        carrito.push({
-            nombre : "Grupo CETEC 130 KVA Backup",
-            cantidad: 1,
-            total : 150000 //precio grupo back 
-        })
-        
-    }
-    if (cable.value) {
-        carrito.push({
-            nombre: "Mts Linea Trifasica",
-            cantidad: parseInt(cable.value),
-            total : parseInt(cable.value) * 0 //Precio cable
-        })
-        
-    }
-}
-function validarEnvio(){
-    try{
-        const zonaEnvio = document.querySelector('input[name="zona"]:checked')
-        const duracion = document.querySelector('input[name="duracion"]:checked')
-        const masDias = document.getElementById("masDias").value
-        const armado = document.querySelector('input[name="armado"]:checked')
-        if ((!zonaEnvio || !armado || !duracion)|| (duracion.id == "diaOtro" && masDias == "")){
-            throw new Error("Todos los campos de la seccion transporte son obligatorios")
-        }else{
-            validacionOk.envioOk = true
+    const operativo = document.querySelector("#operativo").checked
+    const backUp = document.querySelector("#back").checked
+    const cable = document.querySelector("#distancia").value
+    if ((operativo || backUp)&& cable =="") {
+        let txt ="Debe ingresar la distancia al punto de tensión";
+        formError(txt, mensaje)
+        validacionOk.gruposOk = false
+    }else{
+        if (operativo) {
+            carrito.push({
+                nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
+                cantidad: 1,
+                total : 270000 //precio grupo operativo
+            })
         }
-    }catch (error){
-        alert(error.message)
-        validacionOk.envioOk = false
+        if (backUp) {
+            carrito.push({
+                nombre : "Grupo CETEC 130 KVA Backup",
+                cantidad: 1,
+                total : 150000 //precio grupo back 
+            })
+        }
+        if (cable) {
+            carrito.push({
+                nombre: "Mts Linea Trifasica",
+                cantidad: parseInt(cable),
+                total : parseInt(cable) * 0 //Precio cable
+            })
+        }
+        validacionOk.gruposOk = true;
     }
 }
 function agregarEnvio() {
@@ -580,38 +524,65 @@ function agregarEnvio() {
     const masDias = document.getElementById("masDias").value
     const armado = document.querySelector('input[name="armado"]:checked')
 
-    if (zonaEnvio) {
-        carrito.push({
-            nombre: zonaEnvio.value,
-            cantidad : 1,
-            total : 0
-        })
+    if ((!zonaEnvio || !armado || !duracion)|| (duracion.id == "diaOtro" && masDias == "")){
+        let txt ="Todos los campos de la seccion transporte son obligatorios"
+        formError(txt, mensaje)
+        validacionOk.envioOk = false
+    }else{
+        if (zonaEnvio) {
+            carrito.push({
+                nombre: zonaEnvio.value,
+                cantidad : 1,
+                total : 0
+            })
+        }
+        if (duracion.value == "1") {
+            carrito.push({
+                nombre: "Día de duración",
+                cantidad : duracion.value,
+                total  : 0
+            })
+        }else if (duracion.value == "2") {
+            carrito.push({
+                nombre: "Días de duración",
+                cantidad : duracion.value,
+                total  : 0
+            })
+        }else if (duracion.value == "on") {
+            carrito.push({
+                nombre: "Días de duración",
+                cantidad : masDias,
+                total  : 0
+            })
+        }
+        if (armado) {
+            carrito.push({
+                nombre: armado.value,
+                cantidad : 1,
+                total : 0
+            })
+        }
+        validacionOk.envioOk = true
     }
-    if (duracion.value == "1") {
-        carrito.push({
-            nombre: "Día de duración",
-            cantidad : duracion.value,
-            total  : 0
-        })
-    }else if (duracion.value == "2") {
-        carrito.push({
-            nombre: "Días de duración",
-            cantidad : duracion.value,
-            total  : 0
-        })
-    }else if (duracion.value == "on") {
-        carrito.push({
-            nombre: "Días de duración",
-            cantidad : masDias,
-            total  : 0
-        })
+}
+function validarCarrito(){
+    if (carrito.length == 0) {
+        let txt = "No se puede generar presupuesto si no hay articulos agregados"
+        formError(txt, mensaje)
+        validacionOk.carritoOk = false        
+    }else{
+        validacionOk.carritoOk = true
     }
-    if (armado) {
-        carrito.push({
-            nombre: armado.value,
-            cantidad : 1,
-            total : 0
-        })
+}
+function evaluarCarrito(){//si carrito tiene solo grupo un camino sino otro
+    agregarAlCarrito(articulos)
+    agregarTramos()
+    if (carrito.length != 0) {
+        carrito = []
+        return true      
+    }else{
+        carrito = []
+        return false 
     }
 }
 function agregarCostosFijos(){
@@ -637,7 +608,7 @@ function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
     const presupuesto = document.querySelector(".listaArticulos")
     const precio = document.querySelector(".precio")
-    const total = calcularTotal()
+    // const total = calcularTotal()
 
     titulo.setAttribute("style", "display:flex")
 
@@ -647,58 +618,69 @@ function renderizarPresupuesto(lista) {
         presupuesto.innerHTML +=
             `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
     })
-    precio.innerText = `Total: $ ${total}` 
+    precio.innerText = `Total: $ ` //${total} 
 }
 function calcularTotal(){
+    let muchosProductos = evaluarCarrito()
     let acumulador = carrito.reduce((total, articulo) => total + articulo.total, 0)
 
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
     const duracion = document.querySelector('input[name="duracion"]:checked').value
     const masDias = document.getElementById("masDias").value
     const armado = document.querySelector('input[name="armado"]:checked')
-
-    //Duracion
-    if (duracion == 2) {
-        acumulador = acumulador*1.5
-        }else if (duracion == "on") {
-            if (masDias >= "3" && masDias <= "7") {
-                switch (masDias) {
-                    case "3":
-                        acumulador = acumulador * 2;
-                        break;
-                    case "4":
-                        acumulador = acumulador * 2.5;
-                        break;
-                    case "5":
-                        acumulador = acumulador * 3;
-                        break;
-                    case "6":
-                        acumulador = acumulador * 3.5;
-                        break;
-                    case "7":
-                        acumulador = acumulador * 4;
-                        break;
-                }
-            } else if (masDias >= "8" && masDias <= "9999") {
-                const factor = 4 + (parseInt(masDias) - 7) * 0.25;
-                console.log(factor);
-                acumulador = acumulador * factor;
-            }
-    }
-    //Armado
-    if (armado.checked && armado.id == "armadoDia") {
-        acumulador += acumulador * 0.1// suma 10%   
-    }
     
-    if (armado.checked && armado.id == "armadoPrevio") {
-        acumulador += acumulador * 0.2 // suma 20%
-    }
-    //Envios
-    if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
-        acumulador += 100000 // precio de envio  
-    }
-    if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
-        acumulador += 150000 // precio de envio  
+    if (muchosProductos) {
+        //Duracion
+        if (duracion == 2) {
+            acumulador = acumulador*1.5
+            }else if (duracion == "on") {
+                if (masDias >= "3" && masDias <= "7") {
+                    switch (masDias) {
+                        case "3":
+                            acumulador = acumulador * 2;
+                            break;
+                        case "4":
+                            acumulador = acumulador * 2.5;
+                            break;
+                        case "5":
+                            acumulador = acumulador * 3;
+                            break;
+                        case "6":
+                            acumulador = acumulador * 3.5;
+                            break;
+                        case "7":
+                            acumulador = acumulador * 4;
+                            break;
+                    }
+                } else if (masDias >= "8" && masDias <= "9999") {
+                    const factor = 4 + (parseInt(masDias) - 7) * 0.25;
+                    console.log(factor);
+                    acumulador = acumulador * factor;
+                }
+        }
+        //Armado
+        if (armado.checked && armado.id == "armadoDia") {
+            acumulador += acumulador * 0.1// suma 10%   
+        }
+
+        if (armado.checked && armado.id == "armadoPrevio") {
+            acumulador += acumulador * 0.2 // suma 20%
+        }
+        //Envios
+        if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
+            acumulador += 100000 // precio de envio  
+        }
+        if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
+            acumulador += 150000 // precio de envio  
+        }
+    }else{//solo grupo
+         //Envios
+        if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
+            acumulador += 0 // precio de envio  
+        }
+        if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
+            acumulador += 30000 // precio de envio  
+        }
     }
     return Math.round(acumulador) 
 }
@@ -708,39 +690,44 @@ function formatearCarrito() {
     return nuevoCarrito;
 }
 
+const mensaje = document.getElementById("mensajePresupuesto")
+const formError = (mensaje, HTMLElement) => {
+    HTMLElement.classList.add(`err`)
+    HTMLElement.innerHTML += `${mensaje}<br>` 
+    setTimeout(() => {
+        HTMLElement.classList.remove(`err`)
+        HTMLElement.innerText = ''
+    }, 10000)
+}
+function validarTodo() {
+    agregarAlCarrito(articulos)
+    agregarTramos()
+    agregarGrupo()
+    validarCarrito()
+    agregarEnvio() 
+}
+
 
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
 btnPresupuesto.addEventListener("click", function (e) {
     e.preventDefault()
-    try{
-        validarCarrito()
-        validarTramos()
-        validarGrupo()
-        validarEnvio()
-        
-        if (validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk) {
-            agregarAlCarrito(articulos)
-            agregarTramos()
-            console.log(carrito.length);
-            if(carrito.length != 0){//cuando hay mas productos
-                console.log("Hola");
-                agregarGrupo()
-                agregarCostosFijos()
-                agregarEnvio()
-                calcularTotal() 
-            }else{//cuando alquila solo un grupo
-                agregarGrupo()
-                // calcularCostoGrupo()
-            }
-            carritoParaEnviar = formatearCarrito()
-            renderizarPresupuesto(carrito)
-            // if (carritoParaEnviar.length <= 6) {
-            //     throw new Error("No se puede generar presupuesto si no hay articulos agregados")
-            // }else{
-            //     renderizarPresupuesto(carrito)
-            }
-    }catch (error) {
-        alert(error.message)
+    
+    validarTodo()
+    if (validacionOk.inputsOk && validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk) {
+        carrito = []
+        let muchosProductos = evaluarCarrito()
+        agregarAlCarrito(articulos)
+        agregarTramos()
+        if (muchosProductos) {//cuando hay mas productos ademas del grupo 
+            agregarGrupo()
+            agregarCostosFijos()
+        }else{ //si solo alquila grupo
+            agregarGrupo()
+        }
+        agregarEnvio()
+        // calcularTotal()
+        carritoParaEnviar = formatearCarrito()
+        renderizarPresupuesto(carrito)
     }
 })
 
@@ -929,7 +916,6 @@ const validateForm = () => {
     const email = formDatos.elements.Email.value.trim()
     const date = formDatos.elements.Date.value.trim()
     const terminosYcondiciones = formDatos.elements.Terminos.checked
-    // const time = formDatos.elements.Time.value.trim()
 
     console.log(terminosYcondiciones);
 
