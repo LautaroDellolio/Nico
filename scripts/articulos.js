@@ -286,6 +286,7 @@ const validacionOk ={
 window.addEventListener("load", () => {
     generarId(articulos)
     renderizarArticulos(articulos)
+    ocultarSeciones()
 })
 
 window.addEventListener("change", () => {
@@ -293,6 +294,7 @@ window.addEventListener("change", () => {
     const cantPatas = document.querySelector(".patas")
     const masDias = document.querySelector("#diaOtro")
     const cantDias = document.querySelector(".dias")
+  
 
     if (dePie.checked) {
         cantPatas.setAttribute("style", "display:block")
@@ -305,7 +307,53 @@ window.addEventListener("change", () => {
     } else {
         cantDias.setAttribute("style", "display:none")
     }
+  
+    
 })
+function ocultarSeciones(){
+    const btnLuces = document.querySelector(".btnIluminacion")
+    const btnSonido = document.querySelector(".btnSonido")
+    const btnRigging = document.querySelector(".btnRigging")
+    const btnGrupo = document.querySelector(".btnGrupo")
+    const sectionLuces = document.getElementById("sectionLuces")
+    const sectionSonido = document.getElementById("sectionSonido")
+    const sectionRigging = document.querySelectorAll(".sectionRigging")
+    const sectionGrupo = document.getElementById("sectionGrupo")
+    btnLuces.addEventListener("click", function(){
+        if (sectionLuces.style.display === 'none') {
+            sectionLuces.style.display = 'flex';
+            } else {
+                sectionLuces.style.display = 'none';
+            }
+        })
+    btnSonido.addEventListener("click", function(){
+        if (sectionSonido.style.display === 'none') {
+            sectionSonido.style.display = 'flex';
+            } else {
+                sectionSonido.style.display = 'none';
+            }
+        })
+    btnRigging.addEventListener("click", function(){
+        sectionRigging.forEach((e)=>{
+            if (e.style.display === 'none') {
+                e.style.display = 'flex';
+                } else {
+                    e.style.display = 'none';
+                }
+            })
+
+        })
+        
+    btnGrupo.addEventListener("click", function(){
+        if (sectionGrupo.style.display === 'none') {
+            sectionGrupo.style.display = 'flex';
+            } else {
+                sectionGrupo.style.display = 'none';
+            }
+        })
+}
+
+
 
 function generarId(lista) {
     let id = 1
