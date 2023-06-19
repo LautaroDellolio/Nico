@@ -52,6 +52,9 @@ h3{
     padding: 10px;
     margin: 30px 0px;
 }
+.styleBtn:hover{
+    cursor: pointer;
+}
 
 .styleSection{
     display: flex;
