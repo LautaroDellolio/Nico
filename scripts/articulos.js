@@ -134,13 +134,13 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
-        nombre: "Toma tensión Hasta 10 Amperes",
+        nombre: "Toma Tensión Hasta 10 Amperes",
         img: "./img/TOMA 10A.jpg",
         precio: 8800
     },
     {
         categoria: "iluminacion",
-        nombre: "Toma tensión Hasta 20 Amperes",
+        nombre: "Toma Tensión Hasta 20 Amperes",
         img: "./img/TOMA 20A.jpg",
         precio: 16500
     },
@@ -154,7 +154,7 @@ const articulos = [
     {
         categoria: "Sonido",
         nombre: "Sonido 2",
-        descipcion: "4 JBL Eon-10 + consola + Mic",
+        descipcion: "4 JBL Eon-10 + Consola + Mic",
         img: "./img/SONIDO CEREMIA X 2.jpg",
         precio: 130000
     },
@@ -168,7 +168,7 @@ const articulos = [
     {
         categoria: "Sonido",
         nombre: "Sonido 4",
-        descipcion: "Sonido DJ en recepcion (2 mid-Hi + 2 Sub + JBL/RCF)",
+        descipcion: "Sonido DJ En Recepción (2 mid-Hi + 2 Sub + JBL/RCF)",
         img: "./img/SONIDO DJ RECEPCION.jpg",
         precio: 175000
     },
@@ -196,7 +196,7 @@ const articulos = [
     {
         categoria: "Sonido",
         nombre: "Mic Inalambrico Sennheiser G3",
-        descipcion: "Mic Inalambrico Sennheiser G3",
+        descipcion: "Mic Inalámbrico Sennheiser G3",
         img: "./img/MIC SENNHEISER.jpg",
         precio: 27500
     },
@@ -208,7 +208,7 @@ const articulos = [
     },
     {
         categoria: "rigging",
-        nombre: "Corner box Prolyte ",
+        nombre: "Corner Box Prolyte ",
         img: "./img/cubos.jpg",
         precio: 20000
     },
@@ -232,7 +232,7 @@ const articulos = [
     },
     {
         categoria: "rigging",
-        nombre: "Totem telescópico",
+        nombre: "Totem Telescópico",
         img: "./img/TOTEM TELESCOPICOS.jpg",
         precio: 20000
     },
@@ -268,7 +268,7 @@ const costosFijos = [
     },
     {
         categoria: "fijo",
-        nombre: "Dimmer 12 ch / Usina de tension",
+        nombre: "Dimmer 12 ch / Usina De Tensión",
         precio: 162500
     }
 ]
@@ -398,7 +398,7 @@ function agregarAlCarrito(lista) {
     const inputs = document.querySelectorAll(".valorInputs");
     const validacion = validarDatos(inputs)
     if(!validacion){
-        let txt = "Los campos solo pueden contener números enteros y positivos. Por favor, corrija los campos resaltados en rojo antes de continuar."
+        let txt = "Los campos sólo pueden contener números enteros y positivos. Por favor, corrija los campos resaltados en rojo antes de continuar."
         formError(txt, mensaje)
         validacionOk.inputsOk = false
     }else{
@@ -425,7 +425,7 @@ function agregarTramos() {
     const colgado = document.querySelector("#colgado")
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector('input[name="cantPatas"]:checked')
-
+//|| (colgado.checked|| dePie.checked)
     if ((inputLargo || inputAncho || inputAlto) && (!inputLargo || !inputAncho || !inputAlto)) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
@@ -436,6 +436,10 @@ function agregarTramos() {
         validacionOk.tramosOk = false
     }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado.checked && !dePie.checked) || (dePie.checked && !patas)) {
         let txt ="Debe seleccionar la cantidad de patas";
+        formError(txt, mensaje)
+        validacionOk.tramosOk = false
+    }else if ((colgado.checked|| dePie.checked)&&(!inputLargo || !inputAncho || !inputAlto)) {
+        let txt = "Debe ingresar las medidas del cuadrilátero"
         formError(txt, mensaje)
         validacionOk.tramosOk = false
     }else{
@@ -476,7 +480,7 @@ function agregarTramos() {
                 })                           //8 cubos + ???
             }else if (patas.value == "otro") {
                 carrito.push({
-                    nombre : "Este Cuadrilátero se cotizará por separado",
+                    nombre : "Este Cuadrilátero se cotiza por separado",
                     cantidad: 1,
                     total : 0 
                 })
@@ -510,7 +514,7 @@ function agregarGrupo() {
         }
         if (cable) {
             carrito.push({
-                nombre: "Mts Linea Trifasica",
+                nombre: "Mts Linea Trifásica",
                 cantidad: parseInt(cable),
                 total : parseInt(cable) * 0 //Precio cable
             })
@@ -525,7 +529,7 @@ function agregarEnvio() {
     const armado = document.querySelector('input[name="armado"]:checked')
 
     if ((!zonaEnvio || !armado || !duracion)|| (duracion.id == "diaOtro" && masDias == "")){
-        let txt ="Todos los campos de la seccion transporte son obligatorios"
+        let txt ="Todos los campos de la sección transporte son obligatorios"
         formError(txt, mensaje)
         validacionOk.envioOk = false
     }else{
@@ -567,7 +571,7 @@ function agregarEnvio() {
 }
 function validarCarrito(){
     if (carrito.length == 0) {
-        let txt = "No se puede generar presupuesto si no hay articulos agregados"
+        let txt = "No se puede generar presupuesto si no hay artículos agregados"
         formError(txt, mensaje)
         validacionOk.carritoOk = false        
     }else{
@@ -598,7 +602,7 @@ function agregarCostosFijos(){
             total: 0
         },
         {
-            nombre: "Dimmer 12 ch / Usina de tension",
+            nombre: "Dimmer 12 ch / Usina de Tensión",
             cantidad : 1,
             total: 162500
         }
@@ -1002,8 +1006,8 @@ btnEmail.addEventListener('click', (e) => {
     // setTimeout(function() {
     //     window.location.reload();
     //   }, 5000); // 5000 milisegundos = 5 segundos
-    // formDatos.reset()
-    // formProduct.reset()
+    formDatos.reset()
+    formProduct.reset()
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
 })
