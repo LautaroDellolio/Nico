@@ -358,9 +358,9 @@ function decrement(event) {
     }
     input.value = parseInt(input.value) - 1;
 
-  }
-  
-  function increment(event) {
+}
+
+function increment(event) {
     event.preventDefault()
     const input = event.target.parentNode.querySelector('.valorInputs');
     if (input.value == "") {
@@ -408,17 +408,18 @@ function renderizarArticulos(lista) {
 
     lista.forEach(({ categoria, nombre, id, descipcion, img }) => {
         const { SONIDO, ILUMINACION, RIGGING } = categorias
-        
-        //<i class="fa-regular fa-lightbulb"></i>
+
         if (categoria == ILUMINACION) {
             sectionLuces.innerHTML +=
             `<article class="box">
                 <img src="${img}" alt="" class="imgBox">
                 <div class="divBox">
-                <h4 class="text-box">${nombre}</h4>
-                <button onclick="decrement(event)">-</button>
-                <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
-                <button onclick="increment(event)">+</button>
+                    <h4 class="text-box">${nombre}</h4>
+                    <div class="divBtn">
+                    <button onclick="decrement(event)" class="btnMas">-</button>
+                    <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                    <button onclick="increment(event)" class="btnMas">+</button>
+                    </div>
                 </div>
             </article>`
         } if (categoria == SONIDO) {
@@ -428,9 +429,11 @@ function renderizarArticulos(lista) {
                     <img src="${img}" alt="" class="imgBox">
                     <div class="divBox">
                         <h4 class="sonidoText text-box">${nombre}</h4>
-                        <button onclick="decrement(event)">-</button>
-                        <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
-                        <button onclick="increment(event)">+</button>
+                        <div class="divBtn">
+                            <button onclick="decrement(event)" class="btnMas">-</button>
+                            <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                            <button onclick="increment(event)" class="btnMas">+</button>
+                        </div>
                     </div>
                 </article>`
 
@@ -440,9 +443,11 @@ function renderizarArticulos(lista) {
                 <img src="${img}" alt="" class="imgBox">
                 <div class="divBox">
                     <h4 class="text-box">${nombre}</h4>
-                    <button onclick="decrement(event)">-</button>
-                    <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
-                    <button onclick="increment(event)">+</button>
+                    <div class="divBtn">
+                        <button onclick="decrement(event)" class="btnMas">-</button>
+                        <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                        <button onclick="increment(event)" class="btnMas">+</button>
+                    </div>
                 </div>
     </article>`
         }
@@ -762,8 +767,10 @@ function formatearCarrito() {
 
 const mensaje = document.getElementById("mensajePresupuesto")
 const formError = (mensaje, HTMLElement) => {
+    const titulo = document.querySelector("#list")
     HTMLElement.classList.add(`err`)
     HTMLElement.innerHTML += `${mensaje}<br>` 
+    titulo.setAttribute("style", "display:none")
     setTimeout(() => {
         HTMLElement.classList.remove(`err`)
         HTMLElement.innerText = ''
@@ -774,7 +781,12 @@ function validarTodo() {
     agregarTramos()
     agregarGrupo()
     validarCarrito()
-    agregarEnvio() 
+    agregarEnvio()
+    if (validacionOk.inputsOk && validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk){
+        return true
+    }else{
+        return false
+    } 
 }
 
 
@@ -782,8 +794,8 @@ const btnPresupuesto = document.querySelector(".btnPresupuesto")
 btnPresupuesto.addEventListener("click", function (e) {
     e.preventDefault()
     
-    validarTodo()
-    if (validacionOk.inputsOk && validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk) {
+    let validacion = validarTodo()
+    if (validacion) {
         carrito = []
         let muchosProductos = evaluarCarrito()
         agregarAlCarrito(articulos)
