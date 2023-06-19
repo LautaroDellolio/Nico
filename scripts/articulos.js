@@ -1072,9 +1072,9 @@ btnEmail.addEventListener('click', (e) => {
     // setTimeout(function() {
     //     window.location.reload();
     //   }, 5000); // 5000 milisegundos = 5 segundos
-    formDatos.reset()
-    formProduct.reset()
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
+    formDatos.reset()
+    formProduct.reset()
 })
 
