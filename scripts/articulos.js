@@ -311,46 +311,43 @@ window.addEventListener("change", () => {
     
 })
 function ocultarSeciones(){
-    const btnLuces = document.querySelector(".btnIluminacion")
-    const btnSonido = document.querySelector(".btnSonido")
-    const btnRigging = document.querySelector(".btnRigging")
-    const btnGrupo = document.querySelector(".btnGrupo")
-    const sectionLuces = document.getElementById("sectionLuces")
-    const sectionSonido = document.getElementById("sectionSonido")
-    const sectionRigging = document.querySelectorAll(".sectionRigging")
-    const sectionGrupo = document.getElementById("sectionGrupo")
-    btnLuces.addEventListener("click", function(){
-        if (sectionLuces.style.display === 'none') {
-            sectionLuces.style.display = 'flex';
-            } else {
-                sectionLuces.style.display = 'none';
-            }
-        })
-    btnSonido.addEventListener("click", function(){
-        if (sectionSonido.style.display === 'none') {
-            sectionSonido.style.display = 'flex';
-            } else {
-                sectionSonido.style.display = 'none';
-            }
-        })
-    btnRigging.addEventListener("click", function(){
-        sectionRigging.forEach((e)=>{
-            if (e.style.display === 'none') {
-                e.style.display = 'flex';
-                } else {
-                    e.style.display = 'none';
-                }
-            })
+    const btnLuces = document.querySelector(".btnIluminacion");
+    const btnSonido = document.querySelector(".btnSonido");
+    const btnRigging = document.querySelector(".btnRigging");
+    const btnGrupo = document.querySelector(".btnGrupo");
+    const btnTransporte = document.querySelector(".btnTransporte");
 
-        })
-        
-    btnGrupo.addEventListener("click", function(){
-        if (sectionGrupo.style.display === 'none') {
-            sectionGrupo.style.display = 'flex';
-            } else {
-                sectionGrupo.style.display = 'none';
-            }
-        })
+    const secciones = {
+        "btnIluminacion": document.getElementById("sectionLuces"),
+        "btnSonido": document.getElementById("sectionSonido"),
+        "btnRigging": document.querySelector(".sectionRigging"),
+        "btnGrupo": document.getElementById("sectionGrupo"),
+        "btnTransporte": document.getElementById("sectionTransporte")
+    };
+
+    [btnLuces, btnSonido, btnRigging, btnGrupo, btnTransporte].forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            const seccion = secciones[btn.classList[0]];
+
+            if (seccion.style.display === "none") {
+                seccion.style.display = "flex";
+                if (btn.classList.contains("btnRigging")) {
+                    document.querySelector(".sectionRiggingCuadrilatero").style.display = "block";
+                }
+                if (btn.classList.contains("btnGrupo")) {
+                    document.getElementById("sectionGrupo").style.display = "block";
+                }
+            }else {
+                seccion.style.display = "none";
+                if (btn.classList.contains("btnRigging")) {
+                    document.querySelector(".sectionRiggingCuadrilatero").style.display = "none";
+                }
+                if (btn.classList.contains("btnGrupo")) {
+                    document.getElementById("sectionGrupo").style.display = "none";
+                }
+            };
+        });
+    })
 }
 
 
