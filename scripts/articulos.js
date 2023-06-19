@@ -697,7 +697,7 @@ const formError = (mensaje, HTMLElement) => {
     setTimeout(() => {
         HTMLElement.classList.remove(`err`)
         HTMLElement.innerText = ''
-    }, 10000)
+    }, 5000)
 }
 function validarTodo() {
     agregarAlCarrito(articulos)
