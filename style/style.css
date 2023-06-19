@@ -192,43 +192,67 @@ h3{
 
 .envio{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    width: 90%;
+    margin: auto;
 }
 .map{
     display: flex;
-    background-color: grey;
-    border-radius: 15px;
-    padding: 15px;
+    flex-direction: column;
+    padding: 10px;
 }
-.map div{
+.map img{
+    width: 40rem;
+    margin: auto;
+    border-radius: 15px;
+}
+.div-map{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: end;
+}
+.div-map div{
     display: flex;
     flex-direction: column;
-    margin: 5px;
-}
-.duracion{
-    background-color: grey;
-    border-radius: 15px;
-    padding: 15px;
-}
-.duracion p{
+    width: 90%;
     text-align: center;
 }
-.duracion div{
+.div-map div input{
+    margin: 5px;
+}
+.div-duracion{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.duracion{
+    /* background-color: grey; */
+    font-size: 1.6rem;
+    /* height: 50px; */
+    padding: 15px;
+}
+.duracion p, .armado p{
+    text-align: center;
+    margin: 10px;
+    
+}
+.duracion div, .armado div{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 5px;
 }
 .armado{
-    background-color: grey;
+    font-size: 1.6rem;
     border-radius: 15px;
     padding: 15px;
     display: grid;
 }
-.armado div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .btnStyle{
     color: white;
@@ -383,6 +407,15 @@ footer{
     .about-us {
         font-size: 1.12rem;
     }
+    .map img{
+        width: 30rem;
+    }
+    .div-map{
+        font-size: 0.9rem;
+    }
+    .duracion, .armado{
+        font-size: 1rem;
+    }
 }
 @media (max-width: 767px){
     header nav{
@@ -408,6 +441,21 @@ footer{
         display: flex;
         flex-direction: column;
     }
+    .map img{
+        width: 20rem;
+    }
+    .div-map{
+        flex-direction: column;
+        padding: 4px;
+        margin-top: 10px;
+        /* justify-content: space-between; */
+    }
+    .div-map div {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
     .listado{
         flex-direction: column;
     }

@@ -155,102 +155,106 @@
         <h3>TRANSPORTE</h3>
         <section class="envio">
           <article class="map">
-            <div>
-              <img src="" alt="zona1" />
-              <label for="">CABA - VTE LOPEZ - SAN ISIDRO (HASTA 50KM) </label>
-              <input
-                type="radio"
-                name="zona"
-                id="zona1"
-                value="Envio CABA- ZONA NORTE"
-                class="check"
-              />
+            <img src="img/zonas envios.png" alt="mapa" />
+            <div class="div-map">
+              <div>
+                <label for="">CABA - VTE LOPEZ - SAN ISIDRO (HASTA 50KM) </label>
+                <input
+                  type="radio"
+                  name="zona"
+                  id="zona1"
+                  value="Envio CABA- ZONA NORTE"
+                  class="check"
+                />
+                </div>
+                <div>
+                  <label for="">PILAR - CAMPANA - CAÑUELAS(HASTA 100KM)</label>
+                  <input
+                    type="radio"
+                    name="zona"
+                    id="zona2"
+                    value="Envio PILAR - CAMPANA - CAÑUELAS(O HASTA 100KM)"
+                    class="check"
+                  />
+                </div>
+                <div>
+                  <label for="">MAS DE 100 KM</label>
+                  <input
+                    type="radio"
+                    name="zona"
+                    id="zona2"
+                    value="MAS DE 100 KM. Consulte cotización. Envío no incluido en el total."
+                    class="check"
+                  />
+                </div>
             </div>
-            <div>
-              <img src="" alt="zona2" />
-              <label for="">PILAR - CAMPANA - CAÑUELAS(HASTA 100KM)</label>
-              <input
-                type="radio"
-                name="zona"
-                id="zona2"
-                value="Envio PILAR - CAMPANA - CAÑUELAS(O HASTA 100KM)"
-                class="check"
-              />
-            </div>
-            <div>
-              <img src="" alt="zona2" />
-              <label for="">MAS DE 100 KM</label>
-              <input
-                type="radio"
-                name="zona"
-                id="zona2"
-                value="MAS DE 100 KM. Consulte cotización. Envío no incluido en el total."
-                class="check"
-              />
-            </div>
+            
           </article>
-          <article class="duracion">
-            <p>Duración del Evento</p>
-            <div>
-              <label for="">1 Día</label>
-              <input
-                type="radio"
-                name="duracion"
-                id="dia1"
-                value="1"
-                class="check"
-              />
-            </div>
-            <div>
-              <label for="">2 Días</label>
-              <input
-                type="radio"
-                name="duracion"
-                id="dia2"
-                value="2"
-                class="check"
-              />
-            </div>
-            <div>
-              <label for="">Más</label>
-              <input type="radio"
-                name="duracion" 
-                id="diaOtro" 
-                class="check"/>
-            </div>
-            <div class="dias" style="display: none">
-              <label for="">Cantidad de días</label>
-              <input
-                type="number"
-                class="styleInput"
-                id="masDias"
-                name="duracion"
-              />
-            </div>
-          </article>
-          <article class="armado">
-            <p>Día de Armado</p>
-            <div>
-              <label for="">En el Día</label>
-              <input
-                type="radio"
-                name="armado"
-                id="armadoDia"
-                value="Armado en el día"
-                class="check"
-              />
-            </div>
-            <div>
-              <label for="">Día Previo</label>
-              <input
-                type="radio"
-                name="armado"
-                id="armadoPrevio"
-                value="Armado día previo"
-                class="check"
-              />
-            </div>
-          </article>
+          <div class="div-duracion">
+            <article class="duracion">
+              <p>Duración del Evento</p>
+              <div>
+                <label for="">1 Día</label>
+                <input
+                  type="radio"
+                  name="duracion"
+                  id="dia1"
+                  value="1"
+                  class="check"
+                />
+              </div>
+              <div>
+                <label for="">2 Días</label>
+                <input
+                  type="radio"
+                  name="duracion"
+                  id="dia2"
+                  value="2"
+                  class="check"
+                />
+              </div>
+              <div>
+                <label for="">Más</label>
+                <input type="radio"
+                  name="duracion" 
+                  id="diaOtro" 
+                  class="check"/>
+              </div>
+              <div class="dias" style="display: none">
+                <label for="">Cantidad de días</label>
+                <input
+                  type="number"
+                  class="styleInput"
+                  id="masDias"
+                  name="duracion"
+                />
+              </div>
+            </article>
+            <article class="armado">
+              <p>Día de Armado</p>
+              <div>
+                <label for="">En el Día</label>
+                <input
+                  type="radio"
+                  name="armado"
+                  id="armadoDia"
+                  value="Armado en el día"
+                  class="check"
+                />
+              </div>
+              <div>
+                <label for="">Día Previo</label>
+                <input
+                  type="radio"
+                  name="armado"
+                  id="armadoPrevio"
+                  value="Armado día previo"
+                  class="check"
+                />
+              </div>
+            </article>
+          </div>
+          
         </section>
 
         <button class="btnPresupuesto btnStyle" type="submit">
