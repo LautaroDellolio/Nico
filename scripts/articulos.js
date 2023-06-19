@@ -349,9 +349,25 @@ function ocultarSeciones(){
         });
     })
 }
+function decrement(event) {
+    event.preventDefault()
+    const input = event.target.parentNode.querySelector('.valorInputs');
+    console.log(input.value);
+    if (input.value == "") {
+        input.value = 0
+    }
+    input.value = parseInt(input.value) - 1;
 
-
-
+  }
+  
+  function increment(event) {
+    event.preventDefault()
+    const input = event.target.parentNode.querySelector('.valorInputs');
+    if (input.value == "") {
+        input.value = 0
+    }
+    input.value = parseInt(input.value) + 1;
+}
 function generarId(lista) {
     let id = 1
     for (let i = 0; i < lista.length; i++) {
@@ -400,7 +416,9 @@ function renderizarArticulos(lista) {
                 <img src="${img}" alt="" class="imgBox">
                 <div class="divBox">
                 <h4 class="text-box">${nombre}</h4>
+                <button onclick="decrement(event)">-</button>
                 <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                <button onclick="increment(event)">+</button>
                 </div>
             </article>`
         } if (categoria == SONIDO) {
@@ -410,7 +428,9 @@ function renderizarArticulos(lista) {
                     <img src="${img}" alt="" class="imgBox">
                     <div class="divBox">
                         <h4 class="sonidoText text-box">${nombre}</h4>
+                        <button onclick="decrement(event)">-</button>
                         <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                        <button onclick="increment(event)">+</button>
                     </div>
                 </article>`
 
@@ -420,7 +440,9 @@ function renderizarArticulos(lista) {
                 <img src="${img}" alt="" class="imgBox">
                 <div class="divBox">
                     <h4 class="text-box">${nombre}</h4>
+                    <button onclick="decrement(event)">-</button>
                     <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
+                    <button onclick="increment(event)">+</button>
                 </div>
     </article>`
         }
@@ -470,7 +492,6 @@ function agregarTramos() {
     const colgado = document.querySelector("#colgado")
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector('input[name="cantPatas"]:checked')
-//|| (colgado.checked|| dePie.checked)
     if ((inputLargo || inputAncho || inputAlto) && (!inputLargo || !inputAncho || !inputAlto)) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
@@ -1047,7 +1068,7 @@ btnEmail.addEventListener('click', (e) => {
     formData.presupuesto = carritoParaEnviar
 
     // sendEmail(formData)
-    // generarPDF()
+    generarPDF()
     // setTimeout(function() {
     //     window.location.reload();
     //   }, 5000); // 5000 milisegundos = 5 segundos
