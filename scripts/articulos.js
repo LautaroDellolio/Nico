@@ -74,7 +74,7 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
-        nombre: "Elipsoidal 750 Watts (Zoom 25 - 50º)",
+        nombre: "Elipsoidal 750 Watts",
         img: "./img/ELIPSOIDAL .jpg",
         precio: 11000
     },
@@ -92,7 +92,7 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
-        nombre: "HQI - 400 / Reflector Led 100 Watts",
+        nombre: "HQI - 400 / Reflector Led",
         img: "./img/HQI 400.jpg",
         precio: 13500
     },
@@ -125,12 +125,6 @@ const articulos = [
         nombre: "Cabezal Movil AURA",
         img: "./img/movil-aura.jpg",
         precio: 27500
-    },
-    {
-        categoria: "iluminacion",
-        nombre: "Máquina de Humo Cloudy",
-        img: "./img/MAQUINA DE HUMO.jpg",
-        precio: 25000
     },
     {
         categoria: "iluminacion",
@@ -257,6 +251,11 @@ const articulos = [
 ]
 const costosFijos = [
     {
+        nombre: "Máquina de Humo Cloudy",
+        img: "./img/MAQUINA DE HUMO.jpg",
+        precio: 25000
+    },
+    {
         categoria: "fijo",
         nombre: "Consola AVOLITES + Operador",
         precio: 0
@@ -269,8 +268,8 @@ const costosFijos = [
     {
         categoria: "fijo",
         nombre: "Dimmer 12 ch / Usina De Tensión",
-        precio: 162500
-    }
+        precio: 162500 //consola +corralito + dimmer
+    }    
 ]
 let carrito = []
 let carritoParaEnviar = []
@@ -495,6 +494,7 @@ function agregarTramos() {
     const colgado = document.querySelector("#colgado")
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector('input[name="cantPatas"]:checked')
+    // const truss = document.querySelector('[id="33"]')
     if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
@@ -514,9 +514,12 @@ function agregarTramos() {
     }else{
         let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
         if (colgado.checked) {
+            // console.log(truss);
             if (inputLargo <= 10 && inputAncho <= 10) {
+                // console.log(truss.value);
+                // truss.value += mtsLineales
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
-                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
                     cantidad: 1,
                     total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
                 })
@@ -527,28 +530,28 @@ function agregarTramos() {
                     total : 0
                 })
             }
-        }// QUE PASA SI EL CUADRILATERO VA DE PIE Y TIENE MAS DE 10 X 10?
+        }
         if (dePie.checked) {
             if (patas.value == 4) {
                 mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
                 carrito.push({  
-                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
                     cantidad: 1,
-                    total : mtsLineales*4500 // + 4 cubos + 2 patas malacates ???
+                    total : mtsLineales*4500 // + 4 cubos + 4 patas malacates ???
                 })
             }else if (patas.value == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
                 carrito.push({  
-                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
                     cantidad: 1,
-                    total : mtsLineales*4500 // + 6 cubos + 4 patas malacates ???
+                    total : mtsLineales*4500 // + 6 cubos + 6 patas malacates ???
                 })                           
             }else if (patas.value == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
                 carrito.push({
-                    nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
                     cantidad: 1,
-                    total : mtsLineales*4500 //+ 8 cubos + 4 patas malacates ???
+                    total : mtsLineales*4500 //+ 8 cubos + 8 patas malacates ???
                 })
             }else if (patas.value == "otro") {
                 carrito.push({
@@ -670,23 +673,16 @@ function evaluarCarrito(){//si carrito tiene solo grupo un camino sino otro
     }
 }
 function agregarCostosFijos(){
+    costosFijos.forEach(articulo=>{
     carrito.push(
         {
-        nombre: "Consola AVOLITES + Operador",
-        cantidad : 1,
-        total: 0
-        },
-        {
-            nombre: "Corralito negro para control",
-            cantidad : 1,
-            total: 0
-        },
-        {
-            nombre: "Dimmer 12 ch / Usina de Tensión",
-            cantidad : 1,
-            total: 162500
-        }
-    )
+            nombre: articulo.nombre,
+            id: articulo.id,
+            precio: articulo.precio,
+            cantidad: 1,
+            total: articulo.precio 
+        })
+    })    
 }
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
@@ -714,6 +710,10 @@ function calcularTotal(){
     const armado = document.querySelector('input[name="armado"]:checked')
     
     if (!soloGrupo) {                                           //MUCHOS PRODUCTOS
+        //Armado
+        if (armado.checked && armado.id == "armadoPrevio") {
+            acumulador += acumulador * 0.3 // suma 20%
+        }
         //Duracion
         if (duracion == 2) {
             acumulador = acumulador*1.5
@@ -742,13 +742,6 @@ function calcularTotal(){
                     acumulador = acumulador * factor;
                 }
         }
-        //Armado
-        // if (armado.checked && armado.id == "armadoDia") {
-        //     acumulador += acumulador * 0.1// suma 10%   
-        // }
-        // if (armado.checked && armado.id == "armadoPrevio") {
-        //     acumulador += acumulador * 0.2 // suma 20%
-        // }
         //Envios
         if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
             acumulador += 100000 // precio de envio  
@@ -906,10 +899,10 @@ const generarPDF = () => {
             }
         },
         business: {
-            name: "Stoessel Company",
-            address: "Desconocido",
-            phone: "(+54) 069 11 11 111",
-            email: "stoessel@outlook.com",
+            name: "Stoessel - Ingenieria en eventos SRL",
+            address: "30-71626156-1",
+            phone: "+549 115 226 7233",
+            email: "info@stoessel-events.com",
             website: "www.stoessel-eventos.com.ar",
         },
         contact: {
@@ -965,7 +958,7 @@ const generarPDF = () => {
                     fontSize: 14 //optional, default 12
                 }
             },
-            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES."
+            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES. \n  "
             // invDescLabelStyle: {
             //     fontSize: 10,
             //     textColor: [0, 0, 0],
