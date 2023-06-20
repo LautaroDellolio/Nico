@@ -352,14 +352,12 @@ function ocultarSeciones(){
 function decrement(event) {
     event.preventDefault()
     const input = event.target.parentNode.querySelector('.valorInputs');
-    console.log(input.value);
     if (input.value == "") {
         input.value = 0
     }
     input.value = parseInt(input.value) - 1;
 
 }
-
 function increment(event) {
     event.preventDefault()
     const input = event.target.parentNode.querySelector('.valorInputs');
@@ -529,26 +527,29 @@ function agregarTramos() {
                     total : 0
                 })
             }
-        }
+        }// QUE PASA SI EL CUADRILATERO VA DE PIE Y TIENE MAS DE 10 X 10?
         if (dePie.checked) {
             if (patas.value == 4) {
+                mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
                     cantidad: 1,
-                    total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 4 patas?
-                })                       //4 cubos + ???
+                    total : mtsLineales*4500 // + 4 cubos + 2 patas malacates ???
+                })
             }else if (patas.value == 6) {
+                mtsLineales += parseInt(inputAlto) * 6
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
                     cantidad: 1,
-                    total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 6 patas?
-                })                           //6 cubos + ???
+                    total : mtsLineales*4500 // + 6 cubos + 4 patas malacates ???
+                })                           
             }else if (patas.value == 8) {
+                mtsLineales += parseInt(inputAlto) * 8
                 carrito.push({
                     nombre : "Cuadrilátero de " + mtsLineales + " Mts lineales." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
                     cantidad: 1,
-                    total : mtsLineales*4500 //Que mas lleva un cuadrilatero de 8 patas?
-                })                           //8 cubos + ???
+                    total : mtsLineales*4500 //+ 8 cubos + 4 patas malacates ???
+                })
             }else if (patas.value == "otro") {
                 carrito.push({
                     nombre : "Este Cuadrilátero se cotiza por separado",
@@ -560,7 +561,11 @@ function agregarTramos() {
         validacionOk.tramosOk = true
     }
 }
+let cantDeGrupos = 0 //declaro un contador para saber cuantos grupos estoy alquilando
+let tengoGrupo = false
 function agregarGrupo() {
+    cantDeGrupos = 0
+    tengoGrupo = false
     const operativo = document.querySelector("#operativo").checked
     const backUp = document.querySelector("#back").checked
     const cable = document.querySelector("#distancia").value
@@ -570,6 +575,8 @@ function agregarGrupo() {
         validacionOk.gruposOk = false
     }else{
         if (operativo) {
+            cantDeGrupos++
+            tengoGrupo = true
             carrito.push({
                 nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
                 cantidad: 1,
@@ -577,6 +584,8 @@ function agregarGrupo() {
             })
         }
         if (backUp) {
+            cantDeGrupos++
+            tengoGrupo = true
             carrito.push({
                 nombre : "Grupo CETEC 130 KVA Backup",
                 cantidad: 1,
@@ -683,7 +692,7 @@ function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
     const presupuesto = document.querySelector(".listaArticulos")
     const precio = document.querySelector(".precio")
-    // const total = calcularTotal()
+    const total = calcularTotal()
 
     titulo.setAttribute("style", "display:flex")
 
@@ -693,10 +702,10 @@ function renderizarPresupuesto(lista) {
         presupuesto.innerHTML +=
             `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
     })
-    precio.innerText = `Total: $ ` //${total} 
+    precio.innerText = `Total: $ ${total} ` //
 }
+let soloGrupo = false
 function calcularTotal(){
-    let muchosProductos = evaluarCarrito()
     let acumulador = carrito.reduce((total, articulo) => total + articulo.total, 0)
 
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
@@ -704,7 +713,7 @@ function calcularTotal(){
     const masDias = document.getElementById("masDias").value
     const armado = document.querySelector('input[name="armado"]:checked')
     
-    if (muchosProductos) {
+    if (!soloGrupo) {                                           //MUCHOS PRODUCTOS
         //Duracion
         if (duracion == 2) {
             acumulador = acumulador*1.5
@@ -734,13 +743,12 @@ function calcularTotal(){
                 }
         }
         //Armado
-        if (armado.checked && armado.id == "armadoDia") {
-            acumulador += acumulador * 0.1// suma 10%   
-        }
-
-        if (armado.checked && armado.id == "armadoPrevio") {
-            acumulador += acumulador * 0.2 // suma 20%
-        }
+        // if (armado.checked && armado.id == "armadoDia") {
+        //     acumulador += acumulador * 0.1// suma 10%   
+        // }
+        // if (armado.checked && armado.id == "armadoPrevio") {
+        //     acumulador += acumulador * 0.2 // suma 20%
+        // }
         //Envios
         if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
             acumulador += 100000 // precio de envio  
@@ -748,14 +756,30 @@ function calcularTotal(){
         if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
             acumulador += 150000 // precio de envio  
         }
-    }else{//solo grupo
+        if (tengoGrupo) {
+            //Envios
+            if (zonaEnvio.checked && zonaEnvio.id == "zona1" || zonaEnvio.checked && zonaEnvio.id == "zona3") {
+                acumulador += 0 // precio de envio  
+            }else if (zonaEnvio.checked && zonaEnvio.id == "zona2" && cantDeGrupos == 1) {
+                acumulador += 30000 // precio de envio x 1 Grupo  
+            }else{
+                acumulador += 60000 // precio de envio x 2 Grupo
+            }
+        }
+
+
+    }else{                                                      //SOLO GRUPO
          //Envios
-        if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
+        if (zonaEnvio.checked && zonaEnvio.id == "zona1" || zonaEnvio.checked && zonaEnvio.id == "zona3") {
             acumulador += 0 // precio de envio  
+        }else if (zonaEnvio.checked && zonaEnvio.id == "zona2" && cantDeGrupos == 1) {
+            acumulador += 30000 // precio de envio x 1 Grupo  
+        }else{
+            acumulador += 60000 // precio de envio x 2 Grupo
         }
-        if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
-            acumulador += 30000 // precio de envio  
-        }
+        //falta
+        //duracion
+        //armado
     }
     return Math.round(acumulador) 
 }
@@ -771,6 +795,7 @@ const formError = (mensaje, HTMLElement) => {
     HTMLElement.classList.add(`err`)
     HTMLElement.innerHTML += `${mensaje}<br>` 
     titulo.setAttribute("style", "display:none")
+    carrito = []
     setTimeout(() => {
         HTMLElement.classList.remove(`err`)
         HTMLElement.innerText = ''
@@ -805,6 +830,7 @@ btnPresupuesto.addEventListener("click", function (e) {
             agregarCostosFijos()
         }else{ //si solo alquila grupo
             agregarGrupo()
+            soloGrupo = true
         }
         agregarEnvio()
         // calcularTotal()
