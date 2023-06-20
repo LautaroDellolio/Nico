@@ -494,7 +494,6 @@ function agregarTramos() {
     const colgado = document.querySelector("#colgado")
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector('input[name="cantPatas"]:checked')
-    // const truss = document.querySelector('[id="33"]')
     if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
@@ -514,10 +513,7 @@ function agregarTramos() {
     }else{
         let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
         if (colgado.checked) {
-            // console.log(truss);
             if (inputLargo <= 10 && inputAncho <= 10) {
-                // console.log(truss.value);
-                // truss.value += mtsLineales
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
                     cantidad: 1,
@@ -712,34 +708,34 @@ function calcularTotal(){
     if (!soloGrupo) {                                           //MUCHOS PRODUCTOS
         //Armado
         if (armado.checked && armado.id == "armadoPrevio") {
-            acumulador += acumulador * 0.3 // suma 20%
+            acumulador *=  1.3 // suma 30%
         }
         //Duracion
         if (duracion == 2) {
-            acumulador = acumulador*1.5
+            acumulador *= 1.5
             }else if (duracion == "on") {
                 if (masDias >= "3" && masDias <= "7") {
                     switch (masDias) {
                         case "3":
-                            acumulador = acumulador * 2;
+                            acumulador *=  2;
                             break;
                         case "4":
-                            acumulador = acumulador * 2.5;
+                            acumulador *= 2.5;
                             break;
                         case "5":
-                            acumulador = acumulador * 3;
+                            acumulador *= 3;
                             break;
                         case "6":
-                            acumulador = acumulador * 3.5;
+                            acumulador *= 3.5;
                             break;
                         case "7":
-                            acumulador = acumulador * 4;
+                            acumulador *= 4;
                             break;
                     }
                 } else if (masDias >= "8" && masDias <= "9999") {
                     const factor = 4 + (parseInt(masDias) - 7) * 0.25;
                     console.log(factor);
-                    acumulador = acumulador * factor;
+                    acumulador *= factor;
                 }
         }
         //Envios
@@ -762,6 +758,38 @@ function calcularTotal(){
 
 
     }else{                                                      //SOLO GRUPO
+        //armado
+        if (armado.checked && armado.id == "armadoPrevio") {
+            acumulador *=  1.3 // suma 30%
+        }
+        //duracion
+        if (duracion == 2) {
+            acumulador *= 1.5
+            }else if (duracion == "on") {
+                if (masDias >= "3" && masDias <= "7") {
+                    switch (masDias) {
+                        case "3":
+                            acumulador *=  2;
+                            break;
+                        case "4":
+                            acumulador *= 2.5;
+                            break;
+                        case "5":
+                            acumulador *= 3;
+                            break;
+                        case "6":
+                            acumulador *= 3.5;
+                            break;
+                        case "7":
+                            acumulador *= 4;
+                            break;
+                    }
+                } else if (masDias >= "8" && masDias <= "9999") {
+                    const factor = 4 + (parseInt(masDias) - 7) * 0.25;
+                    console.log(factor);
+                    acumulador *= factor;
+                }
+        }
          //Envios
         if (zonaEnvio.checked && zonaEnvio.id == "zona1" || zonaEnvio.checked && zonaEnvio.id == "zona3") {
             acumulador += 0 // precio de envio  
@@ -770,9 +798,6 @@ function calcularTotal(){
         }else{
             acumulador += 60000 // precio de envio x 2 Grupo
         }
-        //falta
-        //duracion
-        //armado
     }
     return Math.round(acumulador) 
 }
@@ -899,8 +924,8 @@ const generarPDF = () => {
             }
         },
         business: {
-            name: "Stoessel - Ingenieria en eventos SRL",
-            address: "30-71626156-1",
+            name: "",//Stoessel - Ingenieria en eventos SRL
+            address: "CUIT: 30-71626156-1",//
             phone: "+549 115 226 7233",
             email: "info@stoessel-events.com",
             website: "www.stoessel-eventos.com.ar",
@@ -958,7 +983,7 @@ const generarPDF = () => {
                     fontSize: 14 //optional, default 12
                 }
             },
-            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES. \n  "
+            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES. \n El presente presupuesto se mantiene vigente abonando el 100% dentro de los proximos 30 dias. \n Pasado este tiempo se aplicará un aumento mensual según el índice IPCBA.  "
             // invDescLabelStyle: {
             //     fontSize: 10,
             //     textColor: [0, 0, 0],
@@ -1105,7 +1130,7 @@ btnEmail.addEventListener('click', (e) => {
     //   }, 5000); // 5000 milisegundos = 5 segundos
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
-    formDatos.reset()
-    formProduct.reset()
+    // formDatos.reset()
+    // formProduct.reset()
 })
 
