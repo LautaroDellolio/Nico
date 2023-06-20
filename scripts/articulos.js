@@ -495,7 +495,7 @@ function agregarTramos() {
     const colgado = document.querySelector("#colgado")
     const dePie = document.querySelector("#pie")
     const patas = document.querySelector('input[name="cantPatas"]:checked')
-    if ((inputLargo || inputAncho || inputAlto) && (!inputLargo || !inputAncho || !inputAlto)) {
+    if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
@@ -569,7 +569,7 @@ function agregarGrupo() {
     const operativo = document.querySelector("#operativo").checked
     const backUp = document.querySelector("#back").checked
     const cable = document.querySelector("#distancia").value
-    if ((operativo || backUp)&& cable =="") {
+    if ((operativo || backUp)&& (!cable || cable == 0)) {   // consultar Nico
         let txt ="Debe ingresar la distancia al punto de tensión";
         formError(txt, mensaje)
         validacionOk.gruposOk = false
