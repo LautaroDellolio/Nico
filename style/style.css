@@ -322,20 +322,49 @@ h3{
 .formulario label{
     color: white;
 }
-.terminos{
+
+.codigo div{
+    display: flex;
+    justify-content: space-between;
+    margin: 6px;
+}
+.textoCodigo{
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+}
+.btnAplicar{
+    padding: 8px;
+    border: none;
+    border-radius: 15px;
+    background-color: white;
+}
+.terminos{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
 }
 .btn-terminos{
     background-color: black;
     color : white;
     border: none;
 }
+/* #textCodigo{
+    display: none;
+} */
+/* .codigo{
+    display: flex;
+    flex-direction: column;
+}
+
+.divCodigo{
+    display: flex;
+    justify-content: space-around;
+}
+ */
 .formulario label a{
     color: white;
 }
-.formulario div input{
+.formulario input{
     padding: 5px;
     border-radius: 15px;
 }

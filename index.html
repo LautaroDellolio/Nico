@@ -261,7 +261,7 @@
         </button>
         <div id="mensajePresupuesto" class="divErr"></div>
       </form>
-      <section class="listado" id="list" style="display: none">
+      <section class="listado" id="list" style="display: none"> 
         <div class="divListado">
           <h2>Listado de Artículos</h2>
           <ul class="listaArticulos"></ul>
@@ -298,6 +298,24 @@
             <label for="">Fecha del Evento</label>
             <input type="date" placeholder="DD/MM/AA" name="Date" required />
           </div>
+          <section class="codigo">
+            <div class="tengoCodigo">
+              <label for="">Tengo un código</label>
+              <input 
+                type="checkbox"
+                name="TengoCodigo"
+                id="checkCodigo"
+              />
+            </div>
+            <div style="display: none;" id="divCodigo" class="textoCodigo">
+              <input 
+                type="text"
+                name="inputCodigo"
+                id="textCodigo"
+              />
+              <button class="btnAplicar" id="btn-aplicar">Aplicar</button>
+            </div>
+          </section>
           <section class="terminos">
             <label for=""><button id="btn-terminos" class="btn-terminos"><small>Ver </small>Términos y Condiciones</button></label>
             <input 
