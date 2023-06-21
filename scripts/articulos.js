@@ -501,13 +501,14 @@ const tramosAlto = document.querySelector(".alto")
 const tramosColgado = document.querySelector("#colgado")
 const tramosDePie = document.querySelector("#pie")
 const tramosCantPatas = document.querySelector('input[name="cantPatas"]')
+const checkCostilla = document.getElementById("costilla")
 function validarTramos() {
     let inputLargo = tramosLargo.value
     let inputAncho = tramosAncho.value
     let inputAlto =  tramosAlto.value
     let colgado = tramosColgado.checked
     let dePie = tramosDePie.checked
-    let patas = tramosCantPatas.checked
+    let patas = tramosCantPatas
     let validacion = false
 
     if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
@@ -518,7 +519,7 @@ function validarTramos() {
         let txt ="Debe seleccionar la opción de colgado o de pie";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas)) {
+    }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas.checked)) {
         let txt ="Debe seleccionar la cantidad de patas";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
@@ -531,16 +532,17 @@ function validarTramos() {
     }
     return validacion
 }
-function agregarTramos() {
+function agregarTramos() {  
     let valido = validarTramos()
     let inputLargo = tramosLargo.value
     let inputAncho = tramosAncho.value
     let inputAlto =  tramosAlto.value
     let colgado = tramosColgado.checked
     let dePie = tramosDePie.checked
-    let patas = tramosCantPatas.checked
+    let patas = tramosCantPatas
+    let costilla = checkCostilla
     let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
-    if (valido) {
+    if (valido && !costilla.checked) {
         if (colgado) {
             if (inputLargo <= 10 && inputAncho <= 10) {
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
@@ -586,9 +588,55 @@ function agregarTramos() {
                 })
             }
         }
+    }
+    if (valido && costilla.checked) {
+        if (colgado) {
+            if (inputLargo <= 10 && inputAncho <= 10) {
+                carrito.push({  //Cuadrilatero Hasta 10 x 10
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye Costilla",
+                    cantidad: 1,
+                    total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
+                })
+            }else{
+                carrito.push({ //Cuadrilatero Superiores
+                    nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
+                    cantidad : 1,
+                    total : 0
+                })
+            }
+        }
+        if (dePie) {
+            if (patas.value == 4) {
+                mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
+                carrito.push({  
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4. Incluye Costilla ",
+                    cantidad: 1,
+                    total : mtsLineales*4500 // + 4 cubos + 4 patas malacates ???
+                })
+            }else if (patas.value == 6) {
+                mtsLineales += parseInt(inputAlto) * 6
+                carrito.push({  
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6. Incluye Costilla",
+                    cantidad: 1,
+                    total : mtsLineales*4500 // + 6 cubos + 6 patas malacates ???
+                })                           
+            }else if (patas.value == 8) {
+                mtsLineales += parseInt(inputAlto) * 8
+                carrito.push({
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8. Incluye Costilla",
+                    cantidad: 1,
+                    total : mtsLineales*4500 //+ 8 cubos + 8 patas malacates ???
+                })
+            }else if (patas.value == "otro") {
+                carrito.push({
+                    nombre : "Consulte cotización de este cuadrilátero por separado",
+                    cantidad: 1,
+                    total : 0 
+                })
+            }
+        }
         validacionOk.tramosOk = true
     }
-    
 }
 
 let cantDeGrupos = 0                    //declaro un contador para saber cuantos grupos estoy alquilando
@@ -1060,8 +1108,6 @@ const validateForm = () => {
     const email = formDatos.elements.Email.value.trim()
     const date = formDatos.elements.Date.value.trim()
     const terminosYcondiciones = formDatos.elements.Terminos.checked
-
-    console.log(terminosYcondiciones);
 
     if (!name || !surname || !tel || !email || !date ) {
         let txt = 'Por favor, completa todos los campos'
