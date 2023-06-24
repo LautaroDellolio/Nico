@@ -128,14 +128,25 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
+        nombre: "Dimmer 12 Ch / Usina tension",
+        img: "./img/Dimmier12CH.jpg",
+        precio: 35000
+    },{
+        categoria: "iluminacion",
+        nombre: "Corralito Técnico",
+        img: "./img/Corralito.jpg",
+        precio: 27500
+    },
+    {
+        categoria: "iluminacion",
         nombre: "Toma Tensión Hasta 10 Amperes",
-        img: "./img/TOMA 10A.jpg",
+        img: "./img/TomaTension.jpg",
         precio: 8800
     },
     {
         categoria: "iluminacion",
         nombre: "Toma Tensión Hasta 20 Amperes",
-        img: "./img/TOMA 20A.jpg",
+        img: "./img/TomaTension.jpg",
         precio: 16500
     },
     {
@@ -416,8 +427,8 @@ function renderizarArticulos(lista) {
             sectionLuces.innerHTML +=
             `<article class="box">
                 <img src="${img}" alt="" class="imgBox">
+                <h4 class="text-box">${nombre}</h4>
                 <div class="divBox">
-                    <h4 class="text-box">${nombre}</h4>
                     <div class="divBtn">
                     <button onclick="decrement(event)" class="btnMas">-</button>
                     <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
@@ -430,8 +441,8 @@ function renderizarArticulos(lista) {
                 `<article class="box descripcion">
                     <p class="text-box text-desc">${descipcion}</p>
                     <img src="${img}" alt="" class="imgBox">
+                    <h4 class="sonidoText text-box">${nombre}</h4>
                     <div class="divBox">
-                        <h4 class="sonidoText text-box">${nombre}</h4>
                         <div class="divBtn">
                             <button onclick="decrement(event)" class="btnMas">-</button>
                             <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
@@ -444,8 +455,8 @@ function renderizarArticulos(lista) {
             sectionRigging.innerHTML +=
                 `<article class="box">
                 <img src="${img}" alt="" class="imgBox">
+                <h4 class="text-box">${nombre}</h4>
                 <div class="divBox">
-                    <h4 class="text-box">${nombre}</h4>
                     <div class="divBtn">
                         <button onclick="decrement(event)" class="btnMas">-</button>
                         <input id="${id}" class="styleInput valorInputs" placeholder="Cant." type="number">
@@ -456,7 +467,6 @@ function renderizarArticulos(lista) {
         }
     })
 }
-
 function validarDatos(datos) {            //De los inputs de productos
     const regex = /^([1-9]|[0-9]*)$/; //permite solamente numeros enteros y positivos
     let esValido = true;
@@ -500,8 +510,10 @@ const tramosAncho = document.querySelector(".ancho")
 const tramosAlto = document.querySelector(".alto")
 const tramosColgado = document.querySelector("#colgado")
 const tramosDePie = document.querySelector("#pie")
-const tramosCantPatas = document.querySelector('input[name="cantPatas"]')
+const tramosCantPatas = document.querySelectorAll('input[name="cantPatas"]')
 const checkCostilla = document.getElementById("costilla")
+let nodoConCheck = null;
+let valorSeleccionado = null;
 function validarTramos() {
     let inputLargo = tramosLargo.value
     let inputAncho = tramosAncho.value
@@ -510,7 +522,15 @@ function validarTramos() {
     let dePie = tramosDePie.checked
     let patas = tramosCantPatas
     let validacion = false
-
+    for (let i = 0; i < patas.length; i++) {
+        if (patas[i].checked) {
+            nodoConCheck = patas[i];
+            valorSeleccionado = patas[i].value;
+            
+        }
+    }
+    console.log(nodoConCheck);
+    console.log(valorSeleccionado);
     if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
@@ -519,10 +539,18 @@ function validarTramos() {
         let txt ="Debe seleccionar la opción de colgado o de pie";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas.checked)) {
+    }else if (dePie && nodoConCheck == null){
         let txt ="Debe seleccionar la cantidad de patas";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
+    // else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas.checked)) {
+    //     let txt ="Debe seleccionar la cantidad de patas";
+    //     formError(txt, mensaje)
+    //     validacionOk.tramosOk = false
+    // else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas.checked)) {
+    //     let txt ="Debe seleccionar la cantidad de patas";
+    //     formError(txt, mensaje)
+    //     validacionOk.tramosOk = false
     }else if ((colgado|| dePie)&&(!inputLargo || !inputAncho || !inputAlto)) {
         let txt = "Debe ingresar las medidas del cuadrilátero"
         formError(txt, mensaje)
@@ -559,28 +587,28 @@ function agregarTramos() {
             }
         }
         if (dePie) {
-            if (patas.value == 4) {
+            if (valorSeleccionado == 4) {
                 mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
                     cantidad: 1,
                     total : mtsLineales*4500 // + 4 cubos + 4 patas malacates ???
                 })
-            }else if (patas.value == 6) {
+            }else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
                     cantidad: 1,
                     total : mtsLineales*4500 // + 6 cubos + 6 patas malacates ???
                 })                           
-            }else if (patas.value == 8) {
+            }else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
                 carrito.push({
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
                     cantidad: 1,
                     total : mtsLineales*4500 //+ 8 cubos + 8 patas malacates ???
                 })
-            }else if (patas.value == "otro") {
+            }else if (valorSeleccionado == "otro") {
                 carrito.push({
                     nombre : "Este Cuadrilátero se cotiza por separado",
                     cantidad: 1,
@@ -592,6 +620,7 @@ function agregarTramos() {
     if (valido && costilla.checked) {
         if (colgado) {
             if (inputLargo <= 10 && inputAncho <= 10) {
+                mtsLineales += inputLargo //Suma los mismos mts que el largo
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye Costilla",
                     cantidad: 1,
@@ -606,28 +635,31 @@ function agregarTramos() {
             }
         }
         if (dePie) {
-            if (patas.value == 4) {
+            if (valorSeleccionado == 4) {
                 mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
+                mtsLineales += inputLargo //Suma los mismos mts que el largo
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4. Incluye Costilla ",
                     cantidad: 1,
                     total : mtsLineales*4500 // + 4 cubos + 4 patas malacates ???
                 })
-            }else if (patas.value == 6) {
+            }else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
+                mtsLineales += inputLargo //Suma los mismos mts que el largo
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6. Incluye Costilla",
                     cantidad: 1,
                     total : mtsLineales*4500 // + 6 cubos + 6 patas malacates ???
                 })                           
-            }else if (patas.value == 8) {
+            }else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
+                mtsLineales += inputLargo //Suma los mismos mts que el largo
                 carrito.push({
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8. Incluye Costilla",
                     cantidad: 1,
                     total : mtsLineales*4500 //+ 8 cubos + 8 patas malacates ???
                 })
-            }else if (patas.value == "otro") {
+            }else if (valorSeleccionado == "otro") {
                 carrito.push({
                     nombre : "Consulte cotización de este cuadrilátero por separado",
                     cantidad: 1,
@@ -1122,7 +1154,6 @@ const validateForm = () => {
     //     return false
     // }
 
-
     const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
     if (!regexEmail.test(email)) {
         let txt = 'Por favor, ingresa un correo electrónico válido'
@@ -1149,7 +1180,6 @@ const validateForm = () => {
 btnAplicar.addEventListener('click',(e)=>{
     e.preventDefault()
     tiraTuMagia()
-    
 })
 btnTerminos.addEventListener('click', (e)=>{
     e.preventDefault()
@@ -1188,14 +1218,10 @@ btnEmail.addEventListener('click', (e) => {
     formData.telefono = formDatos.elements.Telefono.value.trim()
     formData.correo = formDatos.elements.Email.value.trim()
     formData.fecha = formDatos.elements.Date.value.trim()
-    // formData.hora = formDatos.elements.Time.value.trim()
     formData.presupuesto = carritoParaEnviar
 
     // sendEmail(formData)
     generarPDF()
-    // setTimeout(function() {
-    //     window.location.reload();
-    //   }, 5000); // 5000 milisegundos = 5 segundos
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
     // formDatos.reset()

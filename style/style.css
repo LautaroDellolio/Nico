@@ -326,7 +326,7 @@ h3{
 .codigo div{
     display: flex;
     justify-content: space-between;
-    margin: 6px;
+    margin: 5px;
 }
 .textoCodigo{
     display: flex;
@@ -348,19 +348,6 @@ h3{
     color : white;
     border: none;
 }
-/* #textCodigo{
-    display: none;
-} */
-/* .codigo{
-    display: flex;
-    flex-direction: column;
-}
-
-.divCodigo{
-    display: flex;
-    justify-content: space-around;
-}
- */
 .formulario label a{
     color: white;
 }
