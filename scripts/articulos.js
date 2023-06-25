@@ -520,17 +520,17 @@ function validarTramos() {
     let inputAlto =  tramosAlto.value
     let colgado = tramosColgado.checked
     let dePie = tramosDePie.checked
+    
     let patas = tramosCantPatas
     let validacion = false
+    
     for (let i = 0; i < patas.length; i++) {
         if (patas[i].checked) {
             nodoConCheck = patas[i];
             valorSeleccionado = patas[i].value;
-            
         }
     }
-    console.log(nodoConCheck);
-    console.log(valorSeleccionado);
+
     if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
         let txt ="Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
@@ -543,19 +543,12 @@ function validarTramos() {
         let txt ="Debe seleccionar la cantidad de patas";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    // else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas.checked)) {
-    //     let txt ="Debe seleccionar la cantidad de patas";
-    //     formError(txt, mensaje)
-    //     validacionOk.tramosOk = false
-    // else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie) || (dePie && !patas.checked)) {
-    //     let txt ="Debe seleccionar la cantidad de patas";
-    //     formError(txt, mensaje)
-    //     validacionOk.tramosOk = false
     }else if ((colgado|| dePie)&&(!inputLargo || !inputAncho || !inputAlto)) {
         let txt = "Debe ingresar las medidas del cuadrilátero"
         formError(txt, mensaje)
         validacionOk.tramosOk = false
     }else{
+        validacionOk.tramosOk = true
         validacion = true
     }
     return validacion
@@ -572,6 +565,7 @@ function agregarTramos() {
     let mtsLineales = (parseInt(inputLargo) + parseInt(inputAncho)) * 2
     if (valido && !costilla.checked) {
         if (colgado) {
+            console.log(colgado);
             if (inputLargo <= 10 && inputAncho <= 10) {
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
@@ -667,7 +661,7 @@ function agregarTramos() {
                 })
             }
         }
-        validacionOk.tramosOk = true
+        // validacionOk.tramosOk = true
     }
 }
 
