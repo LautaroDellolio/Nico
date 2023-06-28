@@ -13,6 +13,18 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
+        nombre: "Cabezal Movil AURA",
+        img: "./img/movil-aura.jpg",
+        precio: 27500
+    },
+    {
+        categoria: "iluminacion",
+        nombre: "Strobo + Tilt RGB+W",
+        img: "./img/strobo.jpg",
+        precio: 0
+    },// Falta Precio del Strobo
+    {
+        categoria: "iluminacion",
         nombre: "Proton / Nebula (Rgbwuv)",
         img: "./img/nebula-proton.jpg",
         precio: 4000
@@ -104,27 +116,15 @@ const articulos = [
     },
     {
         categoria: "iluminacion",
-        nombre: "Octobeam Laser RGB x 3 watts c/u",
+        nombre: "Octobeam Laser RGB",
         img: "./img/octobeam.jpg",
         precio: 25000
     },
     {
         categoria: "iluminacion",
-        nombre: "Strobo + Tilt RGB+W",
-        img: "./img/strobo.jpg",
-        precio: 0
-    },
-    {
-        categoria: "iluminacion",
         nombre: "Pixel Patt RGB + H",
         img: "./img/pixel-patt.jpg",
-        precio: 27500
-    },
-    {
-        categoria: "iluminacion",
-        nombre: "Cabezal Movil AURA",
-        img: "./img/movil-aura.jpg",
-        precio: 27500
+        precio: 40000
     },
     {
         categoria: "iluminacion",
@@ -635,7 +635,7 @@ function agregarTramos() {
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4. Incluye Costilla ",
                     cantidad: 1,
-                    total : mtsLineales*4500 // + 4 cubos + 4 patas malacates ???
+                    total : mtsLineales*4500 + 80000 +  140000// + 4 cubos + 4 patas malacates ???
                 })
             }else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
@@ -643,7 +643,7 @@ function agregarTramos() {
                 carrito.push({  
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6. Incluye Costilla",
                     cantidad: 1,
-                    total : mtsLineales*4500 // + 6 cubos + 6 patas malacates ???
+                    total : mtsLineales*4500 + 120000 + 210000// + 6 cubos + 6 patas malacates ???
                 })                           
             }else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
@@ -651,7 +651,7 @@ function agregarTramos() {
                 carrito.push({
                     nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8. Incluye Costilla",
                     cantidad: 1,
-                    total : mtsLineales*4500 //+ 8 cubos + 8 patas malacates ???
+                    total : mtsLineales*4500 + 160000 + 280000 //+ 8 cubos + 8 patas malacates ???
                 })
             }else if (valorSeleccionado == "otro") {
                 carrito.push({
@@ -790,6 +790,7 @@ function renderizarPresupuesto(lista) {
     const presupuesto = document.querySelector(".listaArticulos")
     const precio = document.querySelector(".precio")
     const total = calcularTotal()
+    let totalFormateado = total.toLocaleString()
 
     titulo.setAttribute("style", "display:flex")
 
@@ -799,7 +800,7 @@ function renderizarPresupuesto(lista) {
         presupuesto.innerHTML +=
             `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
     })
-    precio.innerText = `Total: $ ${total} ` //
+    precio.innerText = `Total: $ ${totalFormateado} ` //
 }
 
 let soloGrupo = false
@@ -849,7 +850,7 @@ function calcularTotal(){
     //Envios
     if (!soloGrupo) {               //MUCHOS PRODUCTOS
         if (zonaEnvio.checked && zonaEnvio.id == "zona1") {
-            acumulador += 100000    // precio de envio  
+            acumulador += 110000  // precio de envio  
         }
         if (zonaEnvio.checked && zonaEnvio.id == "zona2") {
             acumulador += 150000    // precio de envio  
@@ -986,6 +987,7 @@ const generarPDF = () => {
     let fecha = fechaActual()
     
     const total = calcularTotal()
+    const totalFormateado = total.toLocaleString()
 
     let props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
@@ -1064,11 +1066,11 @@ const generarPDF = () => {
                 // i.total
             ])),
             invTotalLabel: "Total:",
-            invTotal: `$${total}`,
+            invTotal: `$${totalFormateado}`,
             // invCurrency: "ALL",
             row3: {
                 col1: 'Total:',
-                col2: `'$'${total}`,
+                col2: `'$'${totalFormateado}`,
                 // col3: 'ALL',
                 style: {
                     fontSize: 14 //optional, default 12

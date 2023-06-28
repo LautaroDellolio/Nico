@@ -70,7 +70,7 @@ h3{
 }
 .box{
     border-radius: 15px;
-    height: 250px;
+    height: 35vh;
     width: 23%;
     margin: 5px;
     padding: 10px;
@@ -92,7 +92,7 @@ h3{
 }
 .text-box{
     width: 100%;
-    font-size: 1.12rem;
+    font-size: 1rem;
     color: black;
     background-color: white;
     padding: 5px;
