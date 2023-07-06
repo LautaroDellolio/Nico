@@ -8,21 +8,21 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Cabezal Móvil PLS 3en1 7R",
-        img: "./img/movil-pls.jpg",
+        img: "./img/Captura de pantalla 2023-07-06 a la(s) 10.58.13.png",
         precio: 27500,
     },
     {
         categoria: "iluminacion",
         nombre: "Cabezal Movil AURA",
-        img: "./img/movil-aura.jpg",
+        img: "./img/Captura de pantalla 2023-07-06 a la(s) 10.58.28.png",
         precio: 27500
     },
     {
         categoria: "iluminacion",
         nombre: "Strobo + Tilt RGB+W",
         img: "./img/strobo.jpg",
-        precio: 0
-    },// Falta Precio del Strobo
+        precio: 18000
+    },
     {
         categoria: "iluminacion",
         nombre: "Proton / Nebula (Rgbwuv)",
@@ -38,7 +38,7 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Proton Inalámbrico",
-        img: "./img/PROTON INALAMBRICO.jpg",
+        img: "./img/Proton Inalambrico.jpeg",
         precio: 9000
     },
     {
@@ -610,14 +610,15 @@ function agregarTramos() {
                     cantidad: 1,
                     total : mtsLineales*4500 + 160000 + 280000 // mts lineales + 8 cubos + 8 patas malacates
                 })
-            }else if (valorSeleccionado == "otro") {
-                carrito.push({
-                    categoria: 'rigging',
-                    nombre : "Este Cuadrilátero se cotiza por separado",
-                    cantidad: 1,
-                    total : 0 
-                })
             }
+            // }else if (valorSeleccionado == "otro") {
+            //     carrito.push({
+            //         categoria: 'rigging',
+            //         nombre : "Este Cuadrilátero se cotiza por separado",
+            //         cantidad: 1,
+            //         total : 0 
+            //     })
+            // }
         }
     }
     if (valido && costilla.checked) {
@@ -667,14 +668,15 @@ function agregarTramos() {
                     cantidad: 1,
                     total : mtsLineales*4500 + 160000 + 280000 //+ 8 cubos + 8 patas malacates ???
                 })
-            }else if (valorSeleccionado == "otro") {
-                carrito.push({
-                    categoria: 'rigging',
-                    nombre : "Consulte cotización de este cuadrilátero por separado",
-                    cantidad: 1,
-                    total : 0 
-                })
             }
+            // else if (valorSeleccionado == "otro") {
+            //     carrito.push({
+            //         categoria: 'rigging',
+            //         nombre : "Consulte cotización de este cuadrilátero por separado",
+            //         cantidad: 1,
+            //         total : 0 
+            //     })
+            // }
         }
         // validacionOk.tramosOk = true
     }
@@ -711,7 +713,7 @@ function agregarGrupo() {
         if (cable >25) {
             carrito.push({
                 categoria: "grupo",
-                nombre: "Mts Línea Trifásica",
+                nombre: "Mts Tendido Eléctrico",
                 cantidad: parseInt(cable),
                 total : parseInt(cable) * 2000                            //Precio cable
             })
@@ -916,13 +918,13 @@ function calcularTotal(){
                 case "40%" :
                 acumulador *= 0.6
                 break;
-                case "30%" :
+                case "BONUS30" :
                 acumulador *= 0.7
                 break;
-                case "20%" :
+                case "BONUS20" :
                 acumulador *= 0.8
                 break;
-                case "10%" :
+                case "BONUS10" :
                 acumulador *= 0.9
                 break;
         }
@@ -973,7 +975,7 @@ function tiraTuMagia(){
         }else{
             agregarGrupo()
         }
-        if (muchosProductos.iluminacion || muchosProductos.rigging) {
+        if (muchosProductos.iluminacion) {
             agregarCostosFijos()
         }
         agregarEnvio()
