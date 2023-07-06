@@ -305,8 +305,7 @@ window.addEventListener("change", () => {
     const masDias = document.querySelector("#diaOtro")
     const cantDias = document.querySelector(".dias")
     const codigo = document.querySelector("#checkCodigo")
-    const inputCodigo = document.querySelector("#divCodigo")
-  
+    const inputCodigo = document.querySelector("#divCodigo")  
 
     if (dePie.checked) {
         cantPatas.setAttribute("style", "display:block")
@@ -492,6 +491,7 @@ function agregarAlCarrito(lista) {
             const input = document.getElementById(articulo.id)
             if (input.value != 0) {
                 return {
+                    categoria: articulo.categoria,
                     nombre: articulo.nombre,
                     id: articulo.id,
                     precio: articulo.precio,
@@ -501,9 +501,12 @@ function agregarAlCarrito(lista) {
             }
         }).filter(input => input !== undefined);
         validacionOk.inputsOk = true
+        console.log(carrito);
         return carrito;
     }
 }
+const artSonido = document.querySelectorAll(".artSonido")
+    
 
 const tramosLargo = document.querySelector(".largo")
 const tramosAncho = document.querySelector(".ancho")
@@ -568,12 +571,14 @@ function agregarTramos() {
             console.log(colgado);
             if (inputLargo <= 10 && inputAncho <= 10) {
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado.",
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye: 4 Aparejo x 1Tn y 4 Corner Box Prolyte ",
                     cantidad: 1,
                     total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
                 })
             }else{
                 carrito.push({ //Cuadrilatero Superiores
+                    categoria: 'rigging',
                     nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
                     cantidad : 1,
                     total : 0
@@ -584,26 +589,30 @@ function agregarTramos() {
             if (valorSeleccionado == 4) {
                 mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
                 carrito.push({  
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4",
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4 Incluye: 4 Patas Malakate y 4 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 // + 4 cubos + 4 patas malacates ???
+                    total : mtsLineales*4500 + 80000 + 140000 // mts lineales + 4 cubos + 4 patas malakates 
                 })
             }else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
-                carrito.push({  
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6",
+                carrito.push({
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6 Incluye: 6 Patas Malakate y 6 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 // + 6 cubos + 6 patas malacates ???
+                    total : mtsLineales*4500 + 120000 + 210000 // mts lineales + 6 cubos + 6 patas malacates
                 })                           
             }else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
                 carrito.push({
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8",
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8 Incluye: 8 Patas Malakate y 8 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 //+ 8 cubos + 8 patas malacates ???
+                    total : mtsLineales*4500 + 160000 + 280000 // mts lineales + 8 cubos + 8 patas malacates
                 })
             }else if (valorSeleccionado == "otro") {
                 carrito.push({
+                    categoria: 'rigging',
                     nombre : "Este Cuadrilátero se cotiza por separado",
                     cantidad: 1,
                     total : 0 
@@ -614,14 +623,16 @@ function agregarTramos() {
     if (valido && costilla.checked) {
         if (colgado) {
             if (inputLargo <= 10 && inputAncho <= 10) {
-                mtsLineales += inputLargo //Suma los mismos mts que el largo
+                mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye Costilla",
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye Costilla, 4 Aparejo x 1Tn y 4 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
+                    total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 cubos + 4  Aparejos
                 })
             }else{
                 carrito.push({ //Cuadrilatero Superiores
+                    categoria: 'rigging',
                     nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
                     cantidad : 1,
                     total : 0
@@ -631,30 +642,34 @@ function agregarTramos() {
         if (dePie) {
             if (valorSeleccionado == 4) {
                 mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
-                mtsLineales += inputLargo //Suma los mismos mts que el largo
-                carrito.push({  
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4. Incluye Costilla ",
+                mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
+                carrito.push({
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4. Incluye Costilla, 4 Patas Malakate y 4 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 80000 +  140000// + 4 cubos + 4 patas malacates ???
+                    total : mtsLineales*4500 + 80000 +  140000// + 4 cubos + 4 patas malacates 
                 })
             }else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
-                mtsLineales += inputLargo //Suma los mismos mts que el largo
+                mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
                 carrito.push({  
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6. Incluye Costilla",
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6. Incluye Costilla, 6 Patas Malakate y 6 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 120000 + 210000// + 6 cubos + 6 patas malacates ???
+                    total : mtsLineales*4500 + 120000 + 210000// + 6 cubos + 6 patas malacates 
                 })                           
             }else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
-                mtsLineales += inputLargo //Suma los mismos mts que el largo
+                mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
                 carrito.push({
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8. Incluye Costilla",
+                    categoria: 'rigging',
+                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8. Incluye Costilla, 8 Patas Malakate y 8 Corner Box Prolyte",
                     cantidad: 1,
                     total : mtsLineales*4500 + 160000 + 280000 //+ 8 cubos + 8 patas malacates ???
                 })
             }else if (valorSeleccionado == "otro") {
                 carrito.push({
+                    categoria: 'rigging',
                     nombre : "Consulte cotización de este cuadrilátero por separado",
                     cantidad: 1,
                     total : 0 
@@ -673,15 +688,11 @@ function agregarGrupo() {
     const operativo = document.querySelector("#operativo").checked
     const backUp = document.querySelector("#back").checked
     const cable = document.querySelector("#distancia").value
-    if ((operativo || backUp)&& (!cable || cable == 0)) {
-        let txt ="Debe ingresar la distancia al punto de tensión";
-        formError(txt, mensaje)
-        validacionOk.gruposOk = false
-    }else{
         if (operativo) {
             cantDeGrupos++
             tengoGrupo = true
             carrito.push({
+                categoria:"grupo",
                 nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
                 cantidad: 1,
                 total : 270000                      //precio grupo operativo
@@ -691,6 +702,7 @@ function agregarGrupo() {
             cantDeGrupos++
             tengoGrupo = true
             carrito.push({
+                categoria: "grupo",
                 nombre : "Grupo CETEC 130 KVA Backup",
                 cantidad: 1,
                 total : 150000                      //precio grupo back 
@@ -698,14 +710,14 @@ function agregarGrupo() {
         }
         if (cable >25) {
             carrito.push({
-                nombre: "Mts Linea Trifásica",
+                categoria: "grupo",
+                nombre: "Mts Línea Trifásica",
                 cantidad: parseInt(cable),
                 total : parseInt(cable) * 2000                            //Precio cable
             })
         }
         validacionOk.gruposOk = true;
     }
-}
 function agregarEnvio() {
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
     const duracion = document.querySelector('input[name="duracion"]:checked')
@@ -765,13 +777,23 @@ function validarCarrito(){
 function evaluarCarrito(){//si carrito tiene solo grupo o mas
     agregarAlCarrito(articulos)
     agregarTramos()
-    if (carrito.length != 0) {
-        carrito = []
-        return true      
-    }else{
-        carrito = []
-        return false 
-    }
+    agregarGrupo()
+    let tamañoDelCarrito = {}
+    carrito.forEach(art =>{
+        if(art.categoria == "iluminacion"){
+            tamañoDelCarrito.iluminacion = true
+        };
+        if(art.categoria == "Sonido"){
+            tamañoDelCarrito.sonido = true
+        };
+        if(art.categoria == "rigging"){
+            tamañoDelCarrito.rigging = true
+        };
+        if(art.categoria == "grupo"){
+            tamañoDelCarrito.grupo = true
+        };
+    })
+    return tamañoDelCarrito 
 }
 function agregarCostosFijos(){
     costosFijos.forEach(articulo=>{
@@ -805,8 +827,7 @@ function renderizarPresupuesto(lista) {
 
 let soloGrupo = false
 function calcularTotal(){
-    let acumulador = carrito.reduce((total, articulo) => total + articulo.total, 0)
-    ;
+    let acumulador = carrito.reduce((total, articulo) => total + articulo.total, 0);
 
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
     const duracion = document.querySelector('input[name="duracion"]:checked').value
@@ -946,17 +967,33 @@ function tiraTuMagia(){
         let muchosProductos = evaluarCarrito()
         agregarAlCarrito(articulos)
         agregarTramos()
-        if (muchosProductos) {                          //cuando hay mas productos ademas del grupo 
-            agregarGrupo()
-            agregarCostosFijos()
-        }else{                                          //si solo alquila un grupo
+        if(carrito.length == 0){
             agregarGrupo()
             soloGrupo = true
+        }else{
+            agregarGrupo()
+        }
+        if (muchosProductos.iluminacion || muchosProductos.rigging) {
+            agregarCostosFijos()
         }
         agregarEnvio()
         carritoParaEnviar = formatearCarrito()
         renderizarPresupuesto(carrito)
     }
+
+    //     agregarAlCarrito(articulos)
+    //     agregarTramos()
+    //     if (muchosProductos) {                          //cuando hay mas productos ademas del grupo 
+    //         agregarGrupo()
+    //         agregarCostosFijos()
+    //     }else{                                          //si solo alquila un grupo
+    //         agregarGrupo()
+    //         soloGrupo = true
+    //     }
+    //     agregarEnvio()
+    //     carritoParaEnviar = formatearCarrito()
+    //     renderizarPresupuesto(carrito)
+    // }
 }
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
 btnPresupuesto.addEventListener("click", function (e) {
