@@ -1208,7 +1208,17 @@ const validateForm = () => {
 }
 btnAplicar.addEventListener('click',(e)=>{
     e.preventDefault()
+    const inputCodigo = document.querySelector("#textCodigo")
+    let codigosValidos= ["BONUS10", "BONUS20", "BONUS30"]
+    if (!codigosValidos.includes(inputCodigo.value)) {
+        let txt = 'Código Inválido'
+        msgAction(txt, 'err', msg)
+    }else{
+        let txt = 'Descuento Aplicado'
+        msgAction(txt, 'success', msg)
+    }
     tiraTuMagia()
+    
 })
 btnTerminos.addEventListener('click', (e)=>{
     e.preventDefault()
