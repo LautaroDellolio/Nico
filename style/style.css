@@ -13,8 +13,7 @@ header{
     padding: 10px;
 }
 header img{
-    margin: 10px 60px;
-    width: 19rem;
+    width: 17rem;
 }
 header ul{
     display: flex;
@@ -208,68 +207,33 @@ h3{
     width: 15%;
 }
 
-.envio{
-    display: flex;
-    justify-content: center;
-    background-color: black;
-    border-radius: 15px;
-    color: white;
-    width: 90%;
+.envio{   
+
+    flex-direction: column; 
     margin: auto;
     margin-top: 10px;
+    width: 60%;                       
 }
-.map{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-.map img{
-    width: 40rem;
-    margin: auto;
-    border-radius: 15px;
-}
-.div-map{
-    display: flex;
-    justify-content: space-between;
+
+.distancia, .duracion, .armado{    
+    background-color: black;
+    color: white;
     padding: 5px;
-    align-items: end;
+    border-radius: 15px;    
+    margin: 10px 0;  
+    padding: 0 20px;               
 }
-.div-map div{
-    display: flex;
-    flex-direction: column;
+.distancia p, .duracion p, .armado p{
     text-align: center;
+    font-size: 1.4rem;
+    padding: 5px;
 }
-.div-map div input{
-    margin: 5px;
-}
-.div-duracion{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-.duracion{
-    /* background-color: grey; */
-    font-size: 1.6rem;
-    /* height: 50px; */
-    padding: 15px;
-}
-.duracion p, .armado p{
-    text-align: center;
-    margin: 10px;
-    
-}
-.duracion div, .armado div{
+.distancia div, .duracion div, .armado div{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin: 5px;
+    margin: 10px 0
 }
-.armado{
-    font-size: 1.6rem;
-    border-radius: 15px;
-    padding: 15px;
-    display: grid;
-}
+
 
 
 .btnStyle{
@@ -477,26 +441,9 @@ footer{
         font-size: 16px;
     }
     .envio {
-        display: flex;
-        flex-direction: column;
+        width: 95%;
     }
-    .map img{
-        width: 20rem;
-    }
-    .div-map{
-        flex-direction: column;
-        padding: 4px;
-        margin-top: 10px;
-        /* justify-content: space-between; */
-    }
-    .div-map div {
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-        text-align: start;
-        margin: 5px 0;
-    }
-
+    
     .listado{
         flex-direction: column;
     }

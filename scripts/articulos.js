@@ -8,13 +8,13 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Cabezal Móvil PLS 3en1 7R",
-        img: "./img/Captura de pantalla 2023-07-06 a la(s) 10.58.13.png",
+        img: "./img/Captura de pantalla 2023-07-06 a la(s) 15.34.30.png",
         precio: 27500,
     },
     {
         categoria: "iluminacion",
         nombre: "Cabezal Movil AURA",
-        img: "./img/Captura de pantalla 2023-07-06 a la(s) 10.58.28.png",
+        img: "./img/Captura de pantalla 2023-07-06 a la(s) 15.34.37.png",
         precio: 27500
     },
     {
@@ -38,7 +38,7 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Proton Inalámbrico",
-        img: "./img/Proton Inalambrico.jpeg",
+        img: "./img/Captura de pantalla 2023-07-06 a la(s) 15.32.50.png",
         precio: 9000
     },
     {
@@ -129,7 +129,7 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Dimmer 12 Ch / Usina tension",
-        img: "./img/Dimmier12CH.jpg",
+        img: "./img/dimmer - usina.jpeg",
         precio: 35000
     },{
         categoria: "iluminacion",
@@ -140,13 +140,13 @@ const articulos = [
     {
         categoria: "iluminacion",
         nombre: "Toma Tensión Hasta 10 Amperes",
-        img: "./img/TomaTension.jpg",
+        img: "./img/toma 10 AMPS.jpeg",
         precio: 8800
     },
     {
         categoria: "iluminacion",
         nombre: "Toma Tensión Hasta 20 Amperes",
-        img: "./img/TomaTension.jpg",
+        img: "./img/TOMA 20 AMP.jpeg",
         precio: 16500
     },
     {
@@ -897,35 +897,29 @@ function calcularTotal(){
 
     if (codigo.checked) {
         switch (inputCodigo.value){
-            case "100%" :
-                acumulador *= 0
-                break;
-            case "90%" :
-                acumulador *= 0.1
-                break;
-            case "80%" :
-                acumulador *= 0.2
-                break;
-            case "70%" :
-                acumulador *= 0.3
-                break;
-            case "60%" :
-                acumulador *= 0.4
-                break;
-            case "50%" :
-                acumulador *= 0.5
-                break;
-                case "40%" :
-                acumulador *= 0.6
-                break;
-                case "BONUS30" :
+            case "BONUS30" :
                 acumulador *= 0.7
+                carrito.push({
+                    nombre: "Descuento 30%",
+                    cantidad : 1,
+                    total  : 0
+                })
                 break;
-                case "BONUS20" :
+            case "BONUS20" :
                 acumulador *= 0.8
+                carrito.push({
+                    nombre: "Descuento 20%",
+                    cantidad : 1,
+                    total  : 0
+                })
                 break;
-                case "BONUS10" :
+            case "BONUS10" :
                 acumulador *= 0.9
+                carrito.push({
+                    nombre: "Descuento 10%",
+                    cantidad : 1,
+                    total  : 0
+                })
                 break;
         }
         
