@@ -824,7 +824,7 @@ function renderizarPresupuesto(lista) {
         presupuesto.innerHTML +=
             `<li> ${articulo.cantidad}&nbsp;&nbsp;${articulo.nombre}</li>`
     })
-    precio.innerText = `Total: $ ${totalFormateado} ` //
+    precio.innerText = `Total: $ ${totalFormateado} `
 }
 
 let soloGrupo = false
@@ -976,20 +976,6 @@ function tiraTuMagia(){
         carritoParaEnviar = formatearCarrito()
         renderizarPresupuesto(carrito)
     }
-
-    //     agregarAlCarrito(articulos)
-    //     agregarTramos()
-    //     if (muchosProductos) {                          //cuando hay mas productos ademas del grupo 
-    //         agregarGrupo()
-    //         agregarCostosFijos()
-    //     }else{                                          //si solo alquila un grupo
-    //         agregarGrupo()
-    //         soloGrupo = true
-    //     }
-    //     agregarEnvio()
-    //     carritoParaEnviar = formatearCarrito()
-    //     renderizarPresupuesto(carrito)
-    // }
 }
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
 btnPresupuesto.addEventListener("click", function (e) {
@@ -1109,7 +1095,7 @@ const generarPDF = () => {
                     fontSize: 14 //optional, default 12
                 }
             },
-            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES. \n El presente presupuesto se mantiene vigente abonando el 100% dentro de los proximos 30 dias. \n Pasado este tiempo se aplicará un aumento mensual según el índice IPCBA.  "
+            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES. \n Este presupuesto queda pendiente de aprobación y sujeto a disponibilidad."
             // invDescLabelStyle: {
             //     fontSize: 10,
             //     textColor: [0, 0, 0],
@@ -1248,10 +1234,11 @@ btnEmail.addEventListener('click', (e) => {
         fecha: null,
         hora: null,
         presupuesto: [],
-        
     }
 
-    // let pdf = generarPDF()
+    let pdf = generarPDF()
+    console.log(pdf);
+    // let blob = new Blob([JSON.stringify(pdf)], { type: 'application/json' });
 
     formData.nombre = formDatos.elements.Nombre.value.trim()
     formData.apellido = formDatos.elements.Apellido.value.trim()
@@ -1259,7 +1246,7 @@ btnEmail.addEventListener('click', (e) => {
     formData.correo = formDatos.elements.Email.value.trim()
     formData.fecha = formDatos.elements.Date.value.trim()
     formData.presupuesto = carritoParaEnviar
-    // formData.file = pdf
+    // formData.append('pdfFile', blob, 'archivo.pdf');
 
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
