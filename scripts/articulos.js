@@ -959,8 +959,8 @@ function validarTodo() {
 function tiraTuMagia(){
     let validacion = validarTodo()
     if (validacion) {
-        carrito = []
         let muchosProductos = evaluarCarrito()
+        carrito = []
         agregarAlCarrito(articulos)
         agregarTramos()
         if(carrito.length == 0){
@@ -1248,6 +1248,7 @@ btnEmail.addEventListener('click', (e) => {
         fecha: null,
         hora: null,
         presupuesto: [],
+        
     }
 
     // let pdf = generarPDF()
@@ -1258,12 +1259,22 @@ btnEmail.addEventListener('click', (e) => {
     formData.correo = formDatos.elements.Email.value.trim()
     formData.fecha = formDatos.elements.Date.value.trim()
     formData.presupuesto = carritoParaEnviar
+    // formData.file = pdf
 
-    // sendEmail(formData)
-    generarPDF()
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
-    // formDatos.reset()
-    // formProduct.reset()
+    sendEmail(formData)
+    generarPDF()
+    formDatos.reset()
+    formProduct.reset()
+    setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth" // agrega desplazamiento suave
+        });
+        const titulo = document.querySelector("#list")
+        titulo.setAttribute("style", "display: none")
+    }, 3000)
+    
 })
 
