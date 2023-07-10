@@ -1015,7 +1015,7 @@ const generarPDF = () => {
         orientationLandscape: false,
         compress: true,
         logo: {
-            src: '../img/logoStoesel.png',
+            src: './img/logoStoesel.png',
             type: 'PNG', //optional, when src= data:uri (nodejs case)
             width: 70, //aspect ratio = width/height
             height: 26.66,
