@@ -25,103 +25,135 @@
     <main>
       <img src="./img/DSC05950.jpeg" alt="banner" class="imgBanner" />
       <!-- <h1 id="about">Sobre Nosotros</h1> -->
-      <p class="about-us">Nos dedicamos a los eventos hace más de 20 años. 
-        Somos proveedores de equipamiento técnico para eventos. Ofrecemos calidad y excelencia. Lo logramos gracias a la combinación de nuestro personal apasionado y tecnología innovadora.
-        Nos gusta la calidad y la ofrecemos.
-        Mediante desafíos técnicos propios de nuestros clientes, logramos que un evento sea fascinante desde el momento de producción. Generamos verdadera sinergia para que un evento sea exitoso y que logre despertar emociones.
-        Nuestra pasión por lo que hacemos, marca la diferencia.         
+      <p class="about-us">
+        Nos dedicamos a los eventos hace más de 20 años. Somos proveedores de
+        equipamiento técnico para eventos. Ofrecemos calidad y excelencia. Lo
+        logramos gracias a la combinación de nuestro personal apasionado y
+        tecnología innovadora. Nos gusta la calidad y la ofrecemos. Mediante
+        desafíos técnicos propios de nuestros clientes, logramos que un evento
+        sea fascinante desde el momento de producción. Generamos verdadera
+        sinergia para que un evento sea exitoso y que logre despertar emociones.
+        Nuestra pasión por lo que hacemos, marca la diferencia.
       </p>
 
       <form action="" id="formProduct">
         <h3 id="catalogo" class="btnSonido styleBtn">SONIDO</h3>
-        <section class="sonido styleSection" id="sectionSonido" style="display: none;"></section>
+        <section
+          class="sonido styleSection"
+          id="sectionSonido"
+          style="display: none"
+        ></section>
 
         <h3 id="catalogo" class="btnRigging styleBtn">RIGGING</h3>
-        <section class="rigging styleSection sectionRigging" style="display: none;"></section>
-        <section class="cuadrilatero sectionRiggingCuadrilatero" style="display: none;">
-            <h4>DETALLE DEL  CUADRILÁTERO</h4>
-            <div class="divCuadrilatero">
-              <article>
-                <p>Medidas</p>
-                <div class="divMedidas">
-                  <label class="labelCuadrilatero" for="">Largo</label>
-                  <input type="number" placeholder="Mts" class="styleInput largo valorInputs" />
-                </div>
-                <div class="divMedidas">
-                  <label class="labelCuadrilatero" for="">Ancho</label>
-                  <input type="number" placeholder="Mts" class="styleInput ancho valorInputs" />
-                </div>
-                <div class="divMedidas">
-                  <label class="labelCuadrilatero" for="">Alto</label>
-                  <input type="number" placeholder="Mts" class="styleInput alto valorInputs" />
-                </div>
-              </article>
-              <article>
-                <p>Instalación</p>
+        <section
+          class="rigging styleSection sectionRigging"
+          style="display: none"
+        ></section>
+        <section
+          class="cuadrilatero sectionRiggingCuadrilatero"
+          style="display: none"
+        >
+          <h4>DETALLE DEL CUADRILÁTERO</h4>
+          <div class="divCuadrilatero">
+            <article>
+              <p>Medidas</p>
+              <div class="divMedidas">
+                <label class="labelCuadrilatero" for="">Largo</label>
+                <input
+                  type="number"
+                  placeholder="Mts"
+                  class="styleInput largo valorInputs"
+                />
+              </div>
+              <div class="divMedidas">
+                <label class="labelCuadrilatero" for="">Ancho</label>
+                <input
+                  type="number"
+                  placeholder="Mts"
+                  class="styleInput ancho valorInputs"
+                />
+              </div>
+              <div class="divMedidas">
+                <label class="labelCuadrilatero" for="">Alto</label>
+                <input
+                  type="number"
+                  placeholder="Mts"
+                  class="styleInput alto valorInputs"
+                />
+              </div>
+            </article>
+            <article>
+              <p>Instalación</p>
+              <div>
+                <label class="labelCuadrilatero">Colgado</label>
+                <input
+                  type="radio"
+                  id="colgado"
+                  value="colgado"
+                  name="sistema"
+                  class="check"
+                />
+              </div>
+              <div>
+                <label class="labelCuadrilatero">De pie</label>
+                <input
+                  type="radio"
+                  id="pie"
+                  value="pie"
+                  name="sistema"
+                  class="check"
+                />
+              </div>
+              <div style="display: none" class="patas">
+                <label class="labelCuadrilatero">Cantidad de Patas</label>
                 <div>
-                  <label class="labelCuadrilatero">Colgado</label>
+                  <label class="labelCuadrilatero">4</label>
                   <input
                     type="radio"
-                    id="colgado"
-                    value="colgado"
-                    name="sistema"
+                    id="cantPatas4"
+                    value="4"
+                    name="cantPatas"
+                    class="check"
+                  />
+                  <label class="labelCuadrilatero">6</label>
+                  <input
+                    type="radio"
+                    id="cantPatas6"
+                    value="6"
+                    name="cantPatas"
+                    class="check"
+                  />
+                  <label class="labelCuadrilatero">8</label>
+                  <input
+                    type="radio"
+                    id="cantPatas8"
+                    value="8"
+                    name="cantPatas"
                     class="check"
                   />
                 </div>
-                <div>
-                  <label class="labelCuadrilatero">De pie</label>
-                  <input
-                    type="radio"
-                    id="pie"
-                    value="pie"
-                    name="sistema"
-                    class="check"
-                  />
-                </div>
-                <div style="display: none" class="patas">
-                  <label class="labelCuadrilatero">Cantidad de Patas</label>
-                  <div>
-                    <label class="labelCuadrilatero">4</label>
-                    <input
-                      type="radio"
-                      id="cantPatas4"
-                      value="4"
-                      name="cantPatas"
-                      class="check"
-                    />
-                    <label class="labelCuadrilatero">6</label>
-                    <input
-                      type="radio"
-                      id="cantPatas6"
-                      value="6"
-                      name="cantPatas"
-                      class="check"
-                    />
-                    <label class="labelCuadrilatero">8</label>
-                    <input
-                      type="radio"
-                      id="cantPatas8"
-                      value="8"
-                      name="cantPatas"
-                      class="check"
-                    />
-                  </div>
-                </div>
-                <div class="divMedidas">
-                  <label class="labelCuadrilatero" for="">Incluye Costilla</label>
-                  <input type="checkbox" id="costilla" />
-                </div>
-              </article>
-            </div>
+              </div>
+              <div class="divMedidas">
+                <label class="labelCuadrilatero" for="">Incluye Costilla</label>
+                <input type="checkbox" id="costilla" />
+              </div>
+            </article>
+          </div>
         </section>
 
         <h3 id="catalogo" class="btnIluminacion styleBtn">ILUMINACIÓN</h3>
-        <section class="luces styleSection" id="sectionLuces" style="display: none;"></section>
+        <section
+          class="luces styleSection"
+          id="sectionLuces"
+          style="display: none"
+        ></section>
 
         <h3 id="catalogo" class="btnGrupo styleBtn">GRUPO ELECTRÓGENO</h3>
-        <section class="grupo" id="sectionGrupo" style="display: none;">
+        <section class="grupo" id="sectionGrupo" style="display: none">
           <div>
-            <label class="labelCuadrilatero" for="">Grupo CETEC 130 KVA Operativo (10 Hs de uso) </label>
+            <label class="labelCuadrilatero" for=""
+              >Grupo CETEC 130 KVA Operativo (10 Hs de uso)
+            </label>
             <input
               type="checkbox"
               value="Grupo CETEC 130 KVA Operativo (10 Hs de uso)"
@@ -129,7 +161,9 @@
             />
           </div>
           <div>
-            <label class="labelCuadrilatero" for="">Grupo CETEC 130 KVA Backup</label>
+            <label class="labelCuadrilatero" for=""
+              >Grupo CETEC 130 KVA Backup</label
+            >
             <input
               type="checkbox"
               value="Grupo CETEC 130 KVA Backup"
@@ -137,7 +171,9 @@
             />
           </div>
           <div>
-            <label class="labelCuadrilatero" for="">Distancia al punto de tensión</label>
+            <label class="labelCuadrilatero" for=""
+              >Distancia al punto de tensión</label
+            >
             <input
               type="number"
               placeholder="Mts"
@@ -148,7 +184,7 @@
         </section>
 
         <h3 class="btnTransporte styleBtn">INFORMACIÓN DEL EVENTO</h3>
-        <section class="envio" id="sectionTransporte" style="display: none;">
+        <section class="envio" id="sectionTransporte" style="display: none">
           <article class="distancia">
             <p>Distancia</p>
             <div>
@@ -160,27 +196,27 @@
                 value="Envío hasta 50km"
                 class="check"
               />
-              </div>
-              <div>
-                <label for="">Hasta 100 KM (Pilar - Campana - Cañuelas)</label>
-                <input
-                  type="radio"
-                  name="zona"
-                  id="zona2"
-                  value="Envío hasta 100km"
-                  class="check"
-                />
-              </div>
-              <div>
-                <label for="">Más de 100 KM</label>
-                <input
-                  type="radio"
-                  name="zona"
-                  id="zona3"
-                  value="Más de 100 Km. Consulte cotización. Envío no incluido en el total."
-                  class="check"
-                />
-              </div>
+            </div>
+            <div>
+              <label for="">Hasta 100 KM (Pilar - Campana - Cañuelas)</label>
+              <input
+                type="radio"
+                name="zona"
+                id="zona2"
+                value="Envío hasta 100km"
+                class="check"
+              />
+            </div>
+            <div>
+              <label for="">Más de 100 KM</label>
+              <input
+                type="radio"
+                name="zona"
+                id="zona3"
+                value="Más de 100 Km. Consulte cotización. Envío no incluido en el total."
+                class="check"
+              />
+            </div>
           </article>
           <article class="duracion">
             <p>Duración</p>
@@ -206,10 +242,7 @@
             </div>
             <div>
               <label for="">Más</label>
-              <input type="radio"
-                name="duracion" 
-                id="diaOtro" 
-                class="check"/>
+              <input type="radio" name="duracion" id="diaOtro" class="check" />
             </div>
             <div class="dias" style="display: none">
               <label for="">Cantidad de días</label>
@@ -243,7 +276,7 @@
                 class="check"
               />
             </div>
-          </article>          
+          </article>
         </section>
 
         <button class="btnPresupuesto btnStyle" type="submit">
@@ -251,7 +284,7 @@
         </button>
         <div id="mensajePresupuesto" class="divErr"></div>
       </form>
-      <section class="listado" id="list" style="display: none"> 
+      <section class="listado" id="list" style="display: none">
         <div class="divListado">
           <h2>Listado de Artículos</h2>
           <ul class="listaArticulos"></ul>
@@ -260,14 +293,14 @@
         <form action="" class="formulario" id="formData">
           <div>
             <label for="">Nombre</label>
-            <input type="text" placeholder="Nombre" name="Nombre" required />
+            <input type="text" placeholder="Nombre" name="nombre" required />
           </div>
           <div>
             <label for="">Apellido</label>
             <input
               type="text"
               placeholder="Apellido"
-              name="Apellido"
+              name="apellido"
               required
             />
           </div>
@@ -276,43 +309,44 @@
             <input
               type="number"
               placeholder="Teléfono"
-              name="Telefono"
+              name="telefono"
               required
             />
           </div>
           <div>
             <label for="">Email</label>
-            <input type="email" placeholder="Email" name="Email" required />
+            <input type="email" placeholder="Email" name="correo" required />
           </div>
           <div>
             <label for="">Fecha del Evento</label>
-            <input type="date" placeholder="DD/MM/AA" name="Date" required />
+            <input type="date" placeholder="DD/MM/AA" name="fecha" required />
+          </div>
+          <div>
+            <label for="">Cargar Presupuesto</label>
+            <input
+              type="file"
+              placeholder="Subir archivo PDF"
+              name="my_file"
+              required
+            />
           </div>
           <section class="codigo">
             <div class="tengoCodigo">
               <label for="">Tengo un código</label>
-              <input 
-                type="checkbox"
-                name="TengoCodigo"
-                id="checkCodigo"
-              />
+              <input type="checkbox" name="TengoCodigo" id="checkCodigo" />
             </div>
-            <div style="display: none;" id="divCodigo" class="textoCodigo">
-              <input 
-                type="text"
-                name="inputCodigo"
-                id="textCodigo"
-              />
+            <div style="display: none" id="divCodigo" class="textoCodigo">
+              <input type="text" name="inputCodigo" id="textCodigo" />
               <button class="btnAplicar" id="btn-aplicar">Aplicar</button>
             </div>
           </section>
           <section class="terminos">
-            <label for=""><button id="btn-terminos" class="btn-terminos"><small>Ver </small>Términos y Condiciones</button></label>
-            <input 
-              type="checkbox"
-              name="Terminos"
-              required
-            />
+            <label for=""
+              ><button id="btn-terminos" class="btn-terminos">
+                <small>Ver </small>Términos y Condiciones
+              </button></label
+            >
+            <input type="checkbox" name="Terminos" required />
           </section>
           <button class="btnForm btnStyle invertido" id="btn-email">
             Enviar Solicitud
@@ -320,58 +354,111 @@
           <div id="message" class=""></div>
         </form>
       </section>
-      <div class="terminosYcondiciones" style="display: none;">
+      <div class="terminosYcondiciones" style="display: none">
         <ul>
-          <li>Este presupuesto queda pendiente de aprobación y sujeto a disponibilidad</li>
+          <li>
+            Este presupuesto queda pendiente de aprobación y sujeto a
+            disponibilidad
+          </li>
           <li>Los precios no incluyen IVA (21%).</li>
           <li>El presente presupuesto tiene una validez de 30 días.</li>
-          <li>En caso de confirmar el presupuesto y de no abonar dentro de los 30 días, el mismo sufrirá un incremento mensual según índice ipc. 	</li>
+          <li>
+            En caso de confirmar el presupuesto y de no abonar dentro de los 30
+            días, el mismo sufrirá un incremento mensual según índice ipc.
+          </li>
           <li>El pago total deberá estar saldado 48 hs antes del evento.</li>
-          <li>El cliente será responsable: total y parcialmente por los equipos locados, por roturas ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos.</li>
-          <li>El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante todo el período de contratación del servicio, incluyendo la instalación, el evento, y la desinstalación del mismo para el cuidado de todo el equipamiento.</li>
-          <li>Los precios detallados incluyen gastos de transportes, y de personal. </li>
-          <li>Los precios son por un día de evento. Por más de un día se realizará otra cotización.</li>
-          <li>En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará cargo del cien por cien del precio convenido.</li>
-          <li>Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva.</li>
-          <li>Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, recomendamos la contratación de equipos de backup que aseguren la prestación del servicio en caso de una eventual falla en alguno de los mismos.</li>
-          <li>En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado. </li>
-          <li>Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. </li>
-          <li>Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.</li>
+          <li>
+            El cliente será responsable: total y parcialmente por los equipos
+            locados, por roturas ajenas al buen uso, robo, hurto o deterioro del
+            equipamiento como así también daños ocasionados a terceros que
+            pudieran surgir por caso fortuito y/o motivos ajenos a nuestra
+            empresa, desde el momento de su ingreso al predio hasta el retiro de
+            los mismos.
+          </li>
+          <li>
+            El lugar donde se desarrollará el evento deberá contar con personal
+            de seguridad durante todo el período de contratación del servicio,
+            incluyendo la instalación, el evento, y la desinstalación del mismo
+            para el cuidado de todo el equipamiento.
+          </li>
+          <li>
+            Los precios detallados incluyen gastos de transportes, y de
+            personal.
+          </li>
+          <li>
+            Los precios son por un día de evento. Por más de un día se realizará
+            otra cotización.
+          </li>
+          <li>
+            En caso de que el evento se suspenda por condiciones climáticas
+            desfavorables, o por cualquier otra cancelación, habiendo sido
+            instalado el equipamiento, el cliente se hará cargo del cien por
+            cien del precio convenido.
+          </li>
+          <li>
+            Los equipos presupuestados estarán sujetos a su disponibilidad al
+            momento de la reserva.
+          </li>
+          <li>
+            Si se contratan grupos electrógenos y el mismo es esencial para el
+            desarrollo del evento, recomendamos la contratación de equipos de
+            backup que aseguren la prestación del servicio en caso de una
+            eventual falla en alguno de los mismos.
+          </li>
+          <li>
+            En ningún caso Stoessel SRL será responsable por eventuales
+            perjuicios al cliente o terceros derivados de la paralización del
+            equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá
+            indemnización alguna por lucro cesante, ganancia esperada, aptitudes
+            implícitas o daño emergente por el no o mal funcionamiento del
+            equipamiento alquilado. 
+          </li>
+          <li>
+            Para locaciones en donde la altura de trabajo sea superior a 4
+            metros el cliente deberá proveer al menos un elevador hidráulico.
+          </li>
+          <li>
+            Están incluidos los seguros del personal contra accidentes de
+            trabajo y seguro por responsabilidad civil.
+          </li>
         </ul>
         <button class="btnStyle invertido" id="btn-ocultar">Ocultar</button>
       </div>
     </main>
     <footer id="footer" class="about-footer">
-      
-        <img src="./img/IsoLogoStöesel_CYMK-Blanco.png" alt="" class="img-footer" />
-        <div class="div-about">
-          <a href="https://www.instagram.com/stoessel_ing/"
-            ><i class="fa-brands fa-instagram icons"></i
-          ></a>
-          <a href="https://www.facebook.com/stoesseleventos"
-            ><i class="fa-brands fa-facebook icons"></i
-          ></a>
-          <a href="https://www.youtube.com/@stoesselingenieriaenevento950"
-            ><i class="fa-brands fa-youtube icons"></i
-          ></a>
-          <a href="https://api.whatsapp.com/send?phone=999999999999&text=Hola%20gracias%20por%20comunicarte,%20por%20favor%20envia%20el%20pdf"><i class="fa-brands fa-whatsapp icons"></i></a>
-        </div>
-        <div class="contact">
-          <h4>Contacto</h4>
-          <div class="div-contact">
-            <div>
-              <i class="fa-solid fa-phone"></i>
-              <small>+549 115 226 7233</small>
-            </div>
-            <div>
-              <i class="fa-solid fa-square-envelope"></i>
-              <small>info@stoessel-events.com</small>
-            </div>
-            
+      <img
+        src="./img/IsoLogoStöesel_CYMK-Blanco.png"
+        alt=""
+        class="img-footer"
+      />
+      <div class="div-about">
+        <a href="https://www.instagram.com/stoessel_ing/"
+          ><i class="fa-brands fa-instagram icons"></i
+        ></a>
+        <a href="https://www.facebook.com/stoesseleventos"
+          ><i class="fa-brands fa-facebook icons"></i
+        ></a>
+        <a href="https://www.youtube.com/@stoesselingenieriaenevento950"
+          ><i class="fa-brands fa-youtube icons"></i
+        ></a>
+        <a
+          href="https://api.whatsapp.com/send?phone=999999999999&text=Hola%20gracias%20por%20comunicarte,%20por%20favor%20envia%20el%20pdf"
+          ><i class="fa-brands fa-whatsapp icons"></i
+        ></a>
+      </div>
+      <div class="contact">
+        <h4>Contacto</h4>
+        <div class="div-contact">
+          <div>
+            <i class="fa-solid fa-phone"></i>
+            <small>+549 115 226 7233</small>
+          </div>
+          <div>
+            <i class="fa-solid fa-square-envelope"></i>
+            <small>info@stoessel-events.com</small>
           </div>
         </div>
-      
-      
+      </div>
     </footer>
     <script
       type="text/javascript"

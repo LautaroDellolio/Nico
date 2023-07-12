@@ -71,7 +71,7 @@ const articulos = [
         img: "./img/Fresnel1k.jpg",
         precio: 11000
     },
-    
+
     {
         categoria: "iluminacion",
         nombre: "Barra de Led",
@@ -131,7 +131,7 @@ const articulos = [
         nombre: "Dimmer 12 Ch / Usina tension",
         img: "./img/dimmer - usina.jpeg",
         precio: 35000
-    },{
+    }, {
         categoria: "iluminacion",
         nombre: "Corralito Técnico",
         img: "./img/Corralito.jpg",
@@ -280,17 +280,17 @@ const costosFijos = [
         categoria: "fijo",
         nombre: "Dimmer 12 ch / Usina De Tensión",
         precio: 162500 //consola +corralito + dimmer
-    }    
+    }
 ]
 let carrito = []
 let carritoParaEnviar = []
 
-const validacionOk ={
-    inputsOk : true, 
-    carritoOk : true,
-    tramosOk : true,
-    gruposOk : true,
-    envioOk : true
+const validacionOk = {
+    inputsOk: true,
+    carritoOk: true,
+    tramosOk: true,
+    gruposOk: true,
+    envioOk: true
 }
 
 window.addEventListener("load", () => {
@@ -305,7 +305,7 @@ window.addEventListener("change", () => {
     const masDias = document.querySelector("#diaOtro")
     const cantDias = document.querySelector(".dias")
     const codigo = document.querySelector("#checkCodigo")
-    const inputCodigo = document.querySelector("#divCodigo")  
+    const inputCodigo = document.querySelector("#divCodigo")
 
     if (dePie.checked) {
         cantPatas.setAttribute("style", "display:block")
@@ -323,10 +323,10 @@ window.addEventListener("change", () => {
     } else {
         inputCodigo.setAttribute("style", "display:none")
     }
-  
-    
+
+
 })
-function ocultarSeciones(){
+function ocultarSeciones() {
     const btnLuces = document.querySelector(".btnIluminacion");
     const btnSonido = document.querySelector(".btnSonido");
     const btnRigging = document.querySelector(".btnRigging");
@@ -341,8 +341,8 @@ function ocultarSeciones(){
         "btnTransporte": document.getElementById("sectionTransporte")
     };
 
-    [btnLuces, btnSonido, btnRigging, btnGrupo, btnTransporte].forEach(function(btn) {
-        btn.addEventListener("click", function() {
+    [btnLuces, btnSonido, btnRigging, btnGrupo, btnTransporte].forEach(function (btn) {
+        btn.addEventListener("click", function () {
             const seccion = secciones[btn.classList[0]];
 
             if (seccion.style.display === "none") {
@@ -353,7 +353,7 @@ function ocultarSeciones(){
                 if (btn.classList.contains("btnGrupo")) {
                     document.getElementById("sectionGrupo").style.display = "block";
                 }
-            }else {
+            } else {
                 seccion.style.display = "none";
                 if (btn.classList.contains("btnRigging")) {
                     document.querySelector(".sectionRiggingCuadrilatero").style.display = "none";
@@ -424,7 +424,7 @@ function renderizarArticulos(lista) {
 
         if (categoria == ILUMINACION) {
             sectionLuces.innerHTML +=
-            `<article class="box">
+                `<article class="box">
                 <img src="${img}" alt="" class="imgBox">
                 <h4 class="text-box">${nombre}</h4>
                 <div class="divBox">
@@ -482,11 +482,11 @@ function validarDatos(datos) {            //De los inputs de productos
 function agregarAlCarrito(lista) {
     const inputs = document.querySelectorAll(".valorInputs");
     const validacion = validarDatos(inputs)
-    if(!validacion){
+    if (!validacion) {
         let txt = "Los campos sólo pueden contener números enteros y positivos. Por favor, corrija los campos resaltados en rojo antes de continuar."
         formError(txt, mensaje)
         validacionOk.inputsOk = false
-    }else{
+    } else {
         carrito = lista.map(articulo => {
             const input = document.getElementById(articulo.id)
             if (input.value != 0) {
@@ -506,7 +506,7 @@ function agregarAlCarrito(lista) {
     }
 }
 const artSonido = document.querySelectorAll(".artSonido")
-    
+
 
 const tramosLargo = document.querySelector(".largo")
 const tramosAncho = document.querySelector(".ancho")
@@ -520,13 +520,13 @@ let valorSeleccionado = null;
 function validarTramos() {
     let inputLargo = tramosLargo.value
     let inputAncho = tramosAncho.value
-    let inputAlto =  tramosAlto.value
+    let inputAlto = tramosAlto.value
     let colgado = tramosColgado.checked
     let dePie = tramosDePie.checked
-    
+
     let patas = tramosCantPatas
     let validacion = false
-    
+
     for (let i = 0; i < patas.length; i++) {
         if (patas[i].checked) {
             nodoConCheck = patas[i];
@@ -534,33 +534,33 @@ function validarTramos() {
         }
     }
 
-    if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0) )) {
-        let txt ="Todos los campos de largo, ancho y alto son obligatorios";
+    if (((inputLargo || inputAncho || inputAlto)) && ((!inputLargo || !inputAncho || !inputAlto) || (inputLargo == 0 || inputAncho == 0 || inputAlto == 0))) {
+        let txt = "Todos los campos de largo, ancho y alto son obligatorios";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    }else if ((inputLargo || inputAncho || inputAlto)&&(!colgado && !dePie)) {
-        let txt ="Debe seleccionar la opción de colgado o de pie";
+    } else if ((inputLargo || inputAncho || inputAlto) && (!colgado && !dePie)) {
+        let txt = "Debe seleccionar la opción de colgado o de pie";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    }else if (dePie && nodoConCheck == null){
-        let txt ="Debe seleccionar la cantidad de patas";
+    } else if (dePie && nodoConCheck == null) {
+        let txt = "Debe seleccionar la cantidad de patas";
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    }else if ((colgado|| dePie)&&(!inputLargo || !inputAncho || !inputAlto)) {
+    } else if ((colgado || dePie) && (!inputLargo || !inputAncho || !inputAlto)) {
         let txt = "Debe ingresar las medidas del cuadrilátero"
         formError(txt, mensaje)
         validacionOk.tramosOk = false
-    }else{
+    } else {
         validacionOk.tramosOk = true
         validacion = true
     }
     return validacion
 }
-function agregarTramos() {  
+function agregarTramos() {
     let valido = validarTramos()
     let inputLargo = tramosLargo.value
     let inputAncho = tramosAncho.value
-    let inputAlto =  tramosAlto.value
+    let inputAlto = tramosAlto.value
     let colgado = tramosColgado.checked
     let dePie = tramosDePie.checked
     let patas = tramosCantPatas
@@ -572,43 +572,43 @@ function agregarTramos() {
             if (inputLargo <= 10 && inputAncho <= 10) {
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye: 4 Aparejo x 1Tn y 4 Corner Box Prolyte ",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Instalación: Colgado. Incluye: 4 Aparejo x 1Tn y 4 Corner Box Prolyte ",
                     cantidad: 1,
-                    total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 Aparejos + 4 cubos
+                    total: mtsLineales * 4500 + 80000 + 32000 //Precio mts lineales + 4 Aparejos + 4 cubos
                 })
-            }else{
+            } else {
                 carrito.push({ //Cuadrilatero Superiores
                     categoria: 'rigging',
                     nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
-                    cantidad : 1,
-                    total : 0
+                    cantidad: 1,
+                    total: 0
                 })
             }
         }
         if (dePie) {
             if (valorSeleccionado == 4) {
                 mtsLineales += parseInt(inputAlto) * 4 //agrego a los mts lineales las patas
-                carrito.push({  
+                carrito.push({
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4 Incluye: 4 Patas Malakate y 4 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Cant Patas: 4 Incluye: 4 Patas Malakate y 4 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 80000 + 140000 // mts lineales + 4 cubos + 4 patas malakates 
+                    total: mtsLineales * 4500 + 80000 + 140000 // mts lineales + 4 cubos + 4 patas malakates 
                 })
-            }else if (valorSeleccionado == 6) {
+            } else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
                 carrito.push({
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6 Incluye: 6 Patas Malakate y 6 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Cant Patas: 6 Incluye: 6 Patas Malakate y 6 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 120000 + 210000 // mts lineales + 6 cubos + 6 patas malacates
-                })                           
-            }else if (valorSeleccionado == 8) {
+                    total: mtsLineales * 4500 + 120000 + 210000 // mts lineales + 6 cubos + 6 patas malacates
+                })
+            } else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
                 carrito.push({
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8 Incluye: 8 Patas Malakate y 8 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Cant Patas: 8 Incluye: 8 Patas Malakate y 8 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 160000 + 280000 // mts lineales + 8 cubos + 8 patas malacates
+                    total: mtsLineales * 4500 + 160000 + 280000 // mts lineales + 8 cubos + 8 patas malacates
                 })
             }
             // }else if (valorSeleccionado == "otro") {
@@ -627,16 +627,16 @@ function agregarTramos() {
                 mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
                 carrito.push({  //Cuadrilatero Hasta 10 x 10
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Instalación: Colgado. Incluye Costilla, 4 Aparejo x 1Tn y 4 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Instalación: Colgado. Incluye Costilla, 4 Aparejo x 1Tn y 4 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500+80000+32000 //Precio mts lineales + 4 cubos + 4  Aparejos
+                    total: mtsLineales * 4500 + 80000 + 32000 //Precio mts lineales + 4 cubos + 4  Aparejos
                 })
-            }else{
+            } else {
                 carrito.push({ //Cuadrilatero Superiores
                     categoria: 'rigging',
                     nombre: "Cuadriláteros superiores a 10 Mts se cotizarán por separado.",
-                    cantidad : 1,
-                    total : 0
+                    cantidad: 1,
+                    total: 0
                 })
             }
         }
@@ -646,27 +646,27 @@ function agregarTramos() {
                 mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
                 carrito.push({
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 4. Incluye Costilla, 4 Patas Malakate y 4 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Cant Patas: 4. Incluye Costilla, 4 Patas Malakate y 4 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 80000 +  140000// + 4 cubos + 4 patas malacates 
+                    total: mtsLineales * 4500 + 80000 + 140000// + 4 cubos + 4 patas malacates 
                 })
-            }else if (valorSeleccionado == 6) {
+            } else if (valorSeleccionado == 6) {
                 mtsLineales += parseInt(inputAlto) * 6
                 mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
-                carrito.push({  
+                carrito.push({
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 6. Incluye Costilla, 6 Patas Malakate y 6 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Cant Patas: 6. Incluye Costilla, 6 Patas Malakate y 6 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 120000 + 210000// + 6 cubos + 6 patas malacates 
-                })                           
-            }else if (valorSeleccionado == 8) {
+                    total: mtsLineales * 4500 + 120000 + 210000// + 6 cubos + 6 patas malacates 
+                })
+            } else if (valorSeleccionado == 8) {
                 mtsLineales += parseInt(inputAlto) * 8
                 mtsLineales += parseInt(inputLargo) //Suma los mismos mts que el largo
                 carrito.push({
                     categoria: 'rigging',
-                    nombre : "Cuadrilátero de " + mtsLineales + "Mts Truss." + "("+ inputLargo+"X" + inputAncho+")" + " Altura: " + inputAlto+ "Mts. Cant Patas: 8. Incluye Costilla, 8 Patas Malakate y 8 Corner Box Prolyte",
+                    nombre: "Cuadrilátero de " + mtsLineales + "Mts Truss." + "(" + inputLargo + "X" + inputAncho + ")" + " Altura: " + inputAlto + "Mts. Cant Patas: 8. Incluye Costilla, 8 Patas Malakate y 8 Corner Box Prolyte",
                     cantidad: 1,
-                    total : mtsLineales*4500 + 160000 + 280000 //+ 8 cubos + 8 patas malacates ???
+                    total: mtsLineales * 4500 + 160000 + 280000 //+ 8 cubos + 8 patas malacates ???
                 })
             }
             // else if (valorSeleccionado == "otro") {
@@ -690,124 +690,124 @@ function agregarGrupo() {
     const operativo = document.querySelector("#operativo").checked
     const backUp = document.querySelector("#back").checked
     const cable = document.querySelector("#distancia").value
-        if (operativo) {
-            cantDeGrupos++
-            tengoGrupo = true
-            carrito.push({
-                categoria:"grupo",
-                nombre : "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
-                cantidad: 1,
-                total : 270000                      //precio grupo operativo
-            })
-        }
-        if (backUp) {
-            cantDeGrupos++
-            tengoGrupo = true
-            carrito.push({
-                categoria: "grupo",
-                nombre : "Grupo CETEC 130 KVA Backup",
-                cantidad: 1,
-                total : 150000                      //precio grupo back 
-            })
-        }
-        if (cable >25) {
-            carrito.push({
-                categoria: "grupo",
-                nombre: "Mts Tendido Eléctrico",
-                cantidad: parseInt(cable),
-                total : parseInt(cable) * 2000                            //Precio cable
-            })
-        }
-        validacionOk.gruposOk = true;
+    if (operativo) {
+        cantDeGrupos++
+        tengoGrupo = true
+        carrito.push({
+            categoria: "grupo",
+            nombre: "Grupo CETEC 130 KVA Operativo (10 Hs de uso) ",
+            cantidad: 1,
+            total: 270000                      //precio grupo operativo
+        })
     }
+    if (backUp) {
+        cantDeGrupos++
+        tengoGrupo = true
+        carrito.push({
+            categoria: "grupo",
+            nombre: "Grupo CETEC 130 KVA Backup",
+            cantidad: 1,
+            total: 150000                      //precio grupo back 
+        })
+    }
+    if (cable > 25) {
+        carrito.push({
+            categoria: "grupo",
+            nombre: "Mts Tendido Eléctrico",
+            cantidad: parseInt(cable),
+            total: parseInt(cable) * 2000                            //Precio cable
+        })
+    }
+    validacionOk.gruposOk = true;
+}
 function agregarEnvio() {
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
     const duracion = document.querySelector('input[name="duracion"]:checked')
     const masDias = document.getElementById("masDias").value
     const armado = document.querySelector('input[name="armado"]:checked')
 
-    if ((!zonaEnvio || !armado || !duracion)|| (duracion.id == "diaOtro" && masDias == "")){
-        let txt ="Todos los campos de la sección transporte son obligatorios"
+    if ((!zonaEnvio || !armado || !duracion) || (duracion.id == "diaOtro" && masDias == "")) {
+        let txt = "Todos los campos de la sección transporte son obligatorios"
         formError(txt, mensaje)
         validacionOk.envioOk = false
-    }else{
+    } else {
         if (zonaEnvio) {
             carrito.push({
                 nombre: zonaEnvio.value,
-                cantidad : 1,
-                total : 0
+                cantidad: 1,
+                total: 0
             })
         }
         if (duracion.value == "1") {
             carrito.push({
                 nombre: "Día de duración",
-                cantidad : duracion.value,
-                total  : 0
+                cantidad: duracion.value,
+                total: 0
             })
-        }else if (duracion.value == "2") {
+        } else if (duracion.value == "2") {
             carrito.push({
                 nombre: "Días de duración",
-                cantidad : duracion.value,
-                total  : 0
+                cantidad: duracion.value,
+                total: 0
             })
-        }else if (duracion.value == "on") {
+        } else if (duracion.value == "on") {
             carrito.push({
                 nombre: "Días de duración",
-                cantidad : masDias,
-                total  : 0
+                cantidad: masDias,
+                total: 0
             })
         }
         if (armado) {
             carrito.push({
                 nombre: armado.value,
-                cantidad : 1,
-                total : 0
+                cantidad: 1,
+                total: 0
             })
         }
         validacionOk.envioOk = true
     }
 }
-function validarCarrito(){
+function validarCarrito() {
     if (carrito.length == 0) {
         let txt = "No se puede generar presupuesto si no hay artículos agregados"
         formError(txt, mensaje)
-        validacionOk.carritoOk = false        
-    }else{
+        validacionOk.carritoOk = false
+    } else {
         validacionOk.carritoOk = true
     }
 }
-function evaluarCarrito(){//si carrito tiene solo grupo o mas
+function evaluarCarrito() {//si carrito tiene solo grupo o mas
     agregarAlCarrito(articulos)
     agregarTramos()
     agregarGrupo()
     let tamañoDelCarrito = {}
-    carrito.forEach(art =>{
-        if(art.categoria == "iluminacion"){
+    carrito.forEach(art => {
+        if (art.categoria == "iluminacion") {
             tamañoDelCarrito.iluminacion = true
         };
-        if(art.categoria == "Sonido"){
+        if (art.categoria == "Sonido") {
             tamañoDelCarrito.sonido = true
         };
-        if(art.categoria == "rigging"){
+        if (art.categoria == "rigging") {
             tamañoDelCarrito.rigging = true
         };
-        if(art.categoria == "grupo"){
+        if (art.categoria == "grupo") {
             tamañoDelCarrito.grupo = true
         };
     })
-    return tamañoDelCarrito 
+    return tamañoDelCarrito
 }
-function agregarCostosFijos(){
-    costosFijos.forEach(articulo=>{
-    carrito.push(
-        {
-            nombre: articulo.nombre,
-            id: articulo.id,
-            precio: articulo.precio,
-            cantidad: 1,
-            total: articulo.precio 
-        })
-    })    
+function agregarCostosFijos() {
+    costosFijos.forEach(articulo => {
+        carrito.push(
+            {
+                nombre: articulo.nombre,
+                id: articulo.id,
+                precio: articulo.precio,
+                cantidad: 1,
+                total: articulo.precio
+            })
+    })
 }
 function renderizarPresupuesto(lista) {
     const titulo = document.querySelector("#list")
@@ -828,7 +828,7 @@ function renderizarPresupuesto(lista) {
 }
 
 let soloGrupo = false
-function calcularTotal(){
+function calcularTotal() {
     let acumulador = carrito.reduce((total, articulo) => total + articulo.total, 0);
 
     const zonaEnvio = document.querySelector('input[name="zona"]:checked')
@@ -839,36 +839,36 @@ function calcularTotal(){
     const inputCodigo = document.querySelector("#textCodigo")
 
     //Armado
-    if (armado.checked && armado.id == "armadoPrevio"){
-        acumulador *=  1.3 // suma 30%
+    if (armado.checked && armado.id == "armadoPrevio") {
+        acumulador *= 1.3 // suma 30%
     }
     //Duracion
     if (duracion == 2) {
         acumulador *= 1.5
-        }else if (duracion == "on") {
-            if (masDias >= "3" && masDias <= "7") {
-                switch (masDias) {
-                    case "3":
-                        acumulador *=  2;
-                        break;
-                    case "4":
-                        acumulador *= 2.5;
-                        break;
-                    case "5":
-                        acumulador *= 3;
-                        break;
-                    case "6":
-                        acumulador *= 3.5;
-                        break;
-                    case "7":
-                        acumulador *= 4;
-                        break;
-                }
-            } else if (masDias >= "8" && masDias <= "9999") {
-                const factor = 4 + (parseInt(masDias) - 7) * 0.25;
-                console.log(factor);
-                acumulador *= factor;
+    } else if (duracion == "on") {
+        if (masDias >= "3" && masDias <= "7") {
+            switch (masDias) {
+                case "3":
+                    acumulador *= 2;
+                    break;
+                case "4":
+                    acumulador *= 2.5;
+                    break;
+                case "5":
+                    acumulador *= 3;
+                    break;
+                case "6":
+                    acumulador *= 3.5;
+                    break;
+                case "7":
+                    acumulador *= 4;
+                    break;
             }
+        } else if (masDias >= "8" && masDias <= "9999") {
+            const factor = 4 + (parseInt(masDias) - 7) * 0.25;
+            console.log(factor);
+            acumulador *= factor;
+        }
     }
     //Envios
     if (!soloGrupo) {               //MUCHOS PRODUCTOS
@@ -881,50 +881,50 @@ function calcularTotal(){
         if (tengoGrupo) {
             if (zonaEnvio.checked && zonaEnvio.id == "zona2" && cantDeGrupos == 1) {
                 acumulador += 30000 // precio de envio x 1 Grupo  
-            }else{
+            } else {
                 acumulador += 60000 // precio de envio x 2 Grupo
             }
         }
-    }else{                          //SOLO GRUPO
+    } else {                          //SOLO GRUPO
         if (zonaEnvio.checked && zonaEnvio.id == "zona1" || zonaEnvio.checked && zonaEnvio.id == "zona3") {
             acumulador += 0 // precio de envio  
-            }else if (zonaEnvio.checked && zonaEnvio.id == "zona2" && cantDeGrupos == 1) {
-                acumulador += 30000     // precio de envio x 1 Grupo  
-            }else{
-                acumulador += 60000     // precio de envio x 2 Grupo
-            }
+        } else if (zonaEnvio.checked && zonaEnvio.id == "zona2" && cantDeGrupos == 1) {
+            acumulador += 30000     // precio de envio x 1 Grupo  
+        } else {
+            acumulador += 60000     // precio de envio x 2 Grupo
+        }
     }
 
     if (codigo.checked) {
-        switch (inputCodigo.value){
-            case "BONUS30" :
+        switch (inputCodigo.value) {
+            case "BONUS30":
                 acumulador *= 0.7
                 carrito.push({
                     nombre: "Descuento 30%",
-                    cantidad : 1,
-                    total  : 0
+                    cantidad: 1,
+                    total: 0
                 })
                 break;
-            case "BONUS20" :
+            case "BONUS20":
                 acumulador *= 0.8
                 carrito.push({
                     nombre: "Descuento 20%",
-                    cantidad : 1,
-                    total  : 0
+                    cantidad: 1,
+                    total: 0
                 })
                 break;
-            case "BONUS10" :
+            case "BONUS10":
                 acumulador *= 0.9
                 carrito.push({
                     nombre: "Descuento 10%",
-                    cantidad : 1,
-                    total  : 0
+                    cantidad: 1,
+                    total: 0
                 })
                 break;
         }
-        
+
     }
-    return Math.round(acumulador) 
+    return Math.round(acumulador)
 }
 function formatearCarrito() {
     let nuevoCarrito = carrito.filter(({ nombre, cantidad }) => nombre && cantidad) || [] //DEVUELVE UN ARRAY CON LOS DATOS FILTRADOS, SINO ENCUENTRA NADA DEVUELVE UN ARRAY VACIO (CONTROL DE POSIBLE ERROR EN CASO DE QUE DICHA PROPIEDAD SEA NULL)
@@ -936,7 +936,7 @@ const mensaje = document.getElementById("mensajePresupuesto")
 const formError = (mensaje, HTMLElement) => {
     const titulo = document.querySelector("#list")
     HTMLElement.classList.add(`err`)
-    HTMLElement.innerHTML += `${mensaje}<br>` 
+    HTMLElement.innerHTML += `${mensaje}<br>`
     titulo.setAttribute("style", "display:none")
     carrito = []
     setTimeout(() => {
@@ -950,23 +950,23 @@ function validarTodo() {
     agregarGrupo()
     validarCarrito()
     agregarEnvio()
-    if (validacionOk.inputsOk && validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk){
+    if (validacionOk.inputsOk && validacionOk.carritoOk && validacionOk.tramosOk && validacionOk.gruposOk && validacionOk.envioOk) {
         return true
-    }else{
+    } else {
         return false
-    } 
+    }
 }
-function tiraTuMagia(){
+function tiraTuMagia() {
     let validacion = validarTodo()
     if (validacion) {
         let muchosProductos = evaluarCarrito()
         carrito = []
         agregarAlCarrito(articulos)
         agregarTramos()
-        if(carrito.length == 0){
+        if (carrito.length == 0) {
             agregarGrupo()
             soloGrupo = true
-        }else{
+        } else {
             agregarGrupo()
         }
         if (muchosProductos.iluminacion) {
@@ -975,6 +975,7 @@ function tiraTuMagia(){
         agregarEnvio()
         carritoParaEnviar = formatearCarrito()
         renderizarPresupuesto(carrito)
+        generarPDF()
     }
 }
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
@@ -986,7 +987,7 @@ btnPresupuesto.addEventListener("click", function (e) {
 // Generar pdf
 const generarPDF = () => {
     let nuevoCarrito = carrito.filter(({ nombre, cantidad }) => nombre && cantidad) || []
-    
+
     const formDatos = document.getElementById('formData')
     let formData = {
         nombre: '',
@@ -995,16 +996,16 @@ const generarPDF = () => {
         correo: '',
         fecha: null,
     }
-    formData.nombre = formDatos.elements.Nombre.value.trim()
-    formData.apellido = formDatos.elements.Apellido.value.trim()
-    formData.telefono = formDatos.elements.Telefono.value.trim()
-    formData.correo = formDatos.elements.Email.value.trim()
-    formData.fecha = formDatos.elements.Date.value.trim()
-    
+    formData.nombre = formDatos.elements.nombre.value.trim()
+    formData.apellido = formDatos.elements.apellido.value.trim()
+    formData.telefono = formDatos.elements.telefono.value.trim()
+    formData.correo = formDatos.elements.correo.value.trim()
+    formData.fecha = formDatos.elements.fecha.value.trim()
+
     console.log(formData.nombre);
 
     let fecha = fechaActual()
-    
+
     const total = calcularTotal()
     const totalFormateado = total.toLocaleString()
 
@@ -1127,15 +1128,10 @@ const sendEmail = async (formData) => {
     const user_id = '3cwMkpzcGYMOKF7Uf'
 
     try {
-        await emailjs.init(user_id);
-        await emailjs.send(service_id2, template_id, formData)
-            .then((res) => {
-                console.log('Formulario enviado!', res.status, res.text)
-            }, (err) => {
-                console.log('Error al enviar...', err)
-            })
+        const res = await emailjs.sendForm(service_id2, template_id, formData, user_id)
+        console.log('Formulario enviado!', res.status, res.text)
     } catch (e) {
-        console.log(e)
+        console.log('Error al enviar...', e)
     }
 }
 
@@ -1149,14 +1145,14 @@ const msgAction = (msg, style, HTMLElement) => {
 }
 
 const validateForm = () => {
-    const name = formDatos.elements.Nombre.value.trim()
-    const surname = formDatos.elements.Apellido.value.trim()
-    const tel = formDatos.elements.Telefono.value.trim()
-    const email = formDatos.elements.Email.value.trim()
-    const date = formDatos.elements.Date.value.trim()
+    const name = formDatos.elements.nombre.value.trim()
+    const surname = formDatos.elements.apellido.value.trim()
+    const tel = formDatos.elements.telefono.value.trim()
+    const email = formDatos.elements.correo.value.trim()
+    const date = formDatos.elements.fecha.value.trim()
     const terminosYcondiciones = formDatos.elements.Terminos.checked
 
-    if (!name || !surname || !tel || !email || !date ) {
+    if (!name || !surname || !tel || !email || !date) {
         let txt = 'Por favor, completa todos los campos'
         msgAction(txt, 'err', msg)
         return false
@@ -1192,21 +1188,21 @@ const validateForm = () => {
 
     return true
 }
-btnAplicar.addEventListener('click',(e)=>{
+btnAplicar.addEventListener('click', (e) => {
     e.preventDefault()
     const inputCodigo = document.querySelector("#textCodigo")
-    let codigosValidos= ["BONUS10", "BONUS20", "BONUS30"]
+    let codigosValidos = ["BONUS10", "BONUS20", "BONUS30"]
     if (!codigosValidos.includes(inputCodigo.value)) {
         let txt = 'Código Inválido'
         msgAction(txt, 'err', msg)
-    }else{
+    } else {
         let txt = 'Descuento Aplicado'
         msgAction(txt, 'success', msg)
     }
     tiraTuMagia()
-    
+
 })
-btnTerminos.addEventListener('click', (e)=>{
+btnTerminos.addEventListener('click', (e) => {
     e.preventDefault()
     if (terminosYcondiciones.style.display === 'none') {
         terminosYcondiciones.style.display = 'block'
@@ -1214,7 +1210,7 @@ btnTerminos.addEventListener('click', (e)=>{
         terminosYcondiciones.style.display = 'none'
     }
 })
-btnOcultar.addEventListener('click', ()=>{
+btnOcultar.addEventListener('click', () => {
     terminosYcondiciones.style.display = 'none'
 })
 
@@ -1226,32 +1222,9 @@ btnEmail.addEventListener('click', (e) => {
         return
     }
 
-    let formData = {
-        nombre: '',
-        apellido: '',
-        telefono: 0,
-        correo: '',
-        fecha: null,
-        hora: null,
-        presupuesto: [],
-    }
-
-    let pdf = generarPDF()
-    console.log(pdf);
-    // let blob = new Blob([JSON.stringify(pdf)], { type: 'application/json' });
-
-    formData.nombre = formDatos.elements.Nombre.value.trim()
-    formData.apellido = formDatos.elements.Apellido.value.trim()
-    formData.telefono = formDatos.elements.Telefono.value.trim()
-    formData.correo = formDatos.elements.Email.value.trim()
-    formData.fecha = formDatos.elements.Date.value.trim()
-    formData.presupuesto = carritoParaEnviar
-    // formData.append('pdfFile', blob, 'archivo.pdf');
-
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
-    sendEmail(formData)
-    generarPDF()
+    sendEmail(formDatos)
     formDatos.reset()
     formProduct.reset()
     setTimeout(() => {
@@ -1262,6 +1235,6 @@ btnEmail.addEventListener('click', (e) => {
         const titulo = document.querySelector("#list")
         titulo.setAttribute("style", "display: none")
     }, 3000)
-    
+
 })
 
