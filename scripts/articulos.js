@@ -290,7 +290,7 @@ const validacionOk = {
     carritoOk: true,
     tramosOk: true,
     gruposOk: true,
-    envioOk: true
+    envioOk: true,
 }
 
 window.addEventListener("load", () => {
@@ -777,6 +777,20 @@ function validarCarrito() {
         validacionOk.carritoOk = true
     }
 }
+function validarDescuento(){
+    const inputCodigo = document.querySelector("#textCodigo")
+    const codigo = document.querySelector("#checkCodigo").checked
+    let codigosValidos = ["BONUS10", "BONUS20", "BONUS30"]
+    if (codigo){
+        if(!codigosValidos.includes(inputCodigo.value)) {
+            let txt = 'Código Inválido'
+            formError(txt, mensaje)    
+        }else{
+            let txt = 'Descuento Aplicado'
+            formSuccess(txt, mensaje)
+        }
+    }
+}
 function evaluarCarrito() {//si carrito tiene solo grupo o mas
     agregarAlCarrito(articulos)
     agregarTramos()
@@ -945,6 +959,14 @@ const formError = (mensaje, HTMLElement) => {
         HTMLElement.innerText = ''
     }, 5000)
 }
+const formSuccess = (mensaje, HTMLElement) =>{
+    HTMLElement.classList.add(`success`)
+    HTMLElement.innerHTML+=`${mensaje}`
+    setTimeout(() => {
+        HTMLElement.classList.remove(`success`)
+        HTMLElement.innerText = ''
+    }, 4000)
+}
 function validarTodo() {
     agregarAlCarrito(articulos)
     agregarTramos()
@@ -976,6 +998,7 @@ function tiraTuMagia() {
         agregarEnvio()
         carritoParaEnviar = formatearCarrito()
         renderizarPresupuesto(carrito)
+        validarDescuento()
     }
 }
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
@@ -1001,8 +1024,6 @@ const generarPDF = () => {
     formData.telefono = formDatos.elements.telefono.value.trim()
     formData.correo = formDatos.elements.correo.value.trim()
     formData.fecha = formDatos.elements.fecha.value.trim()
-
-    console.log(formData.nombre);
 
     let fecha = fechaActual()
 
@@ -1124,7 +1145,19 @@ const msg = document.getElementById('message')
 const btnDescargar = document.getElementById("btd-Descargar")
 
 btnDescargar.addEventListener("click", ()=>{
-    generarPDF()
+    const name = formDatos.elements.nombre.value.trim()
+    const surname = formDatos.elements.apellido.value.trim()
+    const tel = formDatos.elements.telefono.value.trim()
+    const email = formDatos.elements.correo.value.trim()
+    const date = formDatos.elements.fecha.value.trim()
+    if (!name || !surname || !tel || !email || !date ) {
+        let txt = 'Por favor, completa todos los campos'
+        msgAction(txt, 'err', msg)
+        return false
+    }else{
+        generarPDF()
+    }
+    
 })
 
 const sendEmail = async (formData) => {
