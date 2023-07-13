@@ -1269,7 +1269,7 @@ btnEmail.addEventListener('click', (e) => {
 
     let txt = 'Formulario enviado!'
     msgAction(txt, 'success', msg)
-    sendEmail(formDatos)
+    // sendEmail(formDatos)
     formDatos.reset()
     formProduct.reset()
     setTimeout(() => {
