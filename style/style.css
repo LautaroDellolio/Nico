@@ -215,7 +215,7 @@ h3{
     width: 60%;                       
 }
 
-.distancia, .duracion, .armado{    
+.distancia, .duracion, .armado, .codigo{    
     background-color: black;
     color: white;
     padding: 5px;
@@ -286,22 +286,24 @@ h3{
 .formulario label{
     color: white;
 }
-
+.stylePdfInput{
+    color: white;
+}
+.styleButtonPdf{
+    margin: auto;
+    border-radius: 15px;
+    padding: 5px 35px;
+}
 .codigo div{
+    padding: 5px;
     display: flex;
     justify-content: space-between;
     margin: 5px;
-}
+} 
 .textoCodigo{
     display: flex;
     justify-content: space-around;
-}
-.btnAplicar{
-    padding: 8px;
-    border: none;
-    border-radius: 15px;
-    background-color: white;
-}
+} 
 .terminos{
     display: flex;
     justify-content: space-between;

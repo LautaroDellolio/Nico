@@ -501,12 +501,12 @@ function agregarAlCarrito(lista) {
             }
         }).filter(input => input !== undefined);
         validacionOk.inputsOk = true
-        console.log(carrito);
+        // console.log(carrito);
         return carrito;
     }
 }
-const artSonido = document.querySelectorAll(".artSonido")
 
+const artSonido = document.querySelectorAll(".artSonido")
 
 const tramosLargo = document.querySelector(".largo")
 const tramosAncho = document.querySelector(".ancho")
@@ -517,6 +517,7 @@ const tramosCantPatas = document.querySelectorAll('input[name="cantPatas"]')
 const checkCostilla = document.getElementById("costilla")
 let nodoConCheck = null;
 let valorSeleccionado = null;
+
 function validarTramos() {
     let inputLargo = tramosLargo.value
     let inputAncho = tramosAncho.value
@@ -727,7 +728,7 @@ function agregarEnvio() {
     const armado = document.querySelector('input[name="armado"]:checked')
 
     if ((!zonaEnvio || !armado || !duracion) || (duracion.id == "diaOtro" && masDias == "")) {
-        let txt = "Todos los campos de la sección transporte son obligatorios"
+        let txt = "Todos los campos de la sección 'Información del evento' son obligatorios"
         formError(txt, mensaje)
         validacionOk.envioOk = false
     } else {
@@ -846,7 +847,7 @@ function calcularTotal() {
     if (duracion == 2) {
         acumulador *= 1.5
     } else if (duracion == "on") {
-        if (masDias >= "3" && masDias <= "7") {
+        if (masDias >= 3 && masDias <= 7) {
             switch (masDias) {
                 case "3":
                     acumulador *= 2;
@@ -864,7 +865,7 @@ function calcularTotal() {
                     acumulador *= 4;
                     break;
             }
-        } else if (masDias >= "8" && masDias <= "9999") {
+        } else if (masDias >= 8 && masDias <= 9999) {
             const factor = 4 + (parseInt(masDias) - 7) * 0.25;
             console.log(factor);
             acumulador *= factor;
@@ -975,7 +976,6 @@ function tiraTuMagia() {
         agregarEnvio()
         carritoParaEnviar = formatearCarrito()
         renderizarPresupuesto(carrito)
-        generarPDF()
     }
 }
 const btnPresupuesto = document.querySelector(".btnPresupuesto")
@@ -1121,6 +1121,11 @@ const btnOcultar = document.getElementById('btn-ocultar')
 const btnAplicar = document.getElementById('btn-aplicar')
 const terminosYcondiciones = document.querySelector('.terminosYcondiciones')
 const msg = document.getElementById('message')
+const btnDescargar = document.getElementById("btd-Descargar")
+
+btnDescargar.addEventListener("click", ()=>{
+    generarPDF()
+})
 
 const sendEmail = async (formData) => {
     const service_id2 = 'service_19qxvla'
@@ -1151,8 +1156,10 @@ const validateForm = () => {
     const email = formDatos.elements.correo.value.trim()
     const date = formDatos.elements.fecha.value.trim()
     const terminosYcondiciones = formDatos.elements.Terminos.checked
+    const pdf = formDatos.elements.my_file.value
+    
 
-    if (!name || !surname || !tel || !email || !date) {
+    if (!name || !surname || !tel || !email || !date ) {
         let txt = 'Por favor, completa todos los campos'
         msgAction(txt, 'err', msg)
         return false
@@ -1179,6 +1186,11 @@ const validateForm = () => {
         msgAction(txt, 'err', msg)
         return false
     }
+    if (!pdf) {
+        let txt = "Debe adjuntar el pdf"
+        msgAction(txt, 'err', msg)
+        return false
+    }
 
     if (!terminosYcondiciones) {
         let txt = "Debe aceptar los términos y condiciones"
@@ -1188,20 +1200,20 @@ const validateForm = () => {
 
     return true
 }
-btnAplicar.addEventListener('click', (e) => {
-    e.preventDefault()
-    const inputCodigo = document.querySelector("#textCodigo")
-    let codigosValidos = ["BONUS10", "BONUS20", "BONUS30"]
-    if (!codigosValidos.includes(inputCodigo.value)) {
-        let txt = 'Código Inválido'
-        msgAction(txt, 'err', msg)
-    } else {
-        let txt = 'Descuento Aplicado'
-        msgAction(txt, 'success', msg)
-    }
-    tiraTuMagia()
+// btnAplicar.addEventListener('click', (e) => {
+//     e.preventDefault()
+//     const inputCodigo = document.querySelector("#textCodigo")
+//     let codigosValidos = ["BONUS10", "BONUS20", "BONUS30"]
+//     if (!codigosValidos.includes(inputCodigo.value)) {
+//         let txt = 'Código Inválido'
+//         msgAction(txt, 'err', msg)
+//     } else {
+//         let txt = 'Descuento Aplicado'
+//         msgAction(txt, 'success', msg)
+//     }
+//     tiraTuMagia()
 
-})
+// })
 btnTerminos.addEventListener('click', (e) => {
     e.preventDefault()
     if (terminosYcondiciones.style.display === 'none') {

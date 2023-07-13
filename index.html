@@ -277,6 +277,16 @@
               />
             </div>
           </article>
+
+          <section class="codigo">
+            <div class="tengoCodigo">
+              <label for="">Tengo un código</label>
+              <input type="checkbox" name="TengoCodigo" id="checkCodigo" />
+            </div>
+            <div style="display: none" id="divCodigo" class="textoCodigo">
+              <input type="text" name="inputCodigo" id="textCodigo" />
+            </div>
+          </section>
         </section>
 
         <button class="btnPresupuesto btnStyle" type="submit">
@@ -307,7 +317,7 @@
           <div>
             <label for="">Teléfono</label>
             <input
-              type="number"
+              type="number" git reset --hard HEAD
               placeholder="Teléfono"
               name="telefono"
               required
@@ -322,24 +332,19 @@
             <input type="date" placeholder="DD/MM/AA" name="fecha" required />
           </div>
           <div>
+          <button id="btd-Descargar" class="styleButtonPdf">Descargar Pdf</button>
+          </div>
+          <div>
             <label for="">Cargar Presupuesto</label>
             <input
+              class="stylePdfInput"
               type="file"
               placeholder="Subir archivo PDF"
               name="my_file"
               required
             />
           </div>
-          <section class="codigo">
-            <div class="tengoCodigo">
-              <label for="">Tengo un código</label>
-              <input type="checkbox" name="TengoCodigo" id="checkCodigo" />
-            </div>
-            <div style="display: none" id="divCodigo" class="textoCodigo">
-              <input type="text" name="inputCodigo" id="textCodigo" />
-              <button class="btnAplicar" id="btn-aplicar">Aplicar</button>
-            </div>
-          </section>
+          
           <section class="terminos">
             <label for=""
               ><button id="btn-terminos" class="btn-terminos">
