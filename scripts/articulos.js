@@ -1005,11 +1005,27 @@ const btnPresupuesto = document.querySelector(".btnPresupuesto")
 btnPresupuesto.addEventListener("click", function (e) {
     e.preventDefault()
     tiraTuMagia()
+    // generarPDF()
 })
 
 // Generar pdf
 const generarPDF = () => {
     let nuevoCarrito = carrito.filter(({ nombre, cantidad }) => nombre && cantidad) || []
+
+    const rules = `\n \n   
+    • Los precios no incluyen IVA (21%) el presente presupuesto tiene una validez de 30 días. 
+    • En caso de confirmar el presupuesto y de no abonar dentro de los 15 días, el mismo sufrirá un incremento mensual según índice ipc. 	
+    • El pago total deberá estar saldado 48 hs antes del evento.
+    • El cliente será responsable: total y parcialmente por los equipos locados, por roturas ajenas al buen uso, robo, hurto o deterioro del equipamiento como así también daños ocasionados a terceros que pudieran surgir por caso fortuito y/o motivos ajenos a nuestra empresa, desde el momento de su ingreso al predio hasta el retiro de los mismos.
+    • El lugar donde se desarrollará el evento deberá contar con personal de seguridad durante todo el período de contratación del servicio, incluyendo la instalación, el evento, y la desinstalación del mismo para el cuidado de todo el equipamiento.
+    • Los precios detallados incluyen gastos de transportes, y de personal. 
+    • Los precios son por un día de evento. Por más de un día se realizará otra cotización.
+    • En caso de que el evento se suspenda por condiciones climáticas desfavorables, o por cualquier otra cancelación, habiendo sido instalado el equipamiento, el cliente se hará cargo del cien por cien del precio convenido.
+    • Los equipos presupuestados estarán sujetos a su disponibilidad al momento de la reserva.
+    • Si se contratan grupos electrógenos y el mismo es esencial para el desarrollo del evento, recomendamos la contratación de equipos de backup que aseguren la prestación del servicio en caso de una eventual falla en alguno de los mismos.
+    • En ningún caso Stoessel SRL será responsable por eventuales perjuicios al cliente o terceros derivados de la paralización del equipo, cualquiera fuere la causa de tal efecto. Tampoco existirá indemnización alguna por lucro cesante, ganancia esperada, aptitudes implícitas o daño emergente por el no o mal funcionamiento del equipamiento alquilado.
+    • Para locaciones en donde la altura de trabajo sea superior a 4 metros el cliente deberá proveer al menos un elevador hidráulico. 
+    • Están incluidos los seguros del personal contra accidentes de trabajo y seguro por responsabilidad civil.`
 
     const formDatos = document.getElementById('formData')
     let formData = {
@@ -1039,8 +1055,8 @@ const generarPDF = () => {
         logo: {
             src: './img/logoStoesel.png',
             type: 'PNG', //optional, when src= data:uri (nodejs case)
-            width: 70, //aspect ratio = width/height
-            height: 26.66,
+            width: 60, //aspect ratio = width/height
+            height: 18,
             margin: {
                 top: 0, //negative or positive num, from the current position
                 left: 0 //negative or positive num, from the current position
@@ -1058,11 +1074,12 @@ const generarPDF = () => {
             }
         },
         business: {
-            name: "",//Stoessel - Ingenieria en eventos SRL
-            address: "CUIT: 30-71626156-1",//
-            phone: "+549 115 226 7233",
-            email: "info@stoessel-events.com",
-            website: "www.stoessel-eventos.com.ar",
+            name: "", 
+            address: "Stoessel - Ingenieria en eventos",//
+            phone: "CUIT: 30-71626156-1",
+            email: "+549 115 226 7233",
+            email_1: "info@stoessel-events.com",
+            website: "www.stoessel-eventos.com",
         },
         contact: {
             label: "Cliente:",
@@ -1081,13 +1098,13 @@ const generarPDF = () => {
                 {
                     title: "#",
                     style: {
-                        width: 10
+                        width: 6.5,
                     }
                 },
                 {
                     title: "Cantidad",
                     style: {
-                        width: 30
+                        width: 30,
                     }
                 },
                 {
@@ -1117,13 +1134,13 @@ const generarPDF = () => {
                     fontSize: 14 //optional, default 12
                 }
             },
-            invDescLabel: "\n CONFIRMADO EL PRESENTE PRESUPUESTO \n QUEDA EXPRESAMENTE ACEPTADAS LAS CONDICIONES GENERALES. \n Este presupuesto queda pendiente de aprobación y sujeto a disponibilidad."
-            // invDescLabelStyle: {
-            //     fontSize: 10,
-            //     textColor: [0, 0, 0],
-            //     fillColor: [255, 255, 0] // amarillo
-            // },
-            // invDesc: rules,
+            invDescLabel: "\n Confirmando el presente presupuesto queda expremente aceptadas las condicones generales. \n Este presupuesto queda pendiente de aprobación y sujeto a disponibilidad. \n ",
+            invDescLabelStyle: {
+                fontSize: 10,
+                textColor: [0, 0, 0],
+                fillColor: [255, 255, 0] // amarillo
+            },
+            invDesc: rules,
         },
         pageEnable: true,
         pageLabel: "Page ",
